@@ -1,0 +1,49 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row mb-3">
+      <div class="col-6">
+        <span>Gestion de cotizaciones</span>
+      </div>
+      <div class="col-6">
+        <div class="row justify-content-end">
+          <button type="button" class="btn btn-sm btn-themecolor" routerLink="nuevo">
+            <i class="fa fa-plus" aria-hidden="true"></i> Agregar
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="table-responsive">
+      <table class="table table-sm stylish-table table-bordered table-hover">
+        <thead class="bg-theme text-white">
+          <tr>
+            <th scope="col">Cotizaciones</th>
+            <th scope="col">Agencia</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Vehículo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let c of cotizaciones">
+            <tr>
+              <td>{{c.cotizacion}}</td>
+              <td>{{c.agencia}}</td>
+              <td>{{c.cliente}}</td>
+              <td>{{c.vehiculo}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+
+      <nav aria-label="Models pagination">
+        <ul class="pagination justify-content-end">
+          <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
