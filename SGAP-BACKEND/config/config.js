@@ -9,3 +9,16 @@ module.exports.ESTADOS = {
 
 // Estado por default
 module.exports.ESTADO_ACTIVO = 1;
+
+// Mongo atlas credentials
+module.exports.MONGODB = {
+    MONGODB_URI: 'mongodb+srv://sigap-4h2pt.azure.mongodb.net',
+    MONGOOSE_OPTS: {
+        user: 'jrupailla',
+        pass: 'i2REZ2l03RhsD1Mr',
+        dbName: 'sigap-db',
+        useCreateIndex: true,
+        useNewUrlParser: true,
+        useFindAndModify: false
+    }
+};

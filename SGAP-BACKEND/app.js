@@ -52,12 +52,14 @@ app.use('/cotizacion', cotizacionRoutes);
 app.use('/cliente', clienteRoutes);
 app.use('/', appRoutes);
 
-// Conectandose a MongoDB
-mongoose.connection.openUri('mongodb://127.0.0.1:27017/sapDB', (err, res) => {
-    if (err) { throw err; }
+// MongoDB Access
+var db = require('./config/config').MONGODB;
 
+// Conectandose a MongoDB
+mongoose.connect(db.MONGODB_URI, db.MONGOOSE_OPTS, (err) => {
+    if (err) { throw err; }
     console.log('Base de datos online: \x1b[32m%s\x1b[0m', 'online');
-});
+})
 
 // Escuchar peticiones
 app.listen(3000, () => {
