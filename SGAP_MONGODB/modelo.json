@@ -1,0 +1,449 @@
+/* 1 */
+{
+    "_id": ObjectId("5c20307ff93a947d68989660"),
+    "estado": 1,
+    "nombre": "A1",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 2 */
+{
+    "_id": ObjectId("5c2031fddd89fc7d80b6f261"),
+    "estado": 1,
+    "nombre": "A3",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 3 */
+{
+    "_id": ObjectId("5c203200dd89fc7d80b6f262"),
+    "estado": 1,
+    "nombre": "A4",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 4 */
+{
+    "_id": ObjectId("5c203203dd89fc7d80b6f263"),
+    "estado": 1,
+    "nombre": "A5",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 5 */
+{
+    "_id": ObjectId("5c20322ddd89fc7d80b6f264"),
+    "estado": 1,
+    "nombre": "A6",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 6 */
+{
+    "_id": ObjectId("5c203244dd89fc7d80b6f265"),
+    "estado": 1,
+    "nombre": "A7",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 7 */
+{
+    "_id": ObjectId("5c203246dd89fc7d80b6f266"),
+    "estado": 1,
+    "nombre": "A8",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 8 */
+{
+    "_id": ObjectId("5c203255dd89fc7d80b6f267"),
+    "estado": 1,
+    "nombre": "All road",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 9 */
+{
+    "_id": ObjectId("5c203262dd89fc7d80b6f268"),
+    "estado": 1,
+    "nombre": "Q2",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 10 */
+{
+    "_id": ObjectId("5c203266dd89fc7d80b6f269"),
+    "estado": 1,
+    "nombre": "Q3",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 11 */
+{
+    "_id": ObjectId("5c203269dd89fc7d80b6f26a"),
+    "estado": 1,
+    "nombre": "Q5",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 12 */
+{
+    "_id": ObjectId("5c20326cdd89fc7d80b6f26b"),
+    "estado": 1,
+    "nombre": "Q7",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 13 */
+{
+    "_id": ObjectId("5c203276dd89fc7d80b6f26c"),
+    "estado": 1,
+    "nombre": "R8",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 14 */
+{
+    "_id": ObjectId("5c20327ddd89fc7d80b6f26d"),
+    "estado": 1,
+    "nombre": "S3",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 15 */
+{
+    "_id": ObjectId("5c203281dd89fc7d80b6f26e"),
+    "estado": 1,
+    "nombre": "S4",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 16 */
+{
+    "_id": ObjectId("5c203286dd89fc7d80b6f26f"),
+    "estado": 1,
+    "nombre": "S5",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 17 */
+{
+    "_id": ObjectId("5c203289dd89fc7d80b6f270"),
+    "estado": 1,
+    "nombre": "S6",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 18 */
+{
+    "_id": ObjectId("5c20328cdd89fc7d80b6f271"),
+    "estado": 1,
+    "nombre": "S7",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 19 */
+{
+    "_id": ObjectId("5c203290dd89fc7d80b6f272"),
+    "estado": 1,
+    "nombre": "S8",
+    "marca": ObjectId("5c202b780a9ccf7cea6453a4"),
+    "__v": 0
+}
+
+/* 20 */
+{
+    "_id": ObjectId("5c2032b4dd89fc7d80b6f273"),
+    "estado": 1,
+    "nombre": "116i",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 21 */
+{
+    "_id": ObjectId("5c2032bddd89fc7d80b6f274"),
+    "estado": 1,
+    "nombre": "120D",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 22 */
+{
+    "_id": ObjectId("5c2032c4dd89fc7d80b6f275"),
+    "estado": 1,
+    "nombre": "120I",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 23 */
+{
+    "_id": ObjectId("5c2032cadd89fc7d80b6f276"),
+    "estado": 1,
+    "nombre": "130I",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 24 */
+{
+    "_id": ObjectId("5c2032d3dd89fc7d80b6f277"),
+    "estado": 1,
+    "nombre": "316i",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 25 */
+{
+    "_id": ObjectId("5c2032d8dd89fc7d80b6f278"),
+    "estado": 1,
+    "nombre": "318i",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 26 */
+{
+    "_id": ObjectId("5c2032dfdd89fc7d80b6f279"),
+    "estado": 1,
+    "nombre": "318IA",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 27 */
+{
+    "_id": ObjectId("5c2032e6dd89fc7d80b6f27a"),
+    "estado": 1,
+    "nombre": "320IA",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 28 */
+{
+    "_id": ObjectId("5c2032eddd89fc7d80b6f27b"),
+    "estado": 1,
+    "nombre": "325CI",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 29 */
+{
+    "_id": ObjectId("5c2032f6dd89fc7d80b6f27c"),
+    "estado": 1,
+    "nombre": "325IA",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 30 */
+{
+    "_id": ObjectId("5c2032fddd89fc7d80b6f27d"),
+    "estado": 1,
+    "nombre": "330IA",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 31 */
+{
+    "_id": ObjectId("5c20330ddd89fc7d80b6f27e"),
+    "estado": 1,
+    "nombre": "340i",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 32 */
+{
+    "_id": ObjectId("5c203319dd89fc7d80b6f27f"),
+    "estado": 1,
+    "nombre": "335IA",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 33 */
+{
+    "_id": ObjectId("5c203320dd89fc7d80b6f280"),
+    "estado": 1,
+    "nombre": "335IC",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 34 */
+{
+    "_id": ObjectId("5c20332ddd89fc7d80b6f281"),
+    "estado": 1,
+    "nombre": "420i",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 35 */
+{
+    "_id": ObjectId("5c203339dd89fc7d80b6f282"),
+    "estado": 1,
+    "nombre": "520D",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 36 */
+{
+    "_id": ObjectId("5c203342dd89fc7d80b6f283"),
+    "estado": 1,
+    "nombre": "525IA",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 37 */
+{
+    "_id": ObjectId("5c20334ddd89fc7d80b6f284"),
+    "estado": 1,
+    "nombre": "530A",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 38 */
+{
+    "_id": ObjectId("5c203357dd89fc7d80b6f285"),
+    "estado": 1,
+    "nombre": "530D",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 39 */
+{
+    "_id": ObjectId("5c203362dd89fc7d80b6f286"),
+    "estado": 1,
+    "nombre": "540i",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 40 */
+{
+    "_id": ObjectId("5c203372dd89fc7d80b6f287"),
+    "estado": 1,
+    "nombre": "540I",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 41 */
+{
+    "_id": ObjectId("5c20337ddd89fc7d80b6f288"),
+    "estado": 1,
+    "nombre": "550I",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 42 */
+{
+    "_id": ObjectId("5c20338add89fc7d80b6f289"),
+    "estado": 1,
+    "nombre": "630CI",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 43 */
+{
+    "_id": ObjectId("5c20339add89fc7d80b6f28a"),
+    "estado": 1,
+    "nombre": "660CI",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 44 */
+{
+    "_id": ObjectId("5c2033a5dd89fc7d80b6f28b"),
+    "estado": 1,
+    "nombre": "730D",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 45 */
+{
+    "_id": ObjectId("5c2033addd89fc7d80b6f28c"),
+    "estado": 1,
+    "nombre": "730LI",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 46 */
+{
+    "_id": ObjectId("5c2033b7dd89fc7d80b6f28d"),
+    "estado": 1,
+    "nombre": "740I",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 47 */
+{
+    "_id": ObjectId("5c2033c0dd89fc7d80b6f28e"),
+    "estado": 1,
+    "nombre": "750i",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 48 */
+{
+    "_id": ObjectId("5c2033c9dd89fc7d80b6f28f"),
+    "estado": 1,
+    "nombre": "760LI",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 49 */
+{
+    "_id": ObjectId("5c2033d1dd89fc7d80b6f290"),
+    "estado": 1,
+    "nombre": "X1",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}
+
+/* 50 */
+{
+    "_id": ObjectId("5c2033d5dd89fc7d80b6f291"),
+    "estado": 1,
+    "nombre": "X3",
+    "marca": ObjectId("5c202bdc0a9ccf7cea6453a5"),
+    "__v": 0
+}

@@ -1,0 +1,54 @@
+/* 1 */
+{
+    "_id": ObjectId("5c2042dcc3fe4d7ffb68838a"),
+    "estado": 1,
+    "nombre": "Rimac Seguros",
+    "prima_minima": 400,
+    "prima_max_gps": 60000,
+    "tasa": 1.241,
+    "__v": 0
+}
+
+/* 2 */
+{
+    "_id": ObjectId("5c2042edc3fe4d7ffb68838b"),
+    "estado": 1,
+    "nombre": "La Positiva",
+    "prima_minima": 420,
+    "prima_max_gps": 60000,
+    "tasa": 1.241,
+    "__v": 0
+}
+
+/* 3 */
+{
+    "_id": ObjectId("5c2042f9c3fe4d7ffb68838c"),
+    "estado": 1,
+    "nombre": "Mapfre",
+    "prima_minima": 420,
+    "prima_max_gps": 60000,
+    "tasa": 1.241,
+    "__v": 0
+}
+
+/* 4 */
+{
+    "_id": ObjectId("5c2042fec3fe4d7ffb68838d"),
+    "estado": 1,
+    "nombre": "Pacífico",
+    "prima_minima": 420,
+    "prima_max_gps": 60000,
+    "tasa": 1.241,
+    "__v": 0
+}
+
+/* 5 */
+{
+    "_id": ObjectId("5c204302c3fe4d7ffb68838e"),
+    "estado": 1,
+    "nombre": "HDI",
+    "prima_minima": 420,
+    "prima_max_gps": 60000,
+    "tasa": 1.241,
+    "__v": 0
+}

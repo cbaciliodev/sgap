@@ -1,0 +1,94 @@
+/* 1 */
+{
+    "_id": ObjectId("5c324064cca9f5f5322c5039"),
+    "nombre": "COBERTURA",
+    "alias": "Cobertura",
+    "key": 1,
+    "orden": 1,
+    "valor_texto": null,
+    "valor_numero": null,
+    "estado": 1,
+    "parametros": [{
+            "nombre": "Responsabilidad Civil frente a terceros",
+            "alias": "Responsabilidad Civil frente a terceros",
+            "key": 1,
+            "orden": 1,
+            "valor_texto": null,
+            "valor_numero": null,
+            "estado": 1
+        },
+        {
+            "nombre": "Daño Propio",
+            "alias": "Daño Propio",
+            "key": 2,
+            "orden": 2,
+            "valor_texto": null,
+            "valor_numero": null,
+            "estado": 1
+        },
+        {
+            "nombre": "Robo Total",
+            "alias": "Robo Total",
+            "key": 3,
+            "orden": 3,
+            "valor_texto": null,
+            "valor_numero": null,
+            "estado": 1
+        },
+        {
+            "nombre": "Deducible para menor de 25 años",
+            "alias": "Deducible para menor de 25 años",
+            "key": 4,
+            "orden": 4,
+            "valor_texto": null,
+            "valor_numero": null,
+            "estado": 1
+        },
+        {
+            "nombre": "Accidentes Personales",
+            "alias": "Accidentes Personales",
+            "key": 1.0,
+            "orden": 1.0,
+            "valor_texto": null,
+            "valor_numero": null,
+            "estado": 1.0,
+            "parametros": [{
+                    "nombre": "Muerte e invalidez",
+                    "alias": "Muerte e invalidez",
+                    "key": 1.0,
+                    "orden": 1.0,
+                    "valor_texto": null,
+                    "valor_numero": null,
+                    "estado": 1.0
+                },
+                {
+                    "nombre": "Gastos de Curación",
+                    "alias": "Gastos de Curación",
+                    "key": 2.0,
+                    "orden": 2.0,
+                    "valor_texto": null,
+                    "valor_numero": null,
+                    "estado": 1.0
+                },
+                {
+                    "nombre": "Gastos de Sepelio",
+                    "alias": "Gastos de Sepelio",
+                    "key": 3.0,
+                    "orden": 3.0,
+                    "valor_texto": null,
+                    "valor_numero": null,
+                    "estado": 1.0
+                },
+                {
+                    "nombre": "Cirujia Estetica",
+                    "alias": "Cirujia Estetica",
+                    "key": 4.0,
+                    "orden": 4.0,
+                    "valor_texto": null,
+                    "valor_numero": null,
+                    "estado": 1.0
+                }
+            ]
+        }
+    ]
+}

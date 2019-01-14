@@ -1,0 +1,28 @@
+/* 1 */
+{
+    "_id": ObjectId("5c3a37126fe2bb59f4946d17"),
+    "cias": [
+        ObjectId("5c2042dcc3fe4d7ffb68838a"),
+        ObjectId("5c2042edc3fe4d7ffb68838b"),
+        ObjectId("5c2042f9c3fe4d7ffb68838c"),
+        ObjectId("5c2042fec3fe4d7ffb68838d"),
+        ObjectId("5c204302c3fe4d7ffb68838e")
+    ],
+    "razon_social": "Claudia Castañeda, Corredores de Seguros",
+    "is_empresa": true
+}
+
+/* 2 */
+{
+    "_id": ObjectId("5c3a38106fe2bb59f4946d1a"),
+    "cias": [
+        ObjectId("5c2042dcc3fe4d7ffb68838a"),
+        ObjectId("5c2042edc3fe4d7ffb68838b"),
+        ObjectId("5c2042f9c3fe4d7ffb68838c"),
+        ObjectId("5c2042fec3fe4d7ffb68838d"),
+        ObjectId("5c204302c3fe4d7ffb68838e")
+    ],
+    "razon_social": "Keta Nepo",
+    "is_empresa": false,
+    "empresa_matriz": ObjectId("5c3a37126fe2bb59f4946d17")
+}

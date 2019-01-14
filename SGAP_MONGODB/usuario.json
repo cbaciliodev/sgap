@@ -1,0 +1,10 @@
+/* 1 : clave: admin */
+{
+    "_id": ObjectId("5c2182b51e56d285cb611b6e"),
+    "role": "USER_ROLE",
+    "nombre": "Ericson huamaní",
+    "correo": "hm.ericson@gmail.com",
+    "password": "$2a$10$qa/GN.whkECilJ8NqVToieRHnUeVA5gOEOOT7m4dFnUGVcVP.9M5G",
+    "__v": 0,
+    "avatar": "Modelo logo 2.png"
+}
