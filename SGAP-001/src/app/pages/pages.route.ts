@@ -9,9 +9,10 @@ import { MFormularioComponent } from './modelo/formulario/formulario.component';
 import { CFormularioComponent } from './cotizacion/formulario/formulario.component';
 import { LoginGuard } from '../services/service.index';
 import { UsuarioComponent } from './usuario/usuario.component';
-import { ClienteComponent } from './cliente/cliente/cliente.component';
+import { ClienteComponent } from './cliente/cliente.component';
 import { CotizacionComponent } from './cotizacion/cotizacion.component';
 import { NeCotizacionComponent } from './cotizacion/ne-cotizacion.component';
+import { NeClienteComponent } from './cliente/ne-cliente.component';
 
 const pagesRoutes: Routes = [
     {
@@ -28,6 +29,7 @@ const pagesRoutes: Routes = [
             { path: 'cotizacion', component: CotizacionComponent, data: { title: 'Cotización', routes: [{ title: 'Gestión'}, { title: 'Cotización' }] } },
             { path: 'cliente', component: ClienteComponent, data: { title: 'Cliente', routes: [{ title: 'Gestión'}, { title: 'Cliente' }] } },
             { path: 'cotizacion/:id', component: NeCotizacionComponent, data: { title: 'Cotización', routes: [{ title: 'Gestión'}, { title: 'Cotización', link: '/cotizacion' }, { title: 'Agregar/Editar' }] } },
+            { path: 'cliente/:id', component: NeClienteComponent, data: { title: 'Cliente', routes: [{ title: 'Gestión'}, { title: 'Cliente', link: '/cliente' }, { title: 'Agregar/Editar' }] } },
             { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard', routes: [{ title: 'Dashboard'}] } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full'}
         ]
