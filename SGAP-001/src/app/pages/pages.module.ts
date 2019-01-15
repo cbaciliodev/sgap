@@ -17,9 +17,10 @@ import { MFormularioComponent } from './modelo/formulario/formulario.component';
 import { MSeguroComponent } from './modelo/formulario/seguro.component';
 import { CFormularioComponent } from './cotizacion/formulario/formulario.component';
 import { UsuarioComponent } from './usuario/usuario.component';
-import { ClienteComponent } from './cliente/cliente/cliente.component';
+import { ClienteComponent } from './cliente/cliente.component';
 import { CotizacionComponent } from './cotizacion/cotizacion.component';
 import { NeCotizacionComponent } from './cotizacion/ne-cotizacion.component';
+import { NeClienteComponent } from './cliente/ne-cliente.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import { NeCotizacionComponent } from './cotizacion/ne-cotizacion.component';
         UsuarioComponent,
         ClienteComponent,
         CotizacionComponent,
-        NeCotizacionComponent
+        NeCotizacionComponent,
+        NeClienteComponent
     ],
     exports: [
         DashboardComponent,
