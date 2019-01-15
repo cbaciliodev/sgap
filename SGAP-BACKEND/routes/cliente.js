@@ -28,24 +28,23 @@ app.post('/', (req, res) => {
     var body = req.body;
 
     var cliente = new Cliente({
-        nro_documento: body.nombre,
-        razon_social: body.nombre,
+        nro_documento: body.nro_documento,
+        razon_social: body.razon_social,
         nombre: body.nombre,
-        apellido_paterno: body.nombre,
-        apellido_materno: body.nombre,
-        is_empresa: body.nombre,
-        fecha_nacimiento: body.nombre,
-        pais: body.nombre,
-        departamento: body.nombre,
-        provincia: body.nombre,
-        distrito: body.nombre,
-        direccion: body.nombre,
-        correo_electronico: body.nombre,
-        telefonos: body.nombre,
-        agencia_reg: body.nombre,
-        usuario_reg: body.nombre,
-        fecha_reg: body.nombre,
-        estado: body.nombre,
+        apellido_paterno: body.apellido_paterno,
+        apellido_materno: body.apellido_materno,
+        is_empresa: body.is_empresa,
+        fecha_nacimiento: body.fecha_nacimiento,
+        pais: body.pais,
+        departamento: body.departamento,
+        provincia: body.provincia,
+        distrito: body.distrito,
+        direccion: body.direccion,
+        correo_electronico: body.correo_electronico,
+        telefonos: body.telefonos,
+        agencia_reg: body.agencia_reg,
+        usuario_reg: body.usuario_reg,
+        fecha_reg: body.fecha_reg
     });
 
     cliente.save((err, clienteBD) => {

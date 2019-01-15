@@ -18,7 +18,7 @@ var clienteSchema = new Schema({
     departamento: { type: Schema.Types.ObjectId, ref: 'Parametro' },
     provincia: { type: Schema.Types.ObjectId, ref: 'Parametro' },
     distrito: { type: Schema.Types.ObjectId, ref: 'Parametro' },
-    direccion: { type: Date },
+    direccion: { type: String },
     correo_electronico: [{ tipo: { type: String }, valor: { type: String } }],
     telefonos: [{ tipo: { type: String }, valor: { type: String } }],
     agencia_reg: { type: Schema.Types.ObjectId, ref: 'Empresa' },
