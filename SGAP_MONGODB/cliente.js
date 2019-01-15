@@ -1,0 +1,20 @@
+db.cliente.insertOne({
+    nro_documento: '42895923',
+    razon_social: null,
+    nombre: 'ERICSON',
+    apellido_paterno: 'HUAMANI',
+    apellido_materno: 'MANTILLA',
+    is_empresa: false,
+    fecha_nacimiento: Date('1985-03-02'),
+    pais: 'PERU',
+    departamento: 'LIMA',
+    provincia: 'LIMA',
+    distrito: 'MIRAFLORES',
+    direccion: 'Calle Elias Aguirre 245, Dpto. 854',
+    correo_electronico: [{ tipo: 'PERSONAL', valor: 'ehuamani.dev@gmail.com' }],
+    telefonos: [{ tipo: 'PERSONAL', valor: '989264712' }],
+    agencia_reg: ObjectId('5c3a37126fe2bb59f4946d17'),
+    usuario_reg: ObjectId('5c3cfdd382382f1f245f2ba7'),
+    fecha_reg: Date('2019-04-01'),
+    estado: 1
+});

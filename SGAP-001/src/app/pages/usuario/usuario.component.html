@@ -24,15 +24,25 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h3 class="car-title">Usuarios registrados ( <small> {{ usuarios.length }} </small> )</h3>
+                <h4 class="car-title">Usuarios registrados ( <small> {{ usuarios.length }} </small> )</h4>
                 <table class="table table-hover">
-                    <tr *ngFor="let u of usuarios">
-                        <td> {{ u.nombre }} </td>
-                        <td> {{ u.correo }} </td>
-                        <td> {{ u.role }} </td>
-                        <td> <button class="btn btn-danger btn-xs"><i class="mdi mdi-delete-variant"></i></button> </td>
-                        <td> <button class="btn btn-primary btn-xs"><i class="mdi mdi-pencil"></i></button> </td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <td><small><strong>Nombre</strong></small></td>
+                            <td><small><strong>Correo electrónico</strong></small></td>
+                            <td><small><strong>Rol</strong></small></td>
+                            <td><small><strong>Acciones</strong></small></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let u of usuarios">
+                            <td> {{ u.nombre }} </td>
+                            <td> {{ u.correo }} </td>
+                            <td> {{ u.role }} </td>
+                            <td> <button class="btn btn-danger btn-sm"><i class="mdi mdi-delete-variant"></i> eliminar</button>
+                                <button class="btn btn-primary btn-sm ml-2"><i class="mdi mdi-pencil"></i> editar</button> </td>
+                        </tr>
+                    </tbody>
                 </table>
                 <button class="btn btn-secondary"> Anterior </button>
                 <button class="btn btn-secondary"> Siguiente </button>
