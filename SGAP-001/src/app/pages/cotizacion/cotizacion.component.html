@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <input #input type="text" class="form-control" placeholder="Buscar usuario...">
+                <input #input type="text" class="form-control" placeholder="Buscar cotización...">
             </div>
         </div>
     </div>
@@ -24,12 +24,12 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h3 class="car-title">Usuarios registrados ( <small> {{ usuarios.length }} </small> )</h3>
+                <h4 class="card-title">Cotizaciones encontradas ( <small> {{ cotizaciones.length }} </small> )</h4>
                 <table class="table table-hover">
-                    <tr *ngFor="let u of usuarios">
-                        <td> {{ u.nombre }} </td>
-                        <td> {{ u.correo }} </td>
-                        <td> {{ u.role }} </td>
+                    <tr *ngFor="let ctz of cotizaciones">
+                        <td> {{ ctz.nombre }} </td>
+                        <td> {{ ctz.correo }} </td>
+                        <td> {{ ctz.role }} </td>
                         <td> <button class="btn btn-danger btn-xs"><i class="mdi mdi-delete-variant"></i></button> </td>
                         <td> <button class="btn btn-primary btn-xs"><i class="mdi mdi-pencil"></i></button> </td>
                     </tr>
@@ -41,4 +41,4 @@
     </div>
 </div>
 
-<button class="right-side-toggle btn-inverse btn-primary btn btn-circle"><i class="ti-plus text-white no-animation"></i></button>
+<button class="right-side-toggle btn-inverse btn-primary btn btn-circle" routerLink="/cotizacion/0" routerLinkActive="active"><i class="ti-plus text-white no-animation"></i></button>

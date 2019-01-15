@@ -6,11 +6,12 @@ import { Graficas1Component } from './graficas1/graficas1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { ModeloComponent } from './modelo/modelo.component';
 import { MFormularioComponent } from './modelo/formulario/formulario.component';
-import { CGestionComponent } from './cotizacion/gestion/gestion.component';
 import { CFormularioComponent } from './cotizacion/formulario/formulario.component';
 import { LoginGuard } from '../services/service.index';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { ClienteComponent } from './cliente/cliente/cliente.component';
+import { CotizacionComponent } from './cotizacion/cotizacion.component';
+import { NeCotizacionComponent } from './cotizacion/ne-cotizacion.component';
 
 const pagesRoutes: Routes = [
     {
@@ -18,16 +19,16 @@ const pagesRoutes: Routes = [
         component: PagesComponent,
         canActivate: [LoginGuard],
         children: [
-            { path: 'usuario', component: UsuarioComponent, data: { title: 'Usuario', routes: ['Configuraciones', 'Usuarios'] } },
-            { path: 'progress', component: ProgressComponent, data: { title: 'Progress', routes: ['Configuraciones', 'Usuarios'] } },
-            { path: 'graficas1', component: Graficas1Component, data: { title: 'Gráficos', routes: ['Configuraciones', 'Usuarios'] } },
-            { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Cuenta', routes: ['Configuraciones', 'Usuarios'] } },
-            { path: 'modelo', component: ModeloComponent, data: { title: 'Modelos', routes: ['Modelos', 'Usuarios'] } },
-            { path: 'modelo/:id', component: MFormularioComponent, data: { title: 'Modelos', routes: ['Configuraciones', 'Usuarios'] } },
-            { path: 'cotizacion', component: CGestionComponent, data: { title: 'Cotización', routes: ['Gestión', 'Clientes'] } },
-            { path: 'cliente', component: ClienteComponent, data: { title: 'Cliente', routes: ['Gestión', 'Usuarios'] } },
-            { path: 'cotizacion/:id', component: CFormularioComponent, data: { title: 'Cotización', routes: ['Configuraciones', 'Usuarios'] } },
-            { path: 'dashboard', component: DashboardComponent },
+            { path: 'usuario', component: UsuarioComponent, data: { title: 'Usuario', routes: [{ title: 'Configuraciones'}, { title: 'Usuarios' }] } },
+            { path: 'progress', component: ProgressComponent, data: { title: 'Progress', routes: [{ title: 'Configuraciones'}, { title: 'Usuarios' }] } },
+            { path: 'graficas1', component: Graficas1Component, data: { title: 'Gráficos', routes: [{ title: 'Configuraciones'}, { title: 'Usuarios' }] } },
+            { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Cuenta', routes: [{ title: 'Configuraciones'}, { title: 'Usuarios' }] } },
+            { path: 'modelo', component: ModeloComponent, data: { title: 'Modelos', routes: [{ title: 'Configuraciones'}, { title: 'Modelo' }] } },
+            { path: 'modelo/:id', component: MFormularioComponent, data: { title: 'Modelos', routes: [{ title: 'Configuraciones'}, { title: 'Modelo', link: '/modelo' }, { title: 'Agregar/Editar' }] } },
+            { path: 'cotizacion', component: CotizacionComponent, data: { title: 'Cotización', routes: [{ title: 'Gestión'}, { title: 'Cotización' }] } },
+            { path: 'cliente', component: ClienteComponent, data: { title: 'Cliente', routes: [{ title: 'Gestión'}, { title: 'Cliente' }] } },
+            { path: 'cotizacion/:id', component: NeCotizacionComponent, data: { title: 'Cotización', routes: [{ title: 'Gestión'}, { title: 'Cotización', link: '/cotizacion' }, { title: 'Agregar/Editar' }] } },
+            { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard', routes: [{ title: 'Dashboard'}] } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full'}
         ]
     }

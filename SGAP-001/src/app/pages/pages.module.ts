@@ -15,10 +15,11 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { ModeloComponent } from './modelo/modelo.component';
 import { MFormularioComponent } from './modelo/formulario/formulario.component';
 import { MSeguroComponent } from './modelo/formulario/seguro.component';
-import { CGestionComponent } from './cotizacion/gestion/gestion.component';
 import { CFormularioComponent } from './cotizacion/formulario/formulario.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { ClienteComponent } from './cliente/cliente/cliente.component';
+import { CotizacionComponent } from './cotizacion/cotizacion.component';
+import { NeCotizacionComponent } from './cotizacion/ne-cotizacion.component';
 
 @NgModule({
     declarations: [
@@ -33,9 +34,10 @@ import { ClienteComponent } from './cliente/cliente/cliente.component';
         MFormularioComponent,
         MSeguroComponent,
         CFormularioComponent,
-        CGestionComponent,
         UsuarioComponent,
-        ClienteComponent
+        ClienteComponent,
+        CotizacionComponent,
+        NeCotizacionComponent
     ],
     exports: [
         DashboardComponent,

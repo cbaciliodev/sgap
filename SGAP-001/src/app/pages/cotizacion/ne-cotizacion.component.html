@@ -1,0 +1,71 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Datos del cliente</h4>
+        <form>
+            <div class="input-group mb-3">
+                <input #input type="text" class="form-control" placeholder="Encontrar cliente...">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button"> <i class="fa fa-search"></i> </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Póliza</h4>
+
+        <div class="form-group">
+            <label class="control-label">Modelo del auto</label>
+            <div class="input-group mb-3">
+                <input #input type="text" class="form-control" placeholder="Encontrar modelo...">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button"> <i class="fa fa-search"></i> </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="control-label">Clase</label><br>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary">Comercial</button>
+                        <button type="button" class="btn btn-secondary">Particular</button>
+                        <button type="button" class="btn btn-secondary">Urbano</button>
+                        <button type="button" class="btn btn-secondary">Taxi</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="form-group">
+                    <label class="control-label">Placa</label><br>
+                    <div class="input-group">
+                        <div class="input-group-addon"><input aria-label="Checkbox for following text input" type="checkbox"> <small class="ml-2"> En trámite</small></div>
+                        <input type="text" class="form-control" id="exampleInputuname" placeholder="placa">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="form-group">
+                    <label class="control-label">Año</label><br>
+                    <div class="input-group">
+                        <div class="input-group-addon"><input aria-label="Checkbox for following text input" type="checkbox"> <small class="ml-2"> Es nuevo</small></div>
+                        <input type="text" class="form-control" id="exampleInputuname" placeholder="año">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="form-group">
+                    <label class="control-label">Suma asegurable</label><br>
+                    <input type="text" class="form-control" id="exampleInputuname" placeholder="Valor a asegurar">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <button class="right-side-toggle btn-inverse btn-primary btn btn-circle" routerLink="/cotizacion/0" routerLinkActive="active"><i class="ti-target text-white"></i></button>
