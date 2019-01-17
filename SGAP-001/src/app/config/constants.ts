@@ -1,0 +1,1 @@
+export const GRUPO_USO_VEHICULAR = 'USO_VEHICULAR';

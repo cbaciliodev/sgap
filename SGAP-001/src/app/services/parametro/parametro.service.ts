@@ -6,17 +6,12 @@ import { URL_SERVICIOS } from '../../config/config';
 @Injectable({
   providedIn: 'root'
 })
-export class ModeloService {
+export class ParametroService {
 
   constructor( public http: HttpClient ) { }
 
-  listAll( token: String ) {
-    let url = URL_SERVICIOS + '/modelo?token=' + token;
-    return this.http.get( url ).pipe( map( ( _: any) => _.data ) );
-  }
-
-  search( token: String, search: String ) {
-    let url = URL_SERVICIOS + '/modelo/search/' + search + '?token=' + token;
+  listGroupChildren( selector: string ) {
+    let url = URL_SERVICIOS + '/parametro/grupo/' + selector;
     return this.http.get( url ).pipe( map( ( _: any) => _.data ) );
   }
 }

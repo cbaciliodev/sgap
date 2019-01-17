@@ -1,3 +1,5 @@
+export { ParametroService } from './parametro/parametro.service';
+export { ClienteService } from './cliente/cliente.service';
 export { CotizacionService } from './cotizacion/cotizacion.service';
 export { ModeloService } from './modelo/modelo.service';
 export { LoginGuard } from './guard/login.guard';

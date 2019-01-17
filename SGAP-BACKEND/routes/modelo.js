@@ -34,6 +34,19 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/search/:data', (req, res) => {
+
+    var data = req.params.data;
+
+    Modelo.find({ nombre: { $regex: data, $options: 'i' } })
+        .populate('marca')
+        .exec((err, modelos) => {
+            if (err) { return validation.err(res, 500, 'Error al obtener todos los modelos', err); }
+            return validation.ok(res, 200, modelos);
+        });
+
+});
+
 app.post('/', (req, res) => {
     var body = req.body;
 

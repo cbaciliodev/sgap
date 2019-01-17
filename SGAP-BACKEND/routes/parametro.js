@@ -21,8 +21,27 @@ app.get('/', (req, res, nex) => {
             data: parametros
         });
     });
+});
 
+app.get('/grupo/:grupo', (req, res, nex) => {
 
+    var grupo = req.params.grupo;
+
+    Parametro.findOne({ nombre: grupo }).exec((err, parametro) => {
+
+        if (err) {
+            return res.status(500).json({
+                ok: true,
+                mensaje: 'Error cargando parametros',
+                errors: err
+            });
+        }
+
+        res.status(200).json({
+            ok: true,
+            data: parametro.parametros
+        });
+    });
 });
 
 module.exports = app;

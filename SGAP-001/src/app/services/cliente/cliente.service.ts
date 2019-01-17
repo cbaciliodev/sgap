@@ -6,17 +6,12 @@ import { URL_SERVICIOS } from '../../config/config';
 @Injectable({
   providedIn: 'root'
 })
-export class ModeloService {
+export class ClienteService {
 
   constructor( public http: HttpClient ) { }
 
-  listAll( token: String ) {
-    let url = URL_SERVICIOS + '/modelo?token=' + token;
-    return this.http.get( url ).pipe( map( ( _: any) => _.data ) );
-  }
-
   search( token: String, search: String ) {
-    let url = URL_SERVICIOS + '/modelo/search/' + search + '?token=' + token;
+    let url = URL_SERVICIOS + '/cliente/search/' + search + '?token=' + token;
     return this.http.get( url ).pipe( map( ( _: any) => _.data ) );
   }
 }

@@ -3,10 +3,38 @@
         <h4 class="card-title">Datos del cliente</h4>
         <form>
             <div class="input-group mb-3">
-                <input #input type="text" class="form-control" placeholder="Encontrar cliente...">
-                <button class="input-group-addon btn btn-outline-secondary" type="button"> <i class="fa fa-search"></i> </button>
+                <input #cliente (keyup)='searchClient( _usuario.token, cliente.value )' type="text" class="form-control" placeholder="Encontrar cliente...">
+                <button class="input-group-addon btn btn-outline-secondary" type="button"> <i class="fa fa-plus"></i> </button>
             </div>
         </form>
+
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover" *ngIf="isClientFind">
+                    <thead>
+                        <tr>
+                            <td><small><strong>Documento</strong></small></td>
+                            <td><small><strong>Nombre</strong></small></td>
+                            <td><small><strong>Apellido paterno</strong></small></td>
+                            <td><small><strong>Apellido materno</strong></small></td>
+                            <td><small><strong>Fecha nacimiento</strong></small></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cf of clientsFind">
+                            <td> {{ cf.nro_documento | uppercase }} </td>
+                            <td> {{ cf.nombre | uppercase }} </td>
+                            <td> {{ cf.apellido_paterno | uppercase }} </td>
+                            <td> {{ cf.apellido_materno | uppercase }} </td>
+                            <td> {{ cf.fecha_nacimiento | uppercase }} </td>
+                            <td> <button type="button" class="btn btn-secondary btn-rounded btn-sm" (click)="cliente.value=cf.nombre + ' ' + cf.apellido_paterno + ' ' + cf.apellido_materno"><i class="ti ti-check"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-secondary btn-inverse btn-rounded btn-sm" *ngIf="isClientFind" (click)="isClientFind=false">Cerrar</button>
+            </div>
+        </div>
     </div>
 </div>
 <div class="card">
@@ -15,31 +43,49 @@
 
         <div class="form-group">
             <label class="control-label">Modelo del auto</label>
-            <div class="input-group mb-3">
-                <input #input type="text" class="form-control" placeholder="Encontrar modelo...">
-                <button class="input-group-addon btn btn-outline-secondary" type="button"> <i class="fa fa-search"></i> </button>
+            <input #modelo (keyup)='searchModelo( _usuario.token, modelo.value )' type="text" class="form-control" placeholder="Encontrar modelo...">
+        </div>
+        <div class="row">
+            <div class="col-12 pb-4">
+                <table class="table table-hover" *ngIf="isModeloFind">
+                    <thead>
+                        <tr>
+                            <td><small><strong>Marca</strong></small></td>
+                            <td><small><strong>Modelo</strong></small></td>
+                            <td><small><strong>Categoria</strong></small></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let md of modelosFind">
+                            <td> {{ md.marca.nombre | uppercase }} </td>
+                            <td> {{ md.nombre | uppercase }} </td>
+                            <td> {{ md.categoria | uppercase }} </td>
+                            <td> <button type="button" class="btn btn-secondary btn-rounded btn-sm" (click)="modelo.value=md.marca.nombre + ' - ' + md.nombre"><i class="ti ti-check"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-secondary btn-inverse btn-rounded btn-sm" *ngIf="isModeloFind" (click)="isModeloFind=false">Cerrar</button>
             </div>
         </div>
 
         <div class="row">
             <div class="col-12">
                 <div class="form-group">
-                    <label class="control-label">Clase</label><br>
+                    <label class="control-label">Uso</label><br>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary">Comercial</button>
-                        <button type="button" class="btn btn-secondary">Particular</button>
-                        <button type="button" class="btn btn-secondary">Urbano</button>
-                        <button type="button" class="btn btn-secondary">Taxi</button>
+                        <button *ngFor="let uv of usosVehiculares" (click)="cotizacion.uso = uv._id" type="button" [ngClass]=" { 'btn': true, 'btn-secondary': true, 'active': ( uv._id == cotizacion.uso ) } "> {{ uv.alias }} </button>
                     </div>
                 </div>
             </div>
+
 
             <div class="col-4">
                 <div class="form-group">
                     <label class="control-label">Placa</label><br>
                     <div class="input-group">
-                        <div class="input-group-addon"><input aria-label="Checkbox for following text input" type="checkbox"> <small class="ml-2"> En trámite</small></div>
-                        <input type="text" class="form-control" id="exampleInputuname" placeholder="placa">
+                        <div class="input-group-addon"><input type="checkbox" (change)='checkTramite($event)' id="chkTramite"> <small class="ml-2"> <label for="chkTramite" class="mb-0">En trámite</label></small></div>
+                        <input type="text" class="form-control" [readonly]='enTramite' id="exampleInputuname" placeholder="placa">
                     </div>
                 </div>
             </div>
@@ -48,8 +94,8 @@
                 <div class="form-group">
                     <label class="control-label">Año</label><br>
                     <div class="input-group">
-                        <div class="input-group-addon"><input aria-label="Checkbox for following text input" type="checkbox"> <small class="ml-2"> Es nuevo</small></div>
-                        <input type="text" class="form-control" id="exampleInputuname" placeholder="año">
+                        <div class="input-group-addon"><input type="checkbox" (change)='validarAnio($event)' id="chkNuevo"> <small class="ml-2"><label for="chkNuevo" class="mb-0"> Es nuevo </label></small></div>
+                        <input type="number" class="form-control" placeholder="año" #anio (blur)="validarNuevo( anio.value )">
                     </div>
                 </div>
             </div>
@@ -61,7 +107,13 @@
                 </div>
             </div>
 
+            <div class="col-12">
+                <div class="checkbox checkbox-primary pull-left p-t-0">
+                    <input id="checkbox-signup" type="checkbox" class="filled-in chk-col-black">
+                    <label for="checkbox-signup"> Timón cambiado </label>
+                </div>
+            </div>
         </div>
     </div>
 
-    <button class="right-side-toggle btn-inverse btn-primary btn btn-circle" routerLink="/cotizacion/0" routerLinkActive="active"><i class="ti-target text-white"></i></button>
+    <button class="right-side-toggle btn-inverse btn-primary btn btn-circle" (click)="cotizador()"><i class="ti-target text-white"></i></button>

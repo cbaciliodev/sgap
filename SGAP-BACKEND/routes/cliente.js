@@ -23,6 +23,35 @@ app.get('/', (req, res, nex) => {
     });
 });
 
+app.get('/search/:data', (req, res, nex) => {
+
+    var data = req.params.data;
+
+    Cliente.find({
+        $or: [{ nro_documento: { $regex: data, $options: 'i' } },
+            { nombre: { $regex: data, $options: 'i' } },
+            { apellido_paterno: { $regex: data, $options: 'i' } },
+            { apellido_materno: { $regex: data, $options: 'i' } },
+            { razon_social: { $regex: data, $options: 'i' } }
+        ]
+    }).exec((err, clientes) => {
+        if (err) {
+            return res.status(500).json({
+                ok: true,
+                mensaje: 'Error cargando clientes',
+                errors: err
+            });
+        }
+
+        res.status(200).json({
+            ok: true,
+            data: clientes,
+            decoded: req.decoded
+        });
+
+    });
+});
+
 app.post('/', (req, res) => {
 
     var body = req.body;
