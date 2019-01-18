@@ -11,6 +11,8 @@ var aseguradoraSchema = new Schema({
     prima_minima: { type: Number, required: [true, 'Monto mínimo es requerido'] },
     prima_max_gps: { type: Number, required: [true, 'Monto máximo GPS es requerido'] },
     tasa: { type: Number, required: [true, 'Tasa es requerida'] },
+    aplica_vehicular: { type: boolean, required: [true, 'Indicar si aplica para vehicular']},
+    orden: { type: number, required: [true, 'Indicar el orden de aparición']},
     estado: { type: Number, required: true, default: ESTADO_ACTIVO, enum: ESTADOS }
 }, { collection: 'aseguradora' });
 

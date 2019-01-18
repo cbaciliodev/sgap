@@ -7,8 +7,8 @@ var ESTADO_ACTIVO = require('../config/config').ESTADO_ACTIVO;
 var Schema = mongoose.Schema;
 
 var ParametroSchema = new Schema({
-    grupo: { type: String, required: [true, 'Nombre es requerido'], unique: true },
-    nombre: { type: String, required: [true, 'Nombre es requerido'], unique: true },
+    grupo: { type: String, required: [true, 'Nombre es requerido'] },
+    nombre: { type: String, required: [true, 'Nombre es requerido'] },
     alias: { type: String, required: true },
     orden: { type: Number, required: true },
     valor_texto: { type: String },
