@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     console.log(skip);
     console.log(records);
 
-    modelosOrm = Modelo.find({}).populate('marca', 'nombre').skip(skip);
+    modelosOrm = Modelo.find({}).skip(skip);
 
     if (!validation.isEmpty(records)) {
         modelosOrm.limit(records);
@@ -38,8 +38,7 @@ app.get('/search/:data', (req, res) => {
 
     var data = req.params.data;
 
-    Modelo.find({ nombre: { $regex: data, $options: 'i' } })
-        .populate('marca')
+    Modelo.find({ $or: [{ nombre: { $regex: data, $options: 'i' } }, { marca: { $regex: data, $options: 'i' } }] })
         .exec((err, modelos) => {
             if (err) { return validation.err(res, 500, 'Error al obtener todos los modelos', err); }
             return validation.ok(res, 200, modelos);

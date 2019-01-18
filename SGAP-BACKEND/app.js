@@ -22,7 +22,6 @@ app.use(bodyParser.json());
 var appRoutes = require('./routes/app');
 var loginRoutes = require('./routes/login');
 var usuarioRoutes = require('./routes/usuario');
-var marcaRoutes = require('./routes/marca_auto');
 var modeloRoutes = require('./routes/modelo');
 var aseguradoraRoutes = require('./routes/aseguradora');
 var empresaRoutes = require('./routes/empresa');
@@ -41,7 +40,6 @@ app.use('/uploads', serveIndex('/data/sigap/uploads'));
 // Route
 app.use('/login', loginRoutes);
 app.use('/usuario', usuarioRoutes);
-app.use('/marca', marcaRoutes);
 app.use('/modelo', modeloRoutes);
 app.use('/empresa', empresaRoutes);
 app.use('/aseguradora', aseguradoraRoutes);

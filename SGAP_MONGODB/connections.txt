@@ -1,0 +1,3 @@
+mongo "mongodb+srv://sigap-4h2pt.azure.mongodb.net/test" --username jrupailla --password i2REZ2l03RhsD1Mr
+
+use sigap-db

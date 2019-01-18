@@ -3,7 +3,6 @@ var app = express();
 
 var validation = require('../functions/validation');
 var Modelo = require('../models/modelo');
-var Marca = require('../models/marca_auto');
 
 // Rutas
 app.get('/all/:query', (req, res, nex) => {
@@ -12,8 +11,8 @@ app.get('/all/:query', (req, res, nex) => {
     var regex = new RegExp(query, 'i');
 
     Promise.all([
-            allModelos(regex),
-            allMarcas(regex)
+            allModelos(regex)
+            // ,allMarcas(regex)
         ])
         .then(dataArray => {
             return validation.ok(res, 200, dataArray);
@@ -31,15 +30,15 @@ function allModelos(regex) {
     });
 }
 
-function allMarcas(regex) {
-    return new Promise((resolve, reject) => {
-        Marca.find({ nombre: regex }, (err, marcas) => {
-            if (err) {
-                reject(err);
-            }
-            resolve(marcas);
-        });
-    });
-}
+// function allMarcas(regex) {
+//     return new Promise((resolve, reject) => {
+//         Marca.find({ nombre: regex }, (err, marcas) => {
+//             if (err) {
+//                 reject(err);
+//             }
+//             resolve(marcas);
+//         });
+//     });
+// }
 
 module.exports = app;

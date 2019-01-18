@@ -1,166 +1,158 @@
 <div class="card">
     <div class="card-body">
-      <form class="input-form">
-      <h3 class="card-title">Información personal</h3>
-        <div class="row mb-4">
-          <div class="col-md-6 col-12">
-              <label class="control-label">Documento</label> 
-              <div class="input-group">
-                  <div class="input-group-btn">
-                      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <form class="input-form">
+            <h3 class="card-title">Información personal</h3>
+            <div class="row mb-4">
+                <div class="col-md-4 col-12">
+                    <label class="control-label">Documento</label>
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           {{ tipoDocumento.alias }}
                       </button>
-                      <div class="dropdown-menu" x-placement="bottom-start" 
-                            style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                          <a href="javascript:void(0)"  class="dropdown-item" 
-                            *ngFor="let td of tiposDocumento" 
-                            (click)="tipoDocumento=td"> {{ td.alias }} </a>
-                      </div>
-                  </div>
-                  <input type="text" class="form-control" placeholder="Número de documento">
-              </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <ng-container *ngIf="tipoDocumento.nombre=='RUC'">
-            <div class="col-12">
-              <div class="form-group mt-4">
-                <label class="control-label">Razón social</label>
-                <input type="text" class="form-control" placeholder="Nombre o razón social">
-              </div>
-            </div>
-          </ng-container>
-
-          <ng-container *ngIf="tipoDocumento.nombre!=='RUC'">
-            <div class="col-12 col-md-6">
-              <div class="form-group">
-                <label class="control-label">Nombres</label>
-                <input type="text" class="form-control" placeholder="Nombre o razón social">
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="form-group">
-                <label class="control-label">Apellidos</label>
-                <input type="text" class="form-control" placeholder="Nombre o razón social">
-              </div>
-            </div>
-
-            <div class="col-12 col-md-4">
-                <div class="form-group">
-                  <label class="control-label">Fecha de nacimiento</label>
-                  <input type="text" class="form-control datepicker" placeholder="dd-mm-yyyy">
+                            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                <a href="javascript:void(0)" class="dropdown-item" *ngFor="let td of tiposDocumento" (click)="tipoDocumento=td"> {{ td.alias }} </a>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Número de documento">
+                    </div>
                 </div>
             </div>
-          </ng-container>
-        </div>  
 
-        <div class="row">
-          <div class="col-12 col-md-4">
-            <div class="form-group">
-                <label class="control-label">Número teléfono</label> 
-                <div class="input-group">
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="row">
+                <ng-container *ngIf="tipoDocumento.nombre=='RUC'">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="control-label">Razón social</label>
+                            <input type="text" class="form-control" placeholder="Nombre o razón social">
+                        </div>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="tipoDocumento.nombre!=='RUC'">
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Nombres</label>
+                            <input type="text" class="form-control" placeholder="Nombre o razón social">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Apellidos</label>
+                            <input type="text" class="form-control" placeholder="Nombre o razón social">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">Fecha de nacimiento</label>
+                            <input type="text" class="form-control datepicker" placeholder="dd-mm-yyyy">
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Número teléfono</label>
+
+                        <div class="input-group" *ngFor="let tct of tiposContactoTelefono; let i = index" [ngClass]="{'mt-3': i != 0}">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ tdcTelefono.alias }}
                         </button>
-                        <div class="dropdown-menu" x-placement="bottom-start" 
-                              style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                            <a href="javascript:void(0)"  class="dropdown-item" 
-                              *ngFor="let tdc of tiposDatosCliente" 
-                              (click)="tdcTelefono=tdc"> {{ tdc.alias }} </a>
+                                <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                    <a href="javascript:void(0)" class="dropdown-item" *ngFor="let tdc of tiposDatosCliente" (click)="tdcTelefono=tdc"> {{ tdc.alias }}  </a>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" [placeholder]="'Número de telefono '+ (tdcTelefono.alias | lowercase)">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-secondary btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                    <a *ngIf="i == ( tiposContactoTelefono.length - 1 )" href="javascript:void(0)" class="dropdown-item" (click)="agregarNumeroTelefonico()"> Agregar teléfono </a>
+                                    <a *ngIf="(i <= ( tiposContactoTelefono.length - 1 )) && (( i != 0 ) || ( tiposContactoTelefono.length > 1 ))" href="javascript:void(0)" class="dropdown-item" (click)="eliminarNumeroTelefonico( i )"> Eliminar teléfono </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <input type="text" class="form-control" [placeholder]="'Número de telefono '+ (tdcTelefono.alias | lowercase)">
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-secondary btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                        <div class="dropdown-menu" x-placement="bottom-start" 
-                              style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                            <a href="javascript:void(0)"  class="dropdown-item"> Agregar teléfono </a>
+                </div>
+
+                <div class="col-12 col-md-8">
+                    <div class="form-group">
+                        <label class="control-label">Correo electrónico</label>
+                        <div class="input-group" *ngFor="let tct of tiposContactoCorreo; let i = index" [ngClass]="{'mt-3': i != 0}">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              {{ tdcEmail.alias }}
+                          </button>
+                                <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                    <a href="javascript:void(0)" class="dropdown-item" *ngFor="let tdc of tiposDatosCliente" (click)="tdcEmail=tdc"> {{ tdc.alias }} </a>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" [placeholder]="'Correo electrónico '+ (tdcEmail.alias | lowercase)">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-secondary btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                    <a *ngIf="i == ( tiposContactoCorreo.length - 1 )" href="javascript:void(0)" class="dropdown-item" (click)="agregarCorreo()"> Agregar correo electrónico </a>
+                                    <a *ngIf="(i <= ( tiposContactoCorreo.length - 1 )) && (( i != 0 ) || ( tiposContactoCorreo.length > 1 ))" href="javascript:void(0)" class="dropdown-item" (click)="eliminarCorreo( i )"> Eliminar correo electrónico </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-          </div>
-    
-          <div class="col-12 col-md-8">
-              <div class="form-group">
-                  <label class="control-label">Correo electrónico</label> 
-                  <div class="input-group">
-                      <div class="input-group-btn">
-                          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              {{ tdcEmail.alias }}
-                          </button>
-                          <div class="dropdown-menu" x-placement="bottom-start" 
-                                style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                              <a href="javascript:void(0)"  class="dropdown-item" 
-                                *ngFor="let tdc of tiposDatosCliente" 
-                                (click)="tdcEmail=tdc"> {{ tdc.alias }} </a>
-                          </div>
-                      </div>
-                      <input type="text" class="form-control" [placeholder]="'Correo electrónico '+ (tdcEmail.alias | lowercase)">
-                      <div class="input-group-btn">
-                          <button type="button" class="btn btn-secondary btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                          <div class="dropdown-menu" x-placement="bottom-start" 
-                                style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                              <a href="javascript:void(0)"  class="dropdown-item"> Agregar correo electrónico </a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        </div>
 
-        <h3 class="card-title mt-3">Dirección y ubicación</h3>
-        <div class="row">
-          <div class="col-12 col-md-4">
-            <div class="form-group">
-              <label class="control-label">Departamento</label>
-              <select #lstDepartamento class="custom-select col-12" (change)="listProvincias( lstDepartamento.value )"  >
+            <h3 class="card-title mt-3">Dirección y ubicación</h3>
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Departamento</label>
+                        <select #lstDepartamento class="custom-select col-12" (change)="listProvincias( lstDepartamento.value )">
                 <option> -- seleccione -- </option>
                 <option *ngFor="let dps of departamentos" [value]="dps.nombre"> {{ dps.alias }} </option>
               </select>
-            </div>
-          </div>
+                    </div>
+                </div>
 
-          <div class="col-12 col-md-4">
-            <div class="form-group">
-              <label class="control-label">Provincia</label>
-              <select #lstProvincia class="custom-select col-12"  (change)="listDistritos( lstProvincia.value )" >
+                <div class="col-12 col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Provincia</label>
+                        <select #lstProvincia class="custom-select col-12" (change)="listDistritos( lstProvincia.value )">
                 <option> -- seleccione -- </option>
                 <option *ngFor="let pvc of provincias" [value]="pvc.nombre"> {{ pvc.alias }} </option>
               </select>
-            </div>
-          </div>
+                    </div>
+                </div>
 
-          <div class="col-12 col-md-4">
-            <div class="form-group">
-              <label class="control-label">Distrito</label>
-              <select class="custom-select col-12"  >
+                <div class="col-12 col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Distrito</label>
+                        <select class="custom-select col-12">
                 <option> -- seleccione -- </option>
                 <option *ngFor="let dst of distritos" [value]="dst.nombre"> {{ dst.alias }} </option>
               </select>
-            </div>
-          </div>
+                    </div>
+                </div>
 
-          <div class="col-12 col-md-8">
-            <div class="form-group">
-              <label class="control-label">Dirección</label>
-              <input type="text" class="form-control" placeholder="Ingrese dirección">
-            </div>
-          </div>
+                <div class="col-12 col-md-8">
+                    <div class="form-group">
+                        <label class="control-label">Dirección</label>
+                        <input type="text" class="form-control" placeholder="Ingrese dirección">
+                    </div>
+                </div>
 
-          <div class="col-12 col-md-4">
-              <div class="form-group">
-                <label class="control-label">C. Postal</label>
-                <input type="text" class="form-control" placeholder="Ingrese código postal">
-              </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">C. Postal</label>
+                        <input type="text" class="form-control" placeholder="Ingrese código postal">
+                    </div>
+                </div>
             </div>
-        </div>
-      </form>
+        </form>
     </div>
-  </div>
-  
-  <button class="right-side-toggle btn-inverse btn-primary btn btn-circle" routerLink="/cliente/0" routerLinkActive="active">
-    <i class="ti-target text-white"></i>
+</div>
+
+<button class="right-side-toggle btn-inverse btn-primary btn btn-circle">
+    <i class="ti-check text-white no-animation"></i>
   </button>

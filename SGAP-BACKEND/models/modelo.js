@@ -7,8 +7,8 @@ var ESTADO_ACTIVO = require('../config/config').ESTADO_ACTIVO;
 var Schema = mongoose.Schema;
 
 var modeloSchema = new Schema({
+    marca: { type: String, required: [true, 'Marca es requerido'], unique: true },
     nombre: { type: String, required: [true, 'Nombre es requerido'], unique: true },
-    marca: { type: Schema.Types.ObjectId, ref: 'MarcaAuto' },
     categoria: { type: String, required: [true, 'Categoría es requerida'] },
     estado: { type: Number, required: true, default: ESTADO_ACTIVO, enum: ESTADOS }
 }, { collection: 'modelo' });

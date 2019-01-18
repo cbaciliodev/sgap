@@ -58,10 +58,10 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let md of modelosFind">
-                            <td> {{ md.marca.nombre | uppercase }} </td>
+                            <td> {{ md.marca | uppercase }} </td>
                             <td> {{ md.nombre | uppercase }} </td>
                             <td> {{ md.categoria | uppercase }} </td>
-                            <td> <button type="button" class="btn btn-secondary btn-rounded btn-sm" (click)="modelo.value=md.marca.nombre + ' - ' + md.nombre"><i class="ti ti-check"></i></button></td>
+                            <td> <button type="button" class="btn btn-secondary btn-rounded btn-sm" (click)="modelo.value=md.marca + ' - ' + md.nombre"><i class="ti ti-check"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
