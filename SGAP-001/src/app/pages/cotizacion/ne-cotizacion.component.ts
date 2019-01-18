@@ -10,7 +10,7 @@ import swal from 'sweetalert';
 import { Cotizacion } from 'src/app/models/cotizacion.model';
 
 import { GRUPO_USO_VEHICULAR } from 'src/app/config/constants';
-import { Parametro } from 'src/app/models/marca.model';
+import { Parametro } from 'src/app/models/parametro.model';
 
 
 
@@ -21,8 +21,6 @@ import { Parametro } from 'src/app/models/marca.model';
 })
 export class NeCotizacionComponent implements OnInit {
 
-  isNuevo: boolean = false;
-  enTramite: boolean = false;
   isClientFind: boolean = false;
   isModeloFind: boolean = false;
   clientsFind: Array<Cliente> = [];
@@ -42,8 +40,7 @@ export class NeCotizacionComponent implements OnInit {
                   this.listUsos();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {  }
 
   searchClient(token, search) {
     this._cliente.search( token, search ).subscribe( data => {
@@ -64,18 +61,18 @@ export class NeCotizacionComponent implements OnInit {
   }
 
   checkTramite( event ) {
-    this.enTramite = event.target.checked;
+    this.cotizacion.en_tramite = event.target.checked;
   }
 
   validarAnio( event ) {
-    this.isNuevo = event.target.checked;
+    this.cotizacion.is_nuevo = event.target.checked;
   }
 
   validarNuevo( value: number ) {
     console.log('anio: ' + this.txtAnio.nativeElement.value);
     let currentYear = new Date().getFullYear();
 
-    if ( (this.txtAnio.nativeElement.value !== '') && (this.isNuevo) ){
+    if ( (this.txtAnio.nativeElement.value !== '') && (this.cotizacion.is_nuevo) ){
       if ( (currentYear - value) > 1 ) {
         swal('Atención', 'El año ingresado no aplica para nuevo, lo corregimos al año actual', 'warning');
         this.txtAnio.nativeElement.value = currentYear;

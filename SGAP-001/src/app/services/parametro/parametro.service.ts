@@ -14,4 +14,10 @@ export class ParametroService {
     let url = URL_SERVICIOS + '/parametro/grupo/' + selector;
     return this.http.get( url ).pipe( map( ( _: any) => _.data ) );
   }
+
+
+  listByGroupStartName( grupo: string, nombre: string ) {
+    let url = URL_SERVICIOS + '/parametro/sw/' + grupo + '/' + nombre;
+    return this.http.get( url ).pipe( map( ( _: any) => _.data ) );
+  }
 }

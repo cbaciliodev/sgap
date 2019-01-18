@@ -7,6 +7,7 @@ var ESTADO_ACTIVO = require('../config/config').ESTADO_ACTIVO;
 var Schema = mongoose.Schema;
 
 var clienteSchema = new Schema({
+    tipo_documento: { type: String },
     nro_documento: { type: String },
     razon_social: { type: String },
     nombre: { type: String },
@@ -14,10 +15,10 @@ var clienteSchema = new Schema({
     apellido_materno: { type: String },
     is_empresa: { type: Boolean },
     fecha_nacimiento: { type: Date },
-    pais: { type: Schema.Types.ObjectId, ref: 'Parametro' },
-    departamento: { type: Schema.Types.ObjectId, ref: 'Parametro' },
-    provincia: { type: Schema.Types.ObjectId, ref: 'Parametro' },
-    distrito: { type: Schema.Types.ObjectId, ref: 'Parametro' },
+    pais: { type: String },
+    departamento: { type: String },
+    provincia: { type: String },
+    distrito: { type: String },
     direccion: { type: String },
     correo_electronico: [{ tipo: { type: String }, valor: { type: String } }],
     telefonos: [{ tipo: { type: String }, valor: { type: String } }],

@@ -8,6 +8,7 @@ export class Cotizacion {
         public auto?: string,
         public timon_cambiado?: boolean,
         public uso?: string,
+        public en_tramite?: boolean,
         public is_nuevo?: boolean,
         public suma_aseg?: number,
         public primas?: [string],
