@@ -1,6 +1,9 @@
+import { Parametro } from 'src/app/models/parametro.model';
+
 export class TipoContacto {
     public constructor(
-        public tipo_contacto?: string,
-        public valor?: string
+        public tipo?: string,
+        public valor?: string,
+        public parametro?: Parametro
     ) { }
 }

@@ -1,20 +1,18 @@
-<div class="card">
-    <div class="card-body">
-        <form class="input-form">
+<div class="input-form">
+    <div class="card">
+        <div class="card-body">
             <h3 class="card-title">Información personal</h3>
             <div class="row mb-4">
                 <div class="col-md-4 col-12">
                     <label class="control-label">Documento</label>
                     <div class="input-group">
                         <div class="input-group-btn">
-                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          {{ tipoDocumento.alias }}
-                      </button>
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{ tipoDocumento.alias }} </button>
                             <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
                                 <a href="javascript:void(0)" class="dropdown-item" *ngFor="let td of tiposDocumento" (click)="tipoDocumento=td"> {{ td.alias }} </a>
                             </div>
                         </div>
-                        <input type="text" class="form-control" placeholder="Número de documento">
+                        <input [(ngModel)]="cliente.nro_documento" type="text" class="form-control" placeholder="Número de documento">
                     </div>
                 </div>
             </div>
@@ -24,29 +22,36 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label class="control-label">Razón social</label>
-                            <input type="text" class="form-control" placeholder="Nombre o razón social">
+                            <input [(ngModel)]="cliente.razon_social" type="text" class="form-control" placeholder="Razón social">
                         </div>
                     </div>
                 </ng-container>
 
                 <ng-container *ngIf="tipoDocumento.nombre!=='RUC'">
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label class="control-label">Nombres</label>
-                            <input type="text" class="form-control" placeholder="Nombre o razón social">
+                            <input [(ngModel)]="cliente.nombre" type="text" class="form-control" placeholder="Nombre">
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-4">
                         <div class="form-group">
-                            <label class="control-label">Apellidos</label>
-                            <input type="text" class="form-control" placeholder="Nombre o razón social">
+                            <label class="control-label">Ap. paterno</label>
+                            <input [(ngModel)]="cliente.apellido_paterno" type="text" class="form-control" placeholder="Apellido paterno">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">Ap. materno</label>
+                            <input [(ngModel)]="cliente.apellido_materno" type="text" class="form-control" placeholder="Apellido materno">
                         </div>
                     </div>
 
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label class="control-label">Fecha de nacimiento</label>
-                            <input type="text" class="form-control datepicker" placeholder="dd-mm-yyyy">
+                            <input #fechaNacimiento type="text" class="form-control datepicker" placeholder="dd-mm-yyyy">
                         </div>
                     </div>
                 </ng-container>
@@ -59,14 +64,12 @@
 
                         <div class="input-group" *ngFor="let tct of tiposContactoTelefono; let i = index" [ngClass]="{'mt-3': i != 0}">
                             <div class="input-group-btn">
-                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ tdcTelefono.alias }}
-                        </button>
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{ tct.parametro.alias }} </button>
                                 <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                    <a href="javascript:void(0)" class="dropdown-item" *ngFor="let tdc of tiposDatosCliente" (click)="tdcTelefono=tdc"> {{ tdc.alias }}  </a>
+                                    <a href="javascript:void(0)" class="dropdown-item" *ngFor="let tdc of tiposDatosCliente" (click)="setTelefonoInIndex( tdc, i )"> {{ tdc.alias }}  </a>
                                 </div>
                             </div>
-                            <input type="text" class="form-control" [placeholder]="'Número de telefono '+ (tdcTelefono.alias | lowercase)">
+                            <input [(ngModel)]="tiposContactoTelefono[i].valor" type="text" class="form-control" [placeholder]="'Número de telefono '+ (tct.parametro.alias | lowercase)">
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-secondary btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                 <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
@@ -81,21 +84,19 @@
                 <div class="col-12 col-md-8">
                     <div class="form-group">
                         <label class="control-label">Correo electrónico</label>
-                        <div class="input-group" *ngFor="let tct of tiposContactoCorreo; let i = index" [ngClass]="{'mt-3': i != 0}">
+                        <div class="input-group" *ngFor="let tcc of tiposContactoCorreo; let ic = index" [ngClass]="{'mt-3': ic != 0}">
                             <div class="input-group-btn">
-                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              {{ tdcEmail.alias }}
-                          </button>
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{ tcc.parametro.alias }} </button>
                                 <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                    <a href="javascript:void(0)" class="dropdown-item" *ngFor="let tdc of tiposDatosCliente" (click)="tdcEmail=tdc"> {{ tdc.alias }} </a>
+                                    <a href="javascript:void(0)" class="dropdown-item" *ngFor="let tdc of tiposDatosCliente" (click)="setCorreoInIndex( tdc, ic )"> {{ tdc.alias }} </a>
                                 </div>
                             </div>
-                            <input type="text" class="form-control" [placeholder]="'Correo electrónico '+ (tdcEmail.alias | lowercase)">
+                            <input [(ngModel)]="tiposContactoCorreo[ic].valor" type="text" class="form-control" [placeholder]="'Correo electrónico '+ (tcc.parametro.alias | lowercase)">
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-secondary btn-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                 <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                    <a *ngIf="i == ( tiposContactoCorreo.length - 1 )" href="javascript:void(0)" class="dropdown-item" (click)="agregarCorreo()"> Agregar correo electrónico </a>
-                                    <a *ngIf="(i <= ( tiposContactoCorreo.length - 1 )) && (( i != 0 ) || ( tiposContactoCorreo.length > 1 ))" href="javascript:void(0)" class="dropdown-item" (click)="eliminarCorreo( i )"> Eliminar correo electrónico </a>
+                                    <a *ngIf="ic == ( tiposContactoCorreo.length - 1 )" href="javascript:void(0)" class="dropdown-item" (click)="agregarCorreo()"> Agregar correo electrónico </a>
+                                    <a *ngIf="(ic <= ( tiposContactoCorreo.length - 1 )) && (( ic != 0 ) || ( tiposContactoCorreo.length > 1 ))" href="javascript:void(0)" class="dropdown-item" (click)="eliminarCorreo( ic )"> Eliminar correo electrónico </a>
                                 </div>
                             </div>
                         </div>
@@ -108,8 +109,7 @@
                 <div class="col-12 col-md-4">
                     <div class="form-group">
                         <label class="control-label">Departamento</label>
-                        <select #lstDepartamento class="custom-select col-12" (change)="listProvincias( lstDepartamento.value )">
-                <option> -- seleccione -- </option>
+                        <select [(ngModel)]="cliente.departamento" #lstDepartamento class="custom-select col-12" (change)="listProvincias( lstDepartamento.value )">
                 <option *ngFor="let dps of departamentos" [value]="dps.nombre"> {{ dps.alias }} </option>
               </select>
                     </div>
@@ -118,8 +118,7 @@
                 <div class="col-12 col-md-4">
                     <div class="form-group">
                         <label class="control-label">Provincia</label>
-                        <select #lstProvincia class="custom-select col-12" (change)="listDistritos( lstProvincia.value )">
-                <option> -- seleccione -- </option>
+                        <select [(ngModel)]="cliente.provincia" #lstProvincia class="custom-select col-12" (change)="listDistritos( lstProvincia.value )">
                 <option *ngFor="let pvc of provincias" [value]="pvc.nombre"> {{ pvc.alias }} </option>
               </select>
                     </div>
@@ -128,8 +127,7 @@
                 <div class="col-12 col-md-4">
                     <div class="form-group">
                         <label class="control-label">Distrito</label>
-                        <select class="custom-select col-12">
-                <option> -- seleccione -- </option>
+                        <select [(ngModel)]="cliente.distrito" class="custom-select col-12">
                 <option *ngFor="let dst of distritos" [value]="dst.nombre"> {{ dst.alias }} </option>
               </select>
                     </div>
@@ -138,7 +136,7 @@
                 <div class="col-12 col-md-8">
                     <div class="form-group">
                         <label class="control-label">Dirección</label>
-                        <input type="text" class="form-control" placeholder="Ingrese dirección">
+                        <input [(ngModel)]="cliente.direccion" type="text" class="form-control" placeholder="Ingrese dirección">
                     </div>
                 </div>
 
@@ -149,10 +147,10 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
-</div>
 
-<button class="right-side-toggle btn-inverse btn-primary btn btn-circle">
-    <i class="ti-check text-white no-animation"></i>
-  </button>
+    <button class="right-side-toggle btn-inverse btn-primary btn btn-circle" (click)="registrarCliente()"> 
+        <i class="ti-check text-white no-animation"></i>
+    </button>
+</div>

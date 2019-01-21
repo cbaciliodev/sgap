@@ -24,8 +24,8 @@ import { ServiceModule } from './services/service.module';
     BrowserModule,
     APP_ROUTES,
     PagesModule,
-    FormsModule,
     ServiceModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [],
