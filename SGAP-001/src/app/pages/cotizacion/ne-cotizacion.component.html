@@ -1,12 +1,21 @@
+<ng-container *ngIf="isSaving">
+    <div style="z-index: 10; left:0px; right: 0px; top: 0px; bottom: 0px; position: absolute; background: rgba(255,255,255,0.75)">
+        <div style="margin-top: 40%; text-align: center">
+            <i class="fa fa-refresh fa-spin fa-1x" style="font-size: 2.5em;"></i> 
+            <h3>Estamos generando la cotización</h3>
+            <span>Un momento por favor</span>
+        </div>
+    </div>
+</ng-container>
+
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">Datos del cliente</h4>
-        <form>
-            <div class="input-group mb-3">
-                <input #cliente (keyup)='searchClient( _usuario.token, cliente.value )' type="text" class="form-control" placeholder="Encontrar cliente...">
-                <button class="input-group-addon btn btn-outline-secondary" type="button"> <i class="fa fa-plus"></i> </button>
-            </div>
-        </form>
+
+        <div class="form-group">
+            <input #cliente (keyup)='searchClient( _usuario.token, cliente.value )' 
+                    type="text" class="form-control" placeholder="Encontrar cliente...">
+        </div>
 
         <div class="row">
             <div class="col-12">
@@ -28,24 +37,23 @@
                             <td> {{ cf.apellido_paterno | uppercase }} </td>
                             <td> {{ cf.apellido_materno | uppercase }} </td>
                             <td> {{ cf.fecha_nacimiento | uppercase }} </td>
-                            <td> <button type="button" class="btn btn-secondary btn-rounded btn-sm" (click)="cliente.value=cf.nombre + ' ' + cf.apellido_paterno + ' ' + cf.apellido_materno"><i class="ti ti-check"></i></button></td>
+                            <td> <button type="button" class="btn btn-secondary btn-rounded btn-sm" (click)="cotizacion.cliente=cf._id;cliente.value=cf.nombre + ' ' + cf.apellido_paterno + ' ' + cf.apellido_materno"><i class="ti ti-check"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
-                <button class="btn btn-secondary btn-inverse btn-rounded btn-sm" *ngIf="isClientFind" (click)="isClientFind=false">Cerrar</button>
+                <button class="btn btn-secondary btn-rounded btn-sm" *ngIf="isClientFind" (click)="isClientFind=false"> <i class="ti ti-close"></i> Cerrar</button>
+                <button class="btn btn-primary btn-rounded btn-sm pull-right" *ngIf="isClientFind"><i class="ti ti-plus"></i>  Agregar cliente</button>
             </div>
         </div>
-    </div>
-</div>
-<div class="card">
-    <div class="card-body">
+
         <h4 class="card-title">Póliza</h4>
 
         <div class="form-group">
             <label class="control-label">Modelo del auto</label>
             <input #modelo (keyup)='searchModelo( _usuario.token, modelo.value )' type="text" class="form-control" placeholder="Encontrar modelo...">
         </div>
-        <div class="row">
+
+        <div class="row" *ngIf="isModeloFind">
             <div class="col-12 pb-4">
                 <table class="table table-hover" *ngIf="isModeloFind">
                     <thead>
@@ -61,11 +69,14 @@
                             <td> {{ md.marca | uppercase }} </td>
                             <td> {{ md.nombre | uppercase }} </td>
                             <td> {{ md.categoria | uppercase }} </td>
-                            <td> <button type="button" class="btn btn-secondary btn-rounded btn-sm" (click)="modelo.value=md.marca + ' - ' + md.nombre"><i class="ti ti-check"></i></button></td>
+                            <td> <button type="button" 
+                                        class="btn btn-secondary btn-rounded btn-sm" 
+                                        (click)="auto.modelo=md;modelo.value=md.marca + ' - ' + md.nombre"><i class="ti ti-check"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
                 <button class="btn btn-secondary btn-inverse btn-rounded btn-sm" *ngIf="isModeloFind" (click)="isModeloFind=false">Cerrar</button>
+                <button class="btn btn-primary btn-rounded btn-sm pull-right" *ngIf="isModeloFind"><i class="ti ti-plus"></i>  Agregar modelo</button>
             </div>
         </div>
 
@@ -74,7 +85,7 @@
                 <div class="form-group">
                     <label class="control-label">Uso</label><br>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button *ngFor="let uv of usosVehiculares" (click)="cotizacion.uso = uv._id" type="button" [ngClass]=" { 'btn': true, 'btn-secondary': true, 'active': ( uv._id == cotizacion.uso ) } "> {{ uv.alias }} </button>
+                        <button *ngFor="let uv of usosVehiculares" (click)="cotizacion.uso = uv.nombre" type="button" [ngClass]=" { 'btn': true, 'btn-secondary': true, 'active': ( uv.nombre == cotizacion.uso ) } "> {{ uv.alias }} </button>
                     </div>
                 </div>
             </div>
@@ -85,7 +96,7 @@
                     <label class="control-label">Placa</label><br>
                     <div class="input-group">
                         <div class="input-group-addon"><input type="checkbox" (change)='checkTramite($event)' id="chkTramite"> <small class="ml-2"> <label for="chkTramite" class="mb-0">En trámite</label></small></div>
-                        <input type="text" class="form-control" [readonly]='cotizacion.en_tramite' placeholder="placa">
+                        <input [(ngModel)]="auto.placa" type="text" class="form-control" [readonly]='cotizacion.en_tramite' placeholder="placa">
                     </div>
                 </div>
             </div>
@@ -95,7 +106,7 @@
                     <label class="control-label">Año</label><br>
                     <div class="input-group">
                         <div class="input-group-addon"><input type="checkbox" (change)='validarAnio($event)' id="chkNuevo"> <small class="ml-2"><label for="chkNuevo" class="mb-0"> Es nuevo </label></small></div>
-                        <input type="number" class="form-control" placeholder="año" #anio (blur)="validarNuevo( anio.value )">
+                        <input  [(ngModel)]="auto.anio_fabricacion" type="number" class="form-control" placeholder="año" #anio (blur)="validarNuevo( anio.value )">
                     </div>
                 </div>
             </div>
@@ -103,17 +114,17 @@
             <div class="col-4">
                 <div class="form-group">
                     <label class="control-label">Suma asegurable</label><br>
-                    <input type="text" class="form-control" id="exampleInputuname" placeholder="Valor a asegurar">
+                    <input [(ngModel)]="cotizacion.suma_aseg"  type="text" class="form-control" id="exampleInputuname" placeholder="Valor a asegurar">
                 </div>
             </div>
 
             <div class="col-12">
                 <div class="checkbox checkbox-primary pull-left p-t-0">
-                    <input id="checkbox-signup" type="checkbox" class="filled-in chk-col-black">
+                    <input [(ngModel)]="auto.timon_cambiado"  id="checkbox-signup" type="checkbox" class="filled-in chk-col-black">
                     <label for="checkbox-signup"> Timón cambiado </label>
                 </div>
             </div>
         </div>
     </div>
 
-    <button class="right-side-toggle btn-inverse btn-primary btn btn-circle" (click)="cotizador()"><i class="ti-target text-white"></i></button>
+    <button class="right-side-toggle btn-inverse btn-primary btn btn-circle" (click)="cotizar()"><i class="ti-target text-white"></i></button>

@@ -30,6 +30,8 @@ var uploadRoutes = require('./routes/upload');
 var parametroRoutes = require('./routes/parametro');
 var cotizacionRoutes = require('./routes/cotizacion');
 var clienteRoutes = require('./routes/cliente');
+var modeloRiesgoRoutes = require('./routes/modelo_riesgo');
+var tasaRoutes = require('./routes/tasa');
 
 var serveIndex = require('serve-index');
 app.use(express.static('/data/sigap/'));
@@ -48,6 +50,8 @@ app.use('/upload', uploadRoutes);
 app.use('/parametro', parametroRoutes);
 app.use('/cotizacion', cotizacionRoutes);
 app.use('/cliente', clienteRoutes);
+app.use('/modeloriesgo', modeloRiesgoRoutes);
+app.use('/tasa', tasaRoutes);
 app.use('/', appRoutes);
 
 // MongoDB Access

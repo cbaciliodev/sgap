@@ -1,3 +1,5 @@
+import { Auto } from "./auto.model";
+
 export class Cotizacion {
     public constructor(
         public _id?: string,
@@ -5,7 +7,7 @@ export class Cotizacion {
         public cliente?: string,
         public producto?: string,
         public tasa?: string,
-        public auto?: string,
+        public auto?: Auto,
         public timon_cambiado?: boolean,
         public uso?: string,
         public en_tramite?: boolean,

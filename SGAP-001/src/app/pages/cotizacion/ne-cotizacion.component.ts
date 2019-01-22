@@ -4,13 +4,17 @@ import { Modelo } from 'src/app/models/modelo.model';
 import { UsuarioService,
         ClienteService,
         ModeloService,
-        ParametroService } from 'src/app/services/service.index';
+        ParametroService, 
+        CotizacionService} from 'src/app/services/service.index';
 
 import swal from 'sweetalert';
 import { Cotizacion } from 'src/app/models/cotizacion.model';
 
+import { VALOR_USO_VEHICULAR } from 'src/app/config/constants';
 import { GRUPO_USO_VEHICULAR } from 'src/app/config/constants';
 import { Parametro } from 'src/app/models/parametro.model';
+import { Auto } from 'src/app/models/auto.model';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -21,6 +25,7 @@ import { Parametro } from 'src/app/models/parametro.model';
 })
 export class NeCotizacionComponent implements OnInit {
 
+  isSaving: boolean = false;
   isClientFind: boolean = false;
   isModeloFind: boolean = false;
   clientsFind: Array<Cliente> = [];
@@ -30,13 +35,15 @@ export class NeCotizacionComponent implements OnInit {
   usosVehiculares: Array<Parametro> = [];
 
   cotizacion: Cotizacion = new Cotizacion();
+  auto: Auto = new Auto();
 
   @ViewChild('anio') txtAnio: ElementRef;
 
   constructor( public _cliente: ClienteService,
                 public _modelo: ModeloService,
                 public _usuario: UsuarioService,
-                public _parametro: ParametroService ) {
+                public _parametro: ParametroService,
+                public _cotizacion: CotizacionService ) {
                   this.listUsos();
   }
 
@@ -81,7 +88,16 @@ export class NeCotizacionComponent implements OnInit {
 
   }
 
-  cotizador( ) {
-    swal('Atención', 'No hemos encontrado información suficiente para generar la cotización', 'warning');
+  cotizar( ) {
+    
+    this.isSaving = true;
+    this.cotizacion.auto = this.auto;
+    this.cotizacion.producto = VALOR_USO_VEHICULAR;
+    
+    this._cotizacion.save( this._usuario.token, this.cotizacion ).subscribe( _ => {
+      swal( 'Confirmación', 'Cotización generada', 'success' );
+      this.isSaving = false;
+    } );
+    console.log( this.cotizacion );
   }
 }

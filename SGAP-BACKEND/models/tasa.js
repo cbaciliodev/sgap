@@ -8,11 +8,11 @@ var Schema = mongoose.Schema;
 
 var tasaSchema = new Schema({
     
-    codigo_tasa: { type: number, required: [true, 'Codigo de la tasa es requerido'] },
+    codigo_tasa: { type: Number, required: [true, 'Codigo de la tasa es requerido'] },
     riesgo: { type: Schema.Types.ObjectId, ref: 'Riesgo' },
     aseguradora: { type: Schema.Types.ObjectId, ref: 'Aseguradora' },
-    anio: {type: number, required: [ true, 'Año es requerido' ]} ,
-    tasa: {type: number, required: [ true, 'Año es requerido' ]} ,
+    anio: {type: Number, required: [ true, 'Año es requerido' ]} ,
+    tasa: {type: Number, required: [ true, 'Año es requerido' ]} ,
     estado: { type: Number, required: true, default: ESTADO_ACTIVO, enum: ESTADOS }
     
 }, { collection: 'tasa' });

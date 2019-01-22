@@ -7,9 +7,9 @@ var ESTADO_ACTIVO = require('../config/config').ESTADO_ACTIVO;
 var Schema = mongoose.Schema;
 
 var autoSchema = new Schema({
-    modelo: { type: Schema.Types.ObjectId, ref: 'Modelo', required: [true, 'Modelo contratado es requerido'] },
+    modelo: { type: Schema.Types.ObjectId, ref: 'Modelo' },
     placa: { type: String },
-    anio_fabricacion: { type: number },
+    anio_fabricacion: { type: Number },
     timon_cambiado: { type: Boolean }
 }, { collection: 'auto' });
 
