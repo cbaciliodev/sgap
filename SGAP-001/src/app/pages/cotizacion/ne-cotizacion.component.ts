@@ -14,7 +14,6 @@ import { VALOR_USO_VEHICULAR } from 'src/app/config/constants';
 import { GRUPO_USO_VEHICULAR } from 'src/app/config/constants';
 import { Parametro } from 'src/app/models/parametro.model';
 import { Auto } from 'src/app/models/auto.model';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -90,7 +89,7 @@ export class NeCotizacionComponent implements OnInit {
 
   cotizar( ) {
     
-    this.isSaving = true;
+    this.isSaving = false;
     this.cotizacion.auto = this.auto;
     this.cotizacion.producto = VALOR_USO_VEHICULAR;
     

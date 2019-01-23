@@ -7,11 +7,11 @@ var ESTADO_ACTIVO = require('../config/config').ESTADO_ACTIVO;
 var Schema = mongoose.Schema;
 
 var PrimaSchema = new Schema({
-    prima_neta: { type: Number, required: [true, 'Prima neta es requerido'], unique: true },
-    prima_total: { type: Number, required: [true, 'Prima neta es requerido'], unique: true },
+    prima_neta: { type: Number, required: [true, 'Prima neta es requerido'] },
+    prima_total: { type: Number, required: [true, 'Prima neta es requerido'] },
     cia: { type: Schema.Types.ObjectId, ref: 'Aseguradora' },
-    tot_descuento: { type: number },
-    tot_incremento: { type: number },
+    tot_descuento: { type: Number },
+    tot_incremento: { type: Number },
     agencia_reg: { type: Schema.Types.ObjectId, ref: 'Empresa' },
     usuario_reg: { type: Schema.Types.ObjectId, ref: 'Usuario' },
     fecha_reg: { type: Date },

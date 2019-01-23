@@ -3,12 +3,18 @@ var app = express();
 
 var validation = require('../functions/validation');
 var Aseguradora = require('../models/aseguradora');
+var _aseguradora = require('../services/aseguradora');
 
 app.get('/', (req, res) => {
-    Aseguradora.find({}).exec((err, aseguradoras) => {
-        if (err) { return validation.err(res, 500, 'Error al obtener todas las marcas', err); }
-        return validation.ok(res, 200, aseguradoras);
-    });
+
+    _aseguradora.find( {} ).then(
+        _data => {
+            return validation.ok(res, 200, _data);
+        }, err => {
+            return validation.err(res, 500, 'Error al obtener todas las marcas', err);
+        }
+    );
+
 });
 
 app.post('/', (req, res) => {
