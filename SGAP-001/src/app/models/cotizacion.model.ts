@@ -1,5 +1,6 @@
 import { Auto } from "./auto.model";
 import { Cliente } from "./cliente.model";
+import { Prima } from "./prima.model";
 
 export class Cotizacion {
     public constructor(
@@ -14,7 +15,7 @@ export class Cotizacion {
         public en_tramite?: boolean,
         public is_nuevo?: boolean,
         public suma_aseg?: number,
-        public primas?: [string],
+        public primas?: [Prima],
         public is_confirmado?: boolean,
         public prima_seleccionada?: string,
         public agencia_reg?: string,
