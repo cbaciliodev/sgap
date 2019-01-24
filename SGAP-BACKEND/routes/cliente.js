@@ -23,6 +23,28 @@ app.get('/', (req, res, nex) => {
     });
 });
 
+app.get('/:id', (req, res, nex) => {
+
+    let id = req.params.id;
+
+    Cliente.findById( id ).exec((err, clientes) => {
+        if (err) {
+            return res.status(500).json({
+                ok: true,
+                mensaje: 'Error cargando clientes',
+                errors: err
+            });
+        }
+
+        res.status(200).json({
+            ok: true,
+            data: clientes,
+            decoded: req.decoded
+        });
+
+    });
+});
+
 app.get('/search/:data', (req, res, nex) => {
 
     var data = req.params.data;

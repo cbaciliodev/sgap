@@ -11,7 +11,7 @@ var cotizacionSchema = new Schema({
     cliente: { type: Schema.Types.ObjectId, ref: 'Cliente' },
     producto: { type: String, required: [true, 'Producto contratado es requerido'] },
     tasa: { type: Number, required: [true, 'Tasa es requerida'] },
-    auto: { type: Schema.Types.ObjectId, ref: 'Auto', required: [true, 'Tasa contratado es requerido'] },
+    auto: { type: Schema.Types.ObjectId, ref: 'Auto', required: [true, 'Auto es requerido'] },
     timon_cambiado: { type: Boolean },
     uso: { type: String, required: [true, 'Uso contratado es requerido'] },
     en_tramite: { type: Boolean, required: [true, 'Especificar si la placa del auto se enceuntra en tramite'] },

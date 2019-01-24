@@ -12,5 +12,13 @@ module.exports = {
         }
 
         return text_random;
+    },
+    partial_array: function( start,  end, array){
+        data = [];
+        for( var i=start; i<=end; i++ ){
+            data.push( array[ i ] );
+        }
+
+        return data;
     }
 }

@@ -1,10 +1,11 @@
 import { Auto } from "./auto.model";
+import { Cliente } from "./cliente.model";
 
 export class Cotizacion {
     public constructor(
         public _id?: string,
         public codigo?: string,
-        public cliente?: string,
+        public cliente?: Cliente,
         public producto?: string,
         public tasa?: string,
         public auto?: Auto,

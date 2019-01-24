@@ -16,6 +16,11 @@ export class CotizacionService {
     return this.http.get( url ).pipe( map( ( _: any) => _.data ) );
   }
 
+  getById( token: String, id: String ) {
+    let url = URL_SERVICIOS + '/cotizacion/' + id + '?token=' + token;
+    return this.http.get( url ).pipe( map( ( _: any) => _.data ) );
+  }
+
   save( token: String, cotizacion: Cotizacion ) {
     let url = URL_SERVICIOS + '/cotizacion/?token=' + token;
     return this.http.post( url, cotizacion ).pipe( map( ( _: any) => _.data ) );

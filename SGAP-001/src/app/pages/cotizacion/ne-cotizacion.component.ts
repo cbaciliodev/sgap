@@ -14,6 +14,7 @@ import { VALOR_USO_VEHICULAR } from 'src/app/config/constants';
 import { GRUPO_USO_VEHICULAR } from 'src/app/config/constants';
 import { Parametro } from 'src/app/models/parametro.model';
 import { Auto } from 'src/app/models/auto.model';
+import { Router } from '@angular/router';
 
 
 
@@ -42,7 +43,8 @@ export class NeCotizacionComponent implements OnInit {
                 public _modelo: ModeloService,
                 public _usuario: UsuarioService,
                 public _parametro: ParametroService,
-                public _cotizacion: CotizacionService ) {
+                public _cotizacion: CotizacionService,
+                public _router: Router ) {
                   this.listUsos();
   }
 
@@ -75,9 +77,8 @@ export class NeCotizacionComponent implements OnInit {
   }
 
   validarNuevo( value: number ) {
-    console.log('anio: ' + this.txtAnio.nativeElement.value);
+    
     let currentYear = new Date().getFullYear();
-
     if ( (this.txtAnio.nativeElement.value !== '') && (this.cotizacion.is_nuevo) ){
       if ( (currentYear - value) > 1 ) {
         swal('Atención', 'El año ingresado no aplica para nuevo, lo corregimos al año actual', 'warning');
@@ -89,14 +90,17 @@ export class NeCotizacionComponent implements OnInit {
 
   cotizar( ) {
     
-    this.isSaving = false;
+    this.isSaving = true;
     this.cotizacion.auto = this.auto;
     this.cotizacion.producto = VALOR_USO_VEHICULAR;
     
     this._cotizacion.save( this._usuario.token, this.cotizacion ).subscribe( _ => {
-      swal( 'Confirmación', 'Cotización generada', 'success' );
       this.isSaving = false;
-    } );
-    console.log( this.cotizacion );
+      this._router.navigate( ['/cotizacion/prev/' + _._id] );
+    }, error => {  
+      this.isSaving = false;
+      swal( 'Ups...', error.error.mensaje, 'error' );
+    });
+
   }
 }
