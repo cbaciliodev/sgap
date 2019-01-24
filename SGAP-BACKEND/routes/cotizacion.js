@@ -28,6 +28,20 @@ app.get('/', (req, res) => {
         });
 });
 
+app.get('/:id', (req, res) => {
+
+    let id = req.params.id;
+    Cotizacion.findById( id )
+        .populate('cliente')
+        .populate('auto')
+        .populate('primas')
+        .exec((err, cotizaciones) => {
+            if (err) { return validation.err(res, 500, 'Error al obtener todos las cotizaciones', err); }
+            return validation.ok(res, 200, cotizaciones);
+        });
+
+});
+
 app.post('/', (req, res) => {
 
     var body = req.body;
@@ -38,8 +52,7 @@ app.post('/', (req, res) => {
         codigo: codigoWeb,
         cliente: body.cliente,
         producto: body.producto,
-        //tasa: body.tasa,
-        tasa: 4.3,
+        tasa: 0,
         auto: _auto.toAuto( body.auto ),
         timon_cambiado: body.timon_cambiado,
         uso: body.uso,
@@ -57,137 +70,72 @@ app.post('/', (req, res) => {
     
     saveCotizacion( cotizacion ).then(
         _res => { return validation.ok( res, HTTP_RESPONSES.SUCCESS, _res ) },
-        _err => { return validation.err( res, HTTP_RESPONSES.INTERNAL_SERVER, 'Error al insertar cotizacion', _err ) }
-    )
-
-    // saveAuto( body.auto ).then( _data => {
-    //     cotizacion.auto = _data;
-    //     cotizacion.save( (err, cotizacionSaved) => {
-    //         if( err ){
-    //             return validation.err( res, HTTP_RESPONSES.INTERNAL_SERVER, 'Error al insertar cotizacion', err );
-    //         }
-    //         return validation.ok( res, HTTP_RESPONSES.SUCCESS, cotizacionSaved );
-    //     });
-    // } );
+        _err => { return validation.err( res, HTTP_RESPONSES.INTERNAL_SERVER, 'No encontramos suficiente información para generar la cotización', _err ) }
+    );
 });
 
 function saveCotizacion( cotizacion ){
 
+    let anio = 0;
+
+    if( cotizacion.is_nuevo ){
+        anio = (new Date().getFullYear() - cotizacion.auto.anio_fabricacion );
+    }
+
+
     return new Promise( (res, rej) => {
 
-        _auto.save( cotizacion.auto ).then(
-            _autoSave => {
+        _modelo_riesgo.findPopulate( { modelo: cotizacion.auto.modelo._id  } ).then(
+            _data_mr => {
     
-                console.log( 'Auto guardado: ' + _autoSave._id );
+                let _tasas = [];
+                let _aseguradora = [];
+                let _primas = [];
 
-                let anio = 0;
-    
-                if( cotizacion.is_nuevo ){
-                    anio = (new Date().getFullYear() - _autoSave.anio_fabricacion );
+                for( var _mr in _data_mr ){
+                    _aseguradora.push( _data_mr[_mr].aseguradora );
+                    _tasas.push( _tasa.findOne( { riesgo: _data_mr[_mr].riesgo, anio: anio } ) );
                 }
     
-                _modelo_riesgo.findPopulate( { modelo: cotizacion.auto.modelo._id  } ).then(
-                    _data_mr => {
+                Promise.all( _tasas ).then( _tasas_array => {
+
+                    // Guardando las tasas
+                    for( var _ta in _tasas_array ){
+                        _primas.push( _prima.save( _prima.generarPrima( _tasas_array[ _ta ], _aseguradora[ _ta ], cotizacion.suma_aseg ) ) );
+                    }
+
+                    // Guardando el auto
+                    _primas.push( _auto.save( cotizacion.auto ) );
+
+                    Promise.all( _primas ).then( _primas_bd => {
+
+                        updateCotizacion( _primas_bd, cotizacion );
                         
-                        console.log( 'Modelos y Riesgos encontrados: ' + _data_mr.length );
-
-                        let _tasas = [];
-                        for( var _mr in _data_mr ){
-
-                            console.log( 'ANTES DE ECNONTRAR TASA' );
-                            console.log( _data_mr[_mr] );
-
-                            _tasas.push( _tasa.findOne( { riesgo: _data_mr[_mr].riesgo, anio: anio } ) );
-                        }
-    
-                        Promise.all( _tasas ).then( _tasas_array => {
-    
-                            console.log( 'Primas encontradas: ' + _data_mr.length );
-                            
-                            let _primas = [];
-    
-                            for( var _ta in _tasas_array ){
-                                
-                                console.log( 'Guardando primas' );
-                                console.log( _tasas_array );
-
-                                let prima = {
-                                    prima_neta: 0,
-                                    prima_total: 0,
-                                    cia: _tasas_array[_ta].aseguradora,
-                                    tot_descuento: 0,
-                                    fecha_reg: new Date()
-                                }
-                                
-                                _primas.push( _prima.save( prima ) );
+                        cotizacion.save( ( err, cot_bd ) => {
+                            if( err ){
+                                rej( err );
                             }
+                            res( cot_bd );
+                        });
+
+                    }, _err => rej( _err ) );
     
-                        }, _err => rej( _err ) );
-    
-                    }, _err => rej( _err ) 
-                )
+                }, _err => rej( _err ) );
     
             }, _err => rej( _err ) 
         )
 
-
-
     });
 
 }
 
-function saveAuto( autoWeb ) {
-    
-    return new Promise( function(resolve, reject) {
+function updateCotizacion( data_promise,  cotizacion ){
 
-        getModelo( autoWeb.modelo._id ).then( _m => {
+    console.log( 'Enviando a guardar ...' );
+    console.log( data_promise );
 
-            var auto = new Auto({
-                modelo: _m._id,
-                placa: autoWeb.placa,
-                anio_fabricacion: autoWeb.anio_fabricacion,
-                timon_cambiado: autoWeb.timon_cambiado}
-            );
-        
-            auto.save( (err, autoSaved) => {
-                if(err){
-                    reject( err );
-                }
-        
-                resolve( autoSaved );
-            });
-        });
-    });
-}
-
-function getModelo( _id ){
-    return new Promise( function(resolve, reject){
-        Modelo.findById( _id, (err, res)=>{
-            if(err){
-                reject(err);
-            }
-            resolve(res);
-        })
-    })
-}
-
-function getTasa( riesgo, anio ){
-    return new Promise( (resolve, reject) => {
-        Tasa.findOne( { riesgo: riesgo, anio: anio } )
-        .exec( (err, tasas) => {
-            if(err){ reject(err); }
-            resolve( tasas );
-        })
-    });
-}
-
-function getModelosRiesgos( _idModelo ){
-    return new Promise( (resolve, reject) => {
-        ModeloRiesgo.find( { modelo: _idModelo }, ( err, res ) =>{
-            if(err){ reject(err) }
-            resolve(res);
-        });
-    });
+    cotizacion.primas = _commons.partial_array( 0, (data_promise.length - 2), data_promise );
+    cotizacion.auto = data_promise[ data_promise.length - 1 ]._id;
 }
 
 

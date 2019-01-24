@@ -21,6 +21,7 @@ import { ClienteComponent } from './cliente/cliente.component';
 import { CotizacionComponent } from './cotizacion/cotizacion.component';
 import { NeCotizacionComponent } from './cotizacion/ne-cotizacion.component';
 import { NeClienteComponent } from './cliente/ne-cliente.component';
+import { PrevCotizacionComponent } from './cotizacion/prev-cotizacion.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import { NeClienteComponent } from './cliente/ne-cliente.component';
         ClienteComponent,
         CotizacionComponent,
         NeCotizacionComponent,
-        NeClienteComponent
+        NeClienteComponent,
+        PrevCotizacionComponent
     ],
     exports: [
         DashboardComponent,

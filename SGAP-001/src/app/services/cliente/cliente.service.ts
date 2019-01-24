@@ -21,6 +21,11 @@ export class ClienteService {
     return this.http.get( url ).pipe( map( ( _: any) => _.data ) );
   }
 
+  getById( token: String, id: String ) {
+    let url = URL_SERVICIOS + '/cliente/' + id + '?token=' + token;
+    return this.http.get( url ).pipe( map( ( _: any) => _.data ) );
+  }
+
   save( token: String, cliente: Cliente ) {
     let url = URL_SERVICIOS + '/cliente/';
     return this.http.post( url, cliente );

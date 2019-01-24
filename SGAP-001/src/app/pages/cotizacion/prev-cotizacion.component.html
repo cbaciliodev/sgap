@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex">
+        <div class="m-r-20 align-self-center">
+          <img src="assets/images/icon/staff.png" alt="Income">
+        </div>
+        <div class="align-self-center">
+          <h6 class="text-muted m-t-10 m-b-0">Cliente</h6>
+          <h2 class="m-t-0">{{ cotizacion.cliente.nombre + ' ' + cotizacion.cliente.apellido_paterno + ' ' + cotizacion.cliente.apellido_materno}}</h2>
+          <h5 class="m-t-0">DNI {{ cotizacion.cliente.nro_documento }}</h5>
+          <h5 class="m-t-30">{{ cotizacion.cliente.direccion }}</h5>
+          <h5 class="m-t-0">{{ cotizacion.cliente.departamento + ', ' + cotizacion.cliente.provincia + ' - ' + cotizacion.cliente.distrito }}</h5>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<p>
+
+  COT {{ cotizacion | json }}
+</p>

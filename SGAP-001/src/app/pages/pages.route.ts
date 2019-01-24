@@ -13,12 +13,13 @@ import { ClienteComponent } from './cliente/cliente.component';
 import { CotizacionComponent } from './cotizacion/cotizacion.component';
 import { NeCotizacionComponent } from './cotizacion/ne-cotizacion.component';
 import { NeClienteComponent } from './cliente/ne-cliente.component';
+import { PrevCotizacionComponent } from './cotizacion/prev-cotizacion.component';
 
 const pagesRoutes: Routes = [
     {
         path: '',
         component: PagesComponent,
-        canActivate: [LoginGuard],
+        canActivate: [ LoginGuard ],
         children: [
             { path: 'usuario', component: UsuarioComponent, data: { title: 'Usuario', routes: [{ title: 'Configuraciones'}, { title: 'Usuarios' }] } },
             { path: 'progress', component: ProgressComponent, data: { title: 'Progress', routes: [{ title: 'Configuraciones'}, { title: 'Usuarios' }] } },
@@ -26,7 +27,10 @@ const pagesRoutes: Routes = [
             { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Cuenta', routes: [{ title: 'Configuraciones'}, { title: 'Usuarios' }] } },
             { path: 'modelo', component: ModeloComponent, data: { title: 'Modelos', routes: [{ title: 'Configuraciones'}, { title: 'Modelo' }] } },
             { path: 'modelo/:id', component: MFormularioComponent, data: { title: 'Modelos', routes: [{ title: 'Configuraciones'}, { title: 'Modelo', link: '/modelo' }, { title: 'Agregar/Editar' }] } },
-            { path: 'cotizacion', component: CotizacionComponent, data: { title: 'Cotización', routes: [{ title: 'Gestión'}, { title: 'Cotización' }] } },
+            { path: 'cotizacion', children: [
+                    { path: '', component: CotizacionComponent, data: { title: 'Cotización', routes: [{ title: 'Gestión'}, { title: 'Cotización' }] } },
+                    { path: 'prev/:id', component: PrevCotizacionComponent, data: { title: 'Previsualizacion', routes: [{ title: 'Gestión'}, { title: 'Cotización' }, { title: 'Previsualización' }] } }
+                ]},
             { path: 'cliente', component: ClienteComponent, data: { title: 'Cliente', routes: [{ title: 'Gestión'}, { title: 'Cliente' }] } },
             { path: 'cotizacion/:id', component: NeCotizacionComponent, data: { title: 'Cotización', routes: [{ title: 'Gestión'}, { title: 'Cotización', link: '/cotizacion' }, { title: 'Agregar/Editar' }] } },
             { path: 'cliente/:id', component: NeClienteComponent, data: { title: 'Cliente', routes: [{ title: 'Gestión'}, { title: 'Cliente', link: '/cliente' }, { title: 'Agregar/Editar' }] } },
