@@ -4,7 +4,7 @@ import { Modelo } from 'src/app/models/modelo.model';
 import { UsuarioService,
         ClienteService,
         ModeloService,
-        ParametroService, 
+        ParametroService,
         CotizacionService} from 'src/app/services/service.index';
 
 import swal from 'sweetalert';
@@ -46,6 +46,8 @@ export class NeCotizacionComponent implements OnInit {
                 public _cotizacion: CotizacionService,
                 public _router: Router ) {
                   this.listUsos();
+                  this.cotizacion.en_tramite = false;
+                  this.cotizacion.is_nuevo = false;
   }
 
   ngOnInit() {  }
@@ -68,18 +70,10 @@ export class NeCotizacionComponent implements OnInit {
     this._parametro.listGroupChildren( GRUPO_USO_VEHICULAR ).subscribe( data => this.usosVehiculares = data );
   }
 
-  checkTramite( event ) {
-    this.cotizacion.en_tramite = event.target.checked;
-  }
-
-  validarAnio( event ) {
-    this.cotizacion.is_nuevo = event.target.checked;
-  }
-
   validarNuevo( value: number ) {
-    
+
     let currentYear = new Date().getFullYear();
-    if ( (this.txtAnio.nativeElement.value !== '') && (this.cotizacion.is_nuevo) ){
+    if ( (this.txtAnio.nativeElement.value !== '') && (this.cotizacion.is_nuevo) ) {
       if ( (currentYear - value) > 1 ) {
         swal('Atención', 'El año ingresado no aplica para nuevo, lo corregimos al año actual', 'warning');
         this.txtAnio.nativeElement.value = currentYear;
@@ -89,17 +83,18 @@ export class NeCotizacionComponent implements OnInit {
   }
 
   cotizar( ) {
-    
+
     this.isSaving = true;
     this.cotizacion.auto = this.auto;
     this.cotizacion.producto = VALOR_USO_VEHICULAR;
-    
+
     this._cotizacion.save( this._usuario.token, this.cotizacion ).subscribe( _ => {
       this.isSaving = false;
       this._router.navigate( ['/cotizacion/prev/' + _._id] );
-    }, error => {  
+    }, error => {
       this.isSaving = false;
       swal( 'Ups...', error.error.mensaje, 'error' );
+      console.log( error );
     });
 
   }

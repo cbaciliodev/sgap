@@ -2,6 +2,7 @@ import { Auto } from "./auto.model";
 import { Cliente } from "./cliente.model";
 import { Prima } from "./prima.model";
 
+
 export class Cotizacion {
     public constructor(
         public _id?: string,

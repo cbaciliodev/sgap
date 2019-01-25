@@ -1,7 +1,7 @@
 <ng-container *ngIf="isSaving">
     <div style="z-index: 10; left:0px; right: 0px; top: 0px; bottom: 0px; position: absolute; background: rgba(255,255,255,0.75)">
         <div style="margin-top: 40%; text-align: center">
-            <i class="fa fa-refresh fa-spin fa-1x" style="font-size: 2.5em;"></i> 
+            <i class="fa fa-refresh fa-spin fa-1x" style="font-size: 2.5em;"></i>
             <h3>Estamos generando la cotización</h3>
             <span>Un momento por favor</span>
         </div>
@@ -13,15 +13,14 @@
         <h4 class="card-title">Datos del cliente</h4>
 
         <div class="form-group">
-            <input #cliente (keyup)='searchClient( _usuario.token, cliente.value )' 
-                    type="text" class="form-control" placeholder="Encontrar cliente...">
+            <input #cliente (keyup)='searchClient( _usuario.token, cliente.value )' type="text" class="form-control" placeholder="Encontrar cliente...">
         </div>
 
         <ng-container *ngIf="isClientFind">
             <div class="row">
                 <div class="col-12">
                     <div class="jumbotron p-4 animated fadeInDown show">
-                        <table class="table table-hover" >
+                        <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <td><small><strong>Documento</strong></small></td>
@@ -75,9 +74,7 @@
                                     <td> {{ md.marca | uppercase }} </td>
                                     <td> {{ md.nombre | uppercase }} </td>
                                     <td> {{ md.categoria | uppercase }} </td>
-                                    <td> <button type="button" 
-                                                class="btn btn-secondary btn-rounded btn-sm" 
-                                                (click)="auto.modelo=md;modelo.value=md.marca + ' - ' + md.nombre"><i class="ti ti-check"></i></button></td>
+                                    <td> <button type="button" class="btn btn-secondary btn-rounded btn-sm" (click)="auto.modelo=md;modelo.value=md.marca + ' - ' + md.nombre"><i class="ti ti-check"></i></button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -103,7 +100,7 @@
                 <div class="form-group">
                     <label class="control-label">Placa</label><br>
                     <div class="input-group">
-                        <div class="input-group-addon"><input type="checkbox" (change)='checkTramite($event)' id="chkTramite"> <small class="ml-2"> <label for="chkTramite" class="mb-0">En trámite</label></small></div>
+                        <div class="input-group-addon"><input type="checkbox" [(ngModel)]="cotizacion.en_tramite" id="chkTramite"> <small class="ml-2"> <label for="chkTramite" class="mb-0">En trámite</label></small></div>
                         <input [(ngModel)]="auto.placa" type="text" class="form-control" [readonly]='cotizacion.en_tramite' placeholder="placa">
                     </div>
                 </div>
@@ -113,8 +110,8 @@
                 <div class="form-group">
                     <label class="control-label">Año</label><br>
                     <div class="input-group">
-                        <div class="input-group-addon"><input type="checkbox" (change)='validarAnio($event)' id="chkNuevo"> <small class="ml-2"><label for="chkNuevo" class="mb-0"> Es nuevo </label></small></div>
-                        <input  [(ngModel)]="auto.anio_fabricacion" style="text-align: right" type="number" class="form-control" placeholder="año" #anio (blur)="validarNuevo( anio.value )">
+                        <div class="input-group-addon"><input type="checkbox" [(ngModel)]="cotizacion.is_nuevo" id="chkNuevo"> <small class="ml-2"><label for="chkNuevo" class="mb-0"> Es nuevo </label></small></div>
+                        <input [(ngModel)]="auto.anio_fabricacion" style="text-align: right" type="number" class="form-control" placeholder="año" #anio (blur)="validarNuevo( anio.value )">
                     </div>
                 </div>
             </div>
@@ -128,7 +125,7 @@
 
             <div class="col-12">
                 <div class="checkbox checkbox-primary pull-left p-t-0">
-                    <input [(ngModel)]="auto.timon_cambiado"  id="checkbox-signup" type="checkbox" class="filled-in chk-col-black">
+                    <input [(ngModel)]="auto.timon_cambiado" id="checkbox-signup" type="checkbox" class="filled-in chk-col-black">
                     <label for="checkbox-signup"> Timón cambiado </label>
                 </div>
             </div>
