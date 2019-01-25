@@ -95,7 +95,7 @@ export class NeCotizacionComponent implements OnInit {
       this.isSaving = false;
       swal( 'Ups...', error.error.mensaje, 'error' );
       console.log( error );
-    });
+      });
 
   }
 }
