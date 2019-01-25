@@ -55,6 +55,7 @@ export class SidebarService {
         { titulo: 'Emp. aseguradoras', url: '/cotizacion' },
         { titulo: 'Modelos', url: '/modelo' },
         { titulo: 'Tasas', url: '/cotizacion' },
+        { titulo: 'Coberturas y deducibles', url: '/coberturas' },
         { titulo: 'Variables generales', url: '/cotizacion' }
       ]
     }

@@ -14,6 +14,7 @@ import { CotizacionComponent } from './cotizacion/cotizacion.component';
 import { NeCotizacionComponent } from './cotizacion/ne-cotizacion.component';
 import { NeClienteComponent } from './cliente/ne-cliente.component';
 import { PrevCotizacionComponent } from './cotizacion/prev-cotizacion.component';
+import { CoberturasComponent } from './coberturas/coberturas.component';
 
 const pagesRoutes: Routes = [
     {
@@ -35,6 +36,7 @@ const pagesRoutes: Routes = [
             { path: 'cotizacion/:id', component: NeCotizacionComponent, data: { title: 'Cotización', routes: [{ title: 'Gestión'}, { title: 'Cotización', link: '/cotizacion' }, { title: 'Agregar/Editar' }] } },
             { path: 'cliente/:id', component: NeClienteComponent, data: { title: 'Cliente', routes: [{ title: 'Gestión'}, { title: 'Cliente', link: '/cliente' }, { title: 'Agregar/Editar' }] } },
             { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard', routes: [{ title: 'Dashboard'}] } },
+            { path: 'coberturas', component: CoberturasComponent, data: { title: 'Cobertura', routes: [{ title: 'Coberturas'}] } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full'}
         ]
     }
