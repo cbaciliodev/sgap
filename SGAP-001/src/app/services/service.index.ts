@@ -1,3 +1,6 @@
+export { CommonsService } from './commons/commons.service';
+export { RiesgoService } from './riesgo/riesgo.service';
+export { CoberturaService } from './cobertura/cobertura.service';
 export { AutoService } from './auto/auto.service';
 export { ParametroService } from './parametro/parametro.service';
 export { ClienteService } from './cliente/cliente.service';

@@ -10,7 +10,10 @@ import { SettingsService,
         ModeloService,
         ClienteService,
         ParametroService,
-        AutoService } from './service.index';
+        AutoService,
+        CoberturaService,
+        RiesgoService,
+        CommonsService } from './service.index';
 
 @NgModule({
   imports: [
@@ -26,7 +29,10 @@ import { SettingsService,
     ModeloService,
     ClienteService,
     ParametroService,
-    AutoService
+    AutoService,
+    CoberturaService,
+    RiesgoService,
+    CommonsService
   ],
   declarations: []
 })

@@ -20,5 +20,12 @@ module.exports = {
         }
 
         return data;
+    },
+    push_array: push_array
+}
+
+function push_array( target, arrayData ){
+    for( let i in arrayData ){
+        target.push( arrayData[i] );
     }
 }

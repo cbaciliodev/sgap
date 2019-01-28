@@ -1,3 +1,36 @@
-<p>
-  coberturas works!
-</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Rubro</th>
+            <th><select #lstAseguradora class="custom-select" [(ngModel)]="aseguradora" (change)="loadRiesgos( lstAseguradora.value )"> 
+                    <option [ngValue]="null">-- aseguradora --</option>
+                    <option *ngFor="let cia of cobertura.cias" [value]="cia._id"> {{ cia.nombre }} </option> </select></th>
+            <th><select class="custom-select" [(ngModel)]="riesgo"> 
+                    <option [ngValue]="null">-- riesgo --</option>
+                    <option *ngFor="let r of riesgos" [value]="r._id"> {{ r.nombre }} </option></select></th>
+            <th><select class="custom-select" [(ngModel)]="usos"> 
+                    <option [ngValue]="null">-- usos --</option>
+                    <option *ngFor="let r of cobertura.usos_vehicular" [value]="r._id"> {{ r.nombre }} </option></select></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <ng-container *ngFor="let c of cobertura.slim; let i = index">
+            <tr>
+                <td colspan="4" class="label-light-info" *ngIf="c.is_grupo==1" > <strong> {{ c.alias }} </strong> </td>
+                <ng-container *ngIf="c.is_grupo==0">
+                    <td class="pl-5">
+                        <div [innerHTML]="c.alias"></div>
+                    </td>
+                    <td colspan="3">
+                        <input class="form-control" [(ngModel)]="data_cobertura[i]">
+                    </td>
+                </ng-container>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
+
+<button class="right-side-toggle btn-inverse btn-primary btn btn-circle" (click)="registrarCobertura()"> 
+    <i class="ti-check text-white no-animation"></i>
+</button>
