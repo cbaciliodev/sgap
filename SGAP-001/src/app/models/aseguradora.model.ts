@@ -4,6 +4,7 @@ export class Aseguradora {
         public nombre?: string,
         public prima_minima?: Number,
         public prima_max_gps?: Number,
-        public tasa?: Number
+        public tasa?: Number,
+        public logo?: string
     ) { }
 }
