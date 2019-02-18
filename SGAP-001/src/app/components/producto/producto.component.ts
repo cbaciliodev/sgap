@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AseguradoraService, UsuarioService } from 'src/app/services/service.index';
 import { Aseguradora } from '../../models/aseguradora.model';
 import { UsoAseguradora } from '../../models/uso_aseguradora.model';
 import { Archivo } from 'src/app/models/archivo.model';
+import { Producto } from 'src/app/models/producto.model';
 
 @Component({
   selector: 'app-producto',
@@ -10,6 +11,8 @@ import { Archivo } from 'src/app/models/archivo.model';
   styles: []
 })
 export class ProductoComponent implements OnInit {
+
+  @Input() producto: Producto;
 
   aseguradoras: Array<Aseguradora> = [];
   usos: Array<UsoAseguradora> = [];
@@ -29,7 +32,6 @@ export class ProductoComponent implements OnInit {
   }
 
   listUsos( id: string ) {
-    console.log( id );
     this._aseguradora.listUsos( this._usuario.token, id ).subscribe( data => this.usos = data );
   }
 

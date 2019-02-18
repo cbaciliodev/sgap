@@ -3,7 +3,7 @@
     <div class="col-12 col-md-6">
         <div class="form-group">
             <label class="control-label">Compañía de seguros</label><br>
-            <select #lstCia class="custom-select" style="width:100%" (change)="listUsos( lstCia.value )">
+            <select #lstCia class="custom-select" style="width:100%" (change)="listUsos( lstCia.value )" [(ngModel)]="producto.compania">
               <option *ngFor="let asg of aseguradoras"  [value]="asg._id"> {{ asg.nombre }} </option>
             </select>
         </div>
@@ -12,7 +12,7 @@
     <div class="col-12 col-md-6">
         <div class="form-group">
             <label class="control-label">Ramo</label><br>
-            <select class="custom-select" style="width:100%" [(ngModel)]="ramo">
+            <select class="custom-select" style="width:100%" [(ngModel)]="producto.ramo">
               <option *ngFor="let uso of usos"  [value]="uso.valor"> {{ uso.alias }} </option>
             </select>
         </div>
@@ -31,7 +31,7 @@
         <div class="col-12">
             <div class="form-group">
                 <label class="control-label">Riesgo</label><br>
-                <select class="custom-select" style="width:100%" [(ngModel)]="ramo_tecnico">
+                <select class="custom-select" style="width:100%" [(ngModel)]="producto.ramo_tecnico">
                   <option value="CAR"> CAR </option>
                   <option value="EAR"> EAR </option>
                   <option value="TREC"> TREC </option>
@@ -195,13 +195,13 @@
         <div class="col-12 col-md-6">
             <div class="form-group">
                 <label class="control-label">Número de póliza</label><br>
-                <input type="text" class="form-control" placeholder="Número de poliza">
+                <input type="text" class="form-control" placeholder="Número de poliza" [(ngModel)]="producto.nro_poliza">
             </div>
         </div>
         <div class="col-12 col-md-6">
             <div class="form-group">
                 <label class="control-label">Prima neta</label><br>
-                <input type="text" class="form-control" placeholder="Prima neta">
+                <input type="text" class="form-control" placeholder="Prima neta" [(ngModel)]="producto.prima_neta">
             </div>
         </div>
     </div>
