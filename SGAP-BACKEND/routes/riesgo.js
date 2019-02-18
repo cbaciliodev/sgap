@@ -18,4 +18,15 @@ app.get('/cia/:id', (req, res) => {
 
 });
 
+app.get('/:id', (req, res) => {
+
+    let id = req.params.id;
+
+    _riesgo.findById(id).then(
+        data => _f.ok(res, _f.HTTP_RESPONSES.SUCCESS, data),
+        err => _f.err(res, _f.HTTP_RESPONSES.INTERNAL_SERVER, 'Error al consultar riesgo', err)
+    );
+
+});
+
 module.exports = app;

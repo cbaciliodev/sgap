@@ -1,46 +1,184 @@
-<div class="card">
-  <div class="card-body">
-    <div class="row">
-        <div class="col-12">
-          <div class="d-flex">
-            <div class="m-r-20 p-t-20 ">
-              <img src="assets/images/icon/staff.png" alt="Income">
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <h6 class="text-muted m-t-10 m-b-0">Cliente</h6>
-                <h2 class="m-t-0">{{ cliente.nombre + ' ' + cliente.apellido_paterno + ' ' + cliente.apellido_materno}}</h2>
-                <h5 class="m-t-0">DNI {{ cliente.nro_documento }}</h5>
-                <h5 class="m-t-30">{{ cliente.direccion }}</h5>
-                <h5 class="m-t-0">{{ cliente.departamento + ', ' + cliente.provincia + ' - ' + cliente.distrito }}</h5>
-              </div>
-              
-              <div class="col-md-6 col-12 m-t-20">
-                  <ul class="list-group">
-                      <li class="list-group-item" *ngFor="let tlf of cliente.telefonos">
-                        <strong>{{ tlf.tipo }}</strong> {{ tlf.valor }}
-                      </li>
-                  </ul>
-              </div>
-        
-              <div class="col-md-6 col-12 m-t-20">
-                  <ul class="list-group">
-                      <li class="list-group-item" *ngFor="let cr of cliente.correo_electronico">
-                        <strong>{{ cr.tipo }}</strong> {{ cr.valor }}
-                      </li>
-                  </ul>
-              </div>
-            </div>
-          </div>
+<ng-container *ngIf="isLoading">
+    <div style="z-index: 10; left:0px; right: 0px; top: 0px; bottom: 0px; position: absolute; background: rgba(255,255,255,0.75)">
+        <div style="margin-top: 40%; text-align: center">
+            <i class="fa fa-refresh fa-spin fa-1x" style="font-size: 2.5em;"></i>
+            <h3>Estamos cargando su cotización</h3>
+            <span>Un momento por favor</span>
         </div>
     </div>
-    
-  </div>
-</div>
+</ng-container>
+
+<ng-container *ngIf="!isLoading">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="d-flex">
+                        <div class="m-r-20 p-t-20 ">
+                            <img src="assets/images/icon/staff.png" alt="Income">
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h6 class="text-muted m-t-10 m-b-0">Cliente</h6>
+                                <h2 class="m-t-0">{{ cliente.nombre + ' ' + cliente.apellido_paterno + ' ' + cliente.apellido_materno}}</h2>
+                                <h5 class="m-t-0">DNI {{ cliente.nro_documento }}</h5>
+                                <h5 class="m-t-30">{{ cliente.direccion }}</h5>
+                                <h5 class="m-t-0">{{ cliente.departamento + ', ' + cliente.provincia + ' - ' + cliente.distrito }}</h5>
+                            </div>
+
+                            <div class="col-12 m-t-10">
+                                <ul class="list-group">
+                                    <li class="list-group-item" *ngFor="let tlf of cliente.telefonos">
+                                        <strong>{{ tlf.tipo }}</strong> {{ tlf.valor }}
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-12 m-t-10">
+                                <ul class="list-group">
+                                    <li class="list-group-item" *ngFor="let cr of cliente.correo_electronico">
+                                        <strong>{{ cr.tipo }}</strong> {{ cr.valor }}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="d-flex">
+                        <div class="m-r-20 p-t-20 ">
+                            <img src="assets/images/icon/assets.png" alt="Income">
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h6 class="text-muted m-t-10 m-b-0">Vehículo</h6>
+                                <h2 class="m-t-0"> {{ auto.modelo.marca }} {{ auto.modelo.nombre }} </h2>
+                                <h5 class="m-t-0"> {{ auto.anio_fabricacion }} </h5>
+                                <h5 class="m-t-30">Placa: {{ auto.placa }}</h5>
+                                <h5 class="m-t-0"> Suma asegurable: <strong>USD. {{ cotizacion.suma_aseg | currency }}</strong></h5>
+                                <h5 class="m-t-0"> Seguro: <strong> {{ cotizacion.uso }}</strong></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div [class]="'col-md-' + cssStruct.colCoberturas"></div>
+                <div *ngFor="let prm of cotizacion.primas; let i = index" [class]="'col-md-' + cssStruct.colCias" style="text-align:center">
+
+                    <small class="uppercase">descuento</small>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control ng-pristine ng-valid ng-touched text-right" placeholder="%" type="text" [(ngModel)]="descuentos[i]" (blur)="calcular( i )">
+                        </div>
+                    </div>
+
+                    <small class="uppercase">descuento vs comisión</small>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control ng-pristine ng-valid ng-touched text-right" placeholder="%" type="text" [(ngModel)]="descuentos_com[i]" (blur)="calcular( i )">
+                        </div>
+                    </div>
+
+                    <small class="uppercase">incremento</small>
+                    <div class="input-group">
+                        <input class="form-control ng-pristine ng-valid ng-touched text-right" placeholder="%" type="text" [(ngModel)]="incrementos[i]" (blur)="calcular( i )">
+                    </div>
+
+                    <ng-container *ngIf="prm.gps">
+                        <h2 class="text-center text-success mt-2"><i class="mdi mdi-map-marker"></i> GPS</h2>
+                    </ng-container>
+
+                    <ng-container *ngIf="!prm.gps">
+                        <h2 class="text-center text-danger mt-2"><i class="mdi mdi-map-marker-off"></i> GPS</h2>
+                    </ng-container>
+
+                    <span class="uppercase">prima neta</span>
+                    <h2 class="text-center">{{ prm.prima_neta | currency }}</h2>
+
+                    <span class="uppercase">prima total</span>
+                    <h2 class="text-center">{{ prm.prima_total | currency }}</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div [class]="'col-md-' + cssStruct.colCoberturas"></div>
+                <div *ngFor="let asg of aseguradoras" [class]="'col-md-' + cssStruct.colCias + ' row-cia ' + asg.css ">
+                    <img [attr.src]="'assets/images/cias/'+ asg.logo">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 row-title-app p-2">
+                    COBERTURAS
+                </div>
+            </div>
+
+            <div class="row row-eq-height" [ngClass]="{'row-odd-app': i%2==0}" *ngFor="let slip of coberturaData[0]; let i = index">
+                <div [class]="'col-md-' + cssStruct.colCoberturas" style="border-right: 1px solid #E6E6E6">
+                    <div [innerHTML]="slip.alias" class="ml-3, p-1" style="font-size: 0.9em"></div>
+                </div>
+
+                <div *ngFor="let asg of aseguradoras; let i_aseg = index" [class]="'align-middle, col-md-' + cssStruct.colCias">
+                    <ng-container *ngIf="coberturaData[i_aseg][i].slip.length !== 0">
+                        <div [innerHTML]="coberturaData[i_aseg][i].slip[0].valor" class="p-1" style="font-size: 0.9em"></div>
+                    </ng-container>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 row-title-app p-2">
+                    COBERTURAS ADICIONALES
+                </div>
+            </div>
+            <div class="row row-eq-height" [ngClass]="{'row-odd-app': i%2==0}" *ngFor="let slip of coberturaAdicionalData[0]; let i = index">
+                <div [class]="'col-md-' + cssStruct.colCoberturas" style="border-right: 1px solid #E6E6E6">
+                    <div [innerHTML]="slip.alias" class="ml-3, p-1" style="font-size: 0.9em"></div>
+                </div>
+
+                <div *ngFor="let asg of aseguradoras; let i_aseg = index" [class]="'align-middle, col-md-' + cssStruct.colCias">
+                    <ng-container *ngIf="coberturaAdicionalData[i_aseg][i].slip.length !== 0">
+                        <div [innerHTML]="coberturaAdicionalData[i_aseg][i].slip[0].valor" class="p-1" style="font-size: 0.9em"></div>
+                    </ng-container>
+                </div>
+            </div>
 
 
+            <div class="row">
+                <div class="col-md-12 row-title-app p-2">
+                    SERVICIOS Y ASISTENCIAS
+                </div>
+            </div>
+            <div class="row row-eq-height" [ngClass]="{'row-odd-app': i%2==0}" *ngFor="let slip of serviciosAsistenciaData[0]; let i = index">
+                <div [class]="'col-md-' + cssStruct.colCoberturas" style="border-right: 1px solid #E6E6E6">
+                    <div [innerHTML]="slip.alias" class="ml-3, p-1" style="font-size: 0.9em"></div>
+                </div>
 
-<p>
+                <div *ngFor="let asg of aseguradoras; let i_aseg = index" [class]="'align-middle, col-md-' + cssStruct.colCias">
+                    <ng-container *ngIf="serviciosAsistenciaData[i_aseg][i].slip.length !== 0">
+                        <div [innerHTML]="serviciosAsistenciaData[i_aseg][i].slip[0].valor" class="p-1" style="font-size: 0.9em"></div>
+                    </ng-container>
+                </div>
+            </div>
 
-  COT {{ cotizacion | json }}
-</p>
+            <div class="row">
+                <div class="col-md-12 row-title-app p-2">
+                    DEDUCIBLES
+                </div>
+            </div>
+            <div class="row row-eq-height" [ngClass]="{'row-odd-app': i%2==0}" *ngFor="let slip of deduciblesData[0]; let i = index">
+                <div [class]="'col-md-' + cssStruct.colCoberturas" style="border-right: 1px solid #E6E6E6">
+                    <div [innerHTML]="slip.alias" class="ml-3, p-1"></div>
+                </div>
+
+                <div *ngFor="let asg of aseguradoras; let i_aseg = index" [class]="'align-middle, col-md-' + cssStruct.colCias">
+                    <ng-container *ngIf="deduciblesData[i_aseg][i].slip.length !== 0">
+                        <div [innerHTML]="deduciblesData[i_aseg][i].slip[0].valor" class="p-1" style="font-size: 0.9em"></div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="right-side-toggle btn-inverse btn-primary btn btn-circle" (click)="enviar_email()"><i class="ti-check text-white no-animation"></i></button>
+</ng-container>

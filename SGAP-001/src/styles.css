@@ -7,3 +7,40 @@
 a {
     cursor: pointer;
 }
+
+.row-cia {
+    text-align: center;
+}
+
+.row-cia img {
+    width: 50%;
+}
+
+.bg-rimac {
+    background: rgb(220, 28, 38);
+}
+
+.bg-positiva {
+    background: rgb(241, 109, 47);
+}
+
+.bg-mapfre {
+    background: rgb(190, 7, 18);
+}
+
+.bg-pacifico {
+    background: rgb(28, 167, 220);
+}
+
+.bg-hdi {
+    background: rgb(25, 170, 79);
+}
+
+.row-odd-app {
+    background: #cfecfe;
+}
+
+.row-title-app {
+    background: #2a3e52;
+    color: #ffffff;
+}

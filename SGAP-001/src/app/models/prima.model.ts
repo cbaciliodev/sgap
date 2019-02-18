@@ -7,6 +7,8 @@ export class Prima {
         public prima_total?: string,
         public cia?: Aseguradora,
         public tot_descuentio?: string,
-        public tot_incremento?: number
+        public tot_incremento?: number,
+        public gps?: boolean,
+        public riesgo?: string
     ) { }
 }

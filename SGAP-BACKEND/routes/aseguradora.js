@@ -5,13 +5,34 @@ var validation = require('../functions/validation');
 var Aseguradora = require('../models/aseguradora');
 var _aseguradora = require('../services/aseguradora');
 
-app.get('/', (req, res) => {
+var USO_VEHICULAR = require('../functions/constant').GRUPO_USO_VEHICULAR;
 
-    _aseguradora.find( {} ).then(
+app.get('/', (req, res) => {
+    _aseguradora.find({ usos: USO_VEHICULAR }).then(
         _data => {
             return validation.ok(res, 200, _data);
         }, err => {
-            return validation.err(res, 500, 'Error al obtener todas las marcas', err);
+            return validation.err(res, 500, 'Error al obtener todas las aseguradoras', err);
+        }
+    );
+});
+
+app.get('/all', (req, res) => {
+    _aseguradora.find().then(
+        data => validation.ok(res, 200, data),
+        err => validation.err(res, 500, 'Error al obtener todas las aseguradoras', err)
+    );
+});
+
+app.get('/:id', (req, res) => {
+
+    let id = req.params.id;
+
+    _aseguradora.findById(id).then(
+        _data => {
+            return validation.ok(res, 200, _data);
+        }, err => {
+            return validation.err(res, 500, 'Error al obtener la aseguradora', err);
         }
     );
 

@@ -16,7 +16,12 @@ export class CoberturaService {
     return this.httpClient.get( url ).pipe( map( (_: any) => _.data ) );
   }
 
-  saveSlim( slim: Slim ){
+  slimList( token: String, aseguradora: String, riesgo: String, tipo_slip: String ) {
+    let url = URL_SERVICIOS + '/slim/' + aseguradora + '/' + riesgo + '/' + tipo_slip + '?token=' + token;
+    return this.httpClient.get( url ).pipe( map( (_: any) => _.data ) );
+  }
+
+  saveSlim( slim: Slim ) {
     let url = URL_SERVICIOS + '/slim/';
     return this.httpClient.post( url, slim ).pipe( map( (_: any) => _.data ) );
   }

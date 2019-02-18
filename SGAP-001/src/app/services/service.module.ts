@@ -13,7 +13,10 @@ import { SettingsService,
         AutoService,
         CoberturaService,
         RiesgoService,
-        CommonsService } from './service.index';
+        CommonsService,
+        AseguradoraService,
+        GpsService,
+        PolizaService } from './service.index';
 
 @NgModule({
   imports: [
@@ -32,7 +35,10 @@ import { SettingsService,
     AutoService,
     CoberturaService,
     RiesgoService,
-    CommonsService
+    CommonsService,
+    AseguradoraService,
+    GpsService,
+    PolizaService
   ],
   declarations: []
 })

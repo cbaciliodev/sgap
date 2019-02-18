@@ -6,7 +6,6 @@ import { Graficas1Component } from './graficas1/graficas1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { ModeloComponent } from './modelo/modelo.component';
 import { MFormularioComponent } from './modelo/formulario/formulario.component';
-import { CFormularioComponent } from './cotizacion/formulario/formulario.component';
 import { LoginGuard } from '../services/service.index';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { ClienteComponent } from './cliente/cliente.component';
@@ -15,6 +14,8 @@ import { NeCotizacionComponent } from './cotizacion/ne-cotizacion.component';
 import { NeClienteComponent } from './cliente/ne-cliente.component';
 import { PrevCotizacionComponent } from './cotizacion/prev-cotizacion.component';
 import { CoberturasComponent } from './coberturas/coberturas.component';
+import { PolizaComponent } from './poliza/poliza.component';
+import { NePolizaComponent } from './poliza/ne-poliza.component';
 
 const pagesRoutes: Routes = [
     {
@@ -37,6 +38,10 @@ const pagesRoutes: Routes = [
             { path: 'cliente/:id', component: NeClienteComponent, data: { title: 'Cliente', routes: [{ title: 'Gestión'}, { title: 'Cliente', link: '/cliente' }, { title: 'Agregar/Editar' }] } },
             { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard', routes: [{ title: 'Dashboard'}] } },
             { path: 'coberturas', component: CoberturasComponent, data: { title: 'Cobertura', routes: [{ title: 'Coberturas'}] } },
+            { path: 'polizas',  children: [
+                    { path: '', component: PolizaComponent, data: { title: 'Pólizas', routes: [{ title: 'Póliza'}, { title: 'Pólizas' }] } },
+                    { path: 'n', component: NePolizaComponent, data: { title: 'Pólizas', routes: [{ title: 'Póliza'}, { title: 'Pólizas', link: '/polizas' }, { title: 'Nueva póliza' } ] } },
+                ]},
             { path: '', redirectTo: '/dashboard', pathMatch: 'full'}
         ]
     }

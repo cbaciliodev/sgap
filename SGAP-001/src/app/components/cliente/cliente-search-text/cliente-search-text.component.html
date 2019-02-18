@@ -1,0 +1,39 @@
+<h4 class="card-title" *ngIf="section==1"> {{ titulo_search }} </h4>
+<label class="control-label" *ngIf="section==0"> {{ titulo_search }} </label>
+
+<div class="form-group">
+    <input #cliente (keyup)='searchClient( _usuario.token, cliente.value )' type="text" class="form-control" placeholder="Encontrar cliente...">
+</div>
+
+<ng-container *ngIf="isClientFind">
+    <div class="row">
+        <div class="col-12">
+            <div class="jumbotron p-4 animated fadeInDown show">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td><small><strong>Documento</strong></small></td>
+                            <td><small><strong>Nombre</strong></small></td>
+                            <td><small><strong>Apellido paterno</strong></small></td>
+                            <td><small><strong>Apellido materno</strong></small></td>
+                            <td><small><strong>Fecha nacimiento</strong></small></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cf of clientsFind">
+                            <td> {{ cf.nro_documento | uppercase }} </td>
+                            <td> {{ cf.nombre | uppercase }} </td>
+                            <td> {{ cf.apellido_paterno | uppercase }} </td>
+                            <td> {{ cf.apellido_materno | uppercase }} </td>
+                            <td> {{ cf.fecha_nacimiento | uppercase }} </td>
+                            <td> <button type="button" class="btn btn-secondary btn-rounded btn-sm" (click)="seleccionar_cliente( cf ); cliente.value=cf.nombre + ' ' + cf.apellido_paterno + ' ' + cf.apellido_materno"><i class="ti ti-check"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-secondary btn-rounded btn-sm" (click)="isClientFind=false"> <i class="ti ti-close"></i> Cerrar</button>
+                <button class="btn btn-primary btn-rounded btn-sm pull-right"><i class="ti ti-plus"></i>  Agregar cliente</button>
+            </div>
+        </div>
+    </div>
+</ng-container>

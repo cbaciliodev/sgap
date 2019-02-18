@@ -7,7 +7,6 @@ import { UsuarioService,
         ParametroService,
         CotizacionService} from 'src/app/services/service.index';
 
-import swal from 'sweetalert';
 import { Cotizacion } from 'src/app/models/cotizacion.model';
 
 import { VALOR_USO_VEHICULAR } from 'src/app/config/constants';
@@ -16,6 +15,7 @@ import { Parametro } from 'src/app/models/parametro.model';
 import { Auto } from 'src/app/models/auto.model';
 import { Router } from '@angular/router';
 
+import swal from 'sweetalert';
 
 
 @Component({
@@ -52,13 +52,6 @@ export class NeCotizacionComponent implements OnInit {
 
   ngOnInit() {  }
 
-  searchClient(token, search) {
-    this._cliente.search( token, search ).subscribe( data => {
-      this.clientsFind = data;
-      this.isClientFind = true;
-    } );
-  }
-
   searchModelo(token, search) {
     this._modelo.search( token, search ).subscribe( data => {
       this.modelosFind = data;
@@ -83,6 +76,11 @@ export class NeCotizacionComponent implements OnInit {
   }
 
   cotizar( ) {
+
+    // Si es sistema dual se debe incorporar 45 USD solo en RIMAC, dar la posibilidad de eliminar los 45 dolares en la emisión de la póliza
+
+    // Opción de agregar visto bueno
+
 
     this.isSaving = true;
     this.cotizacion.auto = this.auto;

@@ -1,4 +1,4 @@
-import { Modelo } from "./modelo.model";
+import { Modelo } from './modelo.model';
 
 export class Auto {
     public constructor(
@@ -7,5 +7,5 @@ export class Auto {
         public anio_fabricacion?: number,
         public timon_cambiado?: boolean,
         public _id?: string
-    ){}
+    ) {}
 }

@@ -14,4 +14,9 @@ export class RiesgoService {
     let url = URL_SERVICIOS + '/riesgo/cia/' + ciaId;
     return this.http.get( url ).pipe( map( (_: any) => _.data ) );
   }
+
+  getById( riesgoId: String ) {
+    let url = URL_SERVICIOS + '/riesgo/' + riesgoId ;
+    return this.http.get( url ).pipe( map( (_: any) => _.data ) );
+  }
 }

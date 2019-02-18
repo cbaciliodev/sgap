@@ -1,0 +1,10 @@
+{ "_id": ObjectId("5c3cffcf9c575a317cbaf904"), "estado": 1, "nombre": "Rimac Seguros", "prima_minima": 350, "prima_max_gps": 50000, "tasa": 1.241, "logo": "rimac.png", "css": "bg-rimac", "usos": "VEHICULAR" }, 
+{ "_id": ObjectId("5c3cffcf9c575a317cbaf905"), "estado": 1, "nombre": "La Positiva", "prima_minima": 350, "prima_max_gps": 50000, "tasa": 1.241, "logo": "positiva.png", "css": "bg-positiva", "usos": "VEHICULAR" }, 
+{ "_id": ObjectId("5c3cffcf9c575a317cbaf906"), "estado": 1, "nombre": "Mapfre", "prima_minima": 350, "prima_max_gps": 50000, "tasa": 1.241, "logo": "mapfre.png", "css": "bg-mapfre", "usos": "VEHICULAR" }, 
+{ "_id": ObjectId("5c3cffcf9c575a317cbaf907"), "estado": 1, "nombre": "Pacífico", "prima_minima": 350, "prima_max_gps": 50000, "tasa": 1.241, "logo": "pacifico.png", "css": "bg-pacifico", "usos": "VEHICULAR" }, 
+{ "_id": ObjectId("5c3cffcf9c575a317cbaf908"), "estado": 0, "nombre": "HDI", "prima_minima": 420, "prima_max_gps": 60000, "tasa": 1.241, "logo": "hdi.png", "css": "bg-hdi", "usos": "VEHICULAR" }, 
+{ "_id": ObjectId("5c60d19da2dfea4af012925a"), "estado": 1, "nombre": "Chubs", "prima_minima": 0, "prima_max_gps": 0, "tasa": 1, "logo": "no_image.png", "css": "", "usos": "OTROS" }, 
+{ "_id": ObjectId("5c60d19da2dfea4af012925b"), "estado": 1, "nombre": "Mapfre EPS", "prima_minima": 0, "prima_max_gps": 0, "tasa": 1, "logo": "no_image.png", "css": "", "usos": "OTROS" }, 
+{ "_id": ObjectId("5c60d19da2dfea4af012925c"), "estado": 1, "nombre": "Pacífico EPS", "prima_minima": 0, "prima_max_gps": 0, "tasa": 1, "logo": "no_image.png", "css": "", "usos": "OTROS" }, 
+{ "_id": ObjectId("5c60d19da2dfea4af012925d"), "estado": 1, "nombre": "Protecta", "prima_minima": 0, "prima_max_gps": 0, "tasa": 1, "logo": "no_image.png", "css": "", "usos": "OTROS" }, 
+{ "_id": ObjectId("5c60d19da2dfea4af012925e"), "estado": 1, "nombre": "Rimac EPS", "prima_minima": 0, "prima_max_gps": 0, "tasa": 1, "logo": "no_image.png", "css": "", "usos": "OTROS" }

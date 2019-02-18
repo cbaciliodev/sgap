@@ -1,0 +1,237 @@
+<div class="row">
+
+    <div class="col-12 col-md-6">
+        <div class="form-group">
+            <label class="control-label">Compañía de seguros</label><br>
+            <select #lstCia class="custom-select" style="width:100%" (change)="listUsos( lstCia.value )">
+              <option *ngFor="let asg of aseguradoras"  [value]="asg._id"> {{ asg.nombre }} </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+        <div class="form-group">
+            <label class="control-label">Ramo</label><br>
+            <select class="custom-select" style="width:100%" [(ngModel)]="ramo">
+              <option *ngFor="let uso of usos"  [value]="uso.valor"> {{ uso.alias }} </option>
+            </select>
+        </div>
+    </div>
+
+    <ng-container *ngIf="ramo=='USO_DOMICILIARIO' || ramo=='USO_ONCOLOGICO'">
+        <div class="col-12">
+            <div class="form-group">
+                <label class="control-label">Plan</label><br>
+                <input type="text" class="form-control" placeholder="Plan">
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="ramo=='USO_R_TECNICO'">
+        <div class="col-12">
+            <div class="form-group">
+                <label class="control-label">Riesgo</label><br>
+                <select class="custom-select" style="width:100%" [(ngModel)]="ramo_tecnico">
+                  <option value="CAR"> CAR </option>
+                  <option value="EAR"> EAR </option>
+                  <option value="TREC"> TREC </option>
+                  <option value="E_ELECTRONICO"> Equipo electrónico </option>
+                  <option value="R_MAQUINA"> Rotura de máquina </option>
+                </select>
+            </div>
+        </div>
+
+        <ng-container *ngIf="ramo_tecnico=='CAR' || ramo_tecnico=='EAR'">
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Tasa</label><br>
+                    <input type="text" class="form-control" placeholder="Tasa">
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Prima neta</label><br>
+                    <input type="text" class="form-control" placeholder="Prima neta">
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Monto de obra</label><br>
+                    <input type="text" class="form-control" placeholder="Prima neta">
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Tipo de obra</label><br>
+                    <input type="text" class="form-control" placeholder="Prima neta">
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="control-label">Ubicación</label><br>
+                    <input type="text" class="form-control" placeholder="Ubicación">
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="control-label">Duración de la obra</label><br>
+                    <input type="text" class="form-control" placeholder="Duración">
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="!(ramo_tecnico=='CAR' || ramo_tecnico=='EAR')">
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Suma asegurada</label><br>
+                    <input type="text" class="form-control" placeholder="Suma asegurada">
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="ramo=='ESO_SCTR'">
+
+        <div class="col-6 col-md-6">
+            <h4 class="card-title">Salud</h4>
+            <div class="form-group">
+                <label class="control-label">Nro. póliza Salud</label><br>
+                <input type="text" class="form-control" placeholder="Número de póliza">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Tasa empleados</label><br>
+                <input type="text" class="form-control" placeholder="Tasa de empleados">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Tasa obreros</label><br>
+                <input type="text" class="form-control" placeholder="Tasa de obreros">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Prima neta</label><br>
+                <input type="text" class="form-control" placeholder="Tasa de obreros">
+            </div>
+        </div>
+        <div class="col-6 col-md-6">
+            <h4 class="card-title">Pensión</h4>
+            <div class="form-group">
+                <label class="control-label">Nro. póliza Pensión</label><br>
+                <input type="text" class="form-control" placeholder="Número de póliza">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Tasa empleados</label><br>
+                <input type="text" class="form-control" placeholder="Tasa de empleados">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Tasa obreros</label><br>
+                <input type="text" class="form-control" placeholder="Tasa de obreros">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Prima neta</label><br>
+                <input type="text" class="form-control" placeholder="Tasa de obreros">
+            </div>
+        </div>
+
+    </ng-container>
+
+    <ng-container *ngIf="ramo=='USO_V_LEY'">
+        <div class="col-6 col-md-12">
+            <div class="form-group">
+                <label class="control-label">Nro. póliza Salud</label><br>
+                <input type="text" class="form-control" placeholder="Número de póliza">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Tasa empleados</label><br>
+                <input type="text" class="form-control" placeholder="Tasa de empleados">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Tasa obreros</label><br>
+                <input type="text" class="form-control" placeholder="Tasa de obreros">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Prima neta</label><br>
+                <input type="text" class="form-control" placeholder="Prima neta">
+            </div>
+        </div>
+    </ng-container>
+
+
+    <ng-container *ngIf="ramo=='USO_VEHICULAR'">
+        <div class="col-6 col-md-4">
+            <div class="form-group">
+                <label class="control-label">Vigencia (desde)</label><br>
+                <input type="text" class="form-control" placeholder="Desde">
+            </div>
+        </div>
+        <div class="col-6 col-md-4">
+            <div class="form-group">
+                <label class="control-label">Vigencia (hasta)</label><br>
+                <input type="text" class="form-control" placeholder="Hasta">
+            </div>
+        </div>
+        <div class="col-6 col-md-6">
+            <div class="form-group">
+                <label class="control-label">Endoso</label><br>
+                <select class="custom-select" style="width:100%">
+                    <option value="CAR"> Endoso Banco de Comercio </option>
+                    <option value="CAR"> Endoso Banco Continental </option>
+                    <option value="CAR"> Endoso Banco Financiero </option>
+                    <option value="CAR"> Endoso Banco Ripley </option>
+                    <option value="CAR"> Endoso Banco Scotiabank </option>
+                    <option value="CAR"> Sin endoso </option>
+                  </select>
+            </div>
+        </div>
+    </ng-container>
+</div>
+
+<ng-container *ngIf="!(ramo=='USO_V_LEY' || ramo=='ESO_SCTR')">
+
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label class="control-label">Número de póliza</label><br>
+                <input type="text" class="form-control" placeholder="Número de poliza">
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label class="control-label">Prima neta</label><br>
+                <input type="text" class="form-control" placeholder="Prima neta">
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+
+<h4 class="card-title">Archivos</h4>
+<div class="row">
+    <div class="col-md-6 col-12">
+        <label class="control-label"> {{archivos.length}} registros encontrados </label>
+    </div>
+    <div class="col-md-6 col-12 text-right">
+        <button class="btn btn-sm btn-rounded btn-success right-side-toggle"> Agregar archivo </button>
+    </div>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <td><small><strong>Observación</strong></small></td>
+            <td><small><strong>Enlace</strong></small></td>
+            <td><small><strong>Acción</strong></small></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let arch of archivos">
+            <td> {{ arch.nombre }} </td>
+            <td>
+                <a [href]="arch.link" target="_blank">{{ arch.link }}</a> </td>
+            <td> <button class="btn btn-danger btn-sm mr-1" (click)="archivos.splice(index, 1)"><i class="mdi mdi-delete-variant"></i></button> </td>
+        </tr>
+    </tbody>
+</table>

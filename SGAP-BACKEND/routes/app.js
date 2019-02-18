@@ -4,7 +4,7 @@ var app = express();
 
 
 // Rutas
-app.get('/', (req, res, nex) => {
+app.get('/', (req, res) => {
     _f.ok(res, _f.HTTP_RESPONSES.SUCCESS, 'Petición enviada OK');
 });
 

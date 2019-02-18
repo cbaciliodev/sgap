@@ -27,9 +27,7 @@ app.get('/:id', (req, res, nex) => {
 
     let id = req.params.id;
 
-    console.log( 'Buscando cliente:' + id );
-    
-    Cliente.findById( id ).exec((err, clientes) => {
+    Cliente.findById(id).exec((err, clientes) => {
         if (err) {
             return res.status(500).json({
                 ok: true,
@@ -37,7 +35,6 @@ app.get('/:id', (req, res, nex) => {
                 errors: err
             });
         }
-        console.log( clientes );
 
         res.status(200).json({
             ok: true,

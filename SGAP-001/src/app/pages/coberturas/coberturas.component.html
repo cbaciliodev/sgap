@@ -17,7 +17,7 @@
     <tbody>
         <ng-container *ngFor="let c of cobertura.slim; let i = index">
             <tr>
-                <td colspan="4" class="label-light-info" *ngIf="c.is_grupo==1" > <strong> {{ c.alias }} </strong> </td>
+                <td colspan="4" class="label-light-info" *ngIf="c.is_grupo==1"> <strong> {{ c.alias }} </strong> </td>
                 <ng-container *ngIf="c.is_grupo==0">
                     <td class="pl-5">
                         <div [innerHTML]="c.alias"></div>

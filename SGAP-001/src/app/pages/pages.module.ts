@@ -23,6 +23,11 @@ import { NeCotizacionComponent } from './cotizacion/ne-cotizacion.component';
 import { NeClienteComponent } from './cliente/ne-cliente.component';
 import { PrevCotizacionComponent } from './cotizacion/prev-cotizacion.component';
 import { CoberturasComponent } from './coberturas/coberturas.component';
+import { PolizaComponent } from './poliza/poliza.component';
+import { ClienteSearchTextComponent } from '../components/cliente/cliente-search-text/cliente-search-text.component';
+import { NePolizaComponent } from './poliza/ne-poliza.component';
+import { ProductoComponent } from '../components/producto/producto.component';
+
 
 @NgModule({
     declarations: [
@@ -43,12 +48,19 @@ import { CoberturasComponent } from './coberturas/coberturas.component';
         NeCotizacionComponent,
         NeClienteComponent,
         PrevCotizacionComponent,
-        CoberturasComponent
+        CoberturasComponent,
+        PolizaComponent,
+        ClienteSearchTextComponent,
+        NePolizaComponent,
+        ProductoComponent
     ],
     exports: [
         DashboardComponent,
         ProgressComponent,
-        Graficas1Component
+        Graficas1Component,
+        PolizaComponent,
+        NePolizaComponent,
+        ProductoComponent
     ],
     imports: [
         SharedModule,

@@ -4,11 +4,6 @@ var app = express();
 
 var validation = require('../functions/validation');
 var Cotizacion = require('../models/cotizacion');
-var Modelo = require('../models/modelo');
-var Auto = require('../models/auto');
-var Tasa = require('../models/tasa');
-var ModeloRiesgo = require('../models/modelo_riesgo');
-
 var _commons = require('../functions/commons');
 
 var HTTP_RESPONSES = validation.HTTP_RESPONSES;
@@ -84,7 +79,7 @@ function saveCotizacion(cotizacion) {
 
     return new Promise((res, rej) => {
 
-        _modelo_riesgo.findPopulate({ modelo: cotizacion.auto.modelo._id }).then(
+        _modelo_riesgo.findPopulate({ modelo: cotizacion.auto.modelo }).then(
             _data_mr => {
 
                 let _tasas = [];
@@ -96,11 +91,13 @@ function saveCotizacion(cotizacion) {
                     _tasas.push(_tasa.findOne({ riesgo: _data_mr[_mr].riesgo, anio: anio }));
                 }
 
-                Promise.all(_tasas).then(_tasas_array => {
+                Promise.all(_tasas).then(async _tasas_array => {
 
                     // Guardando las tasas
                     for (var _ta in _tasas_array) {
-                        _primas.push(_prima.save(_prima.generarPrima(_tasas_array[_ta], _aseguradora[_ta], cotizacion.suma_aseg)));
+                        await _prima.generarPrima(
+                                _tasas_array[_ta], _aseguradora[_ta], cotizacion.suma_aseg, cotizacion.auto)
+                            .then(prima => _primas.push(_prima.save(prima)));
                     }
 
                     // Guardando el auto

@@ -1,0 +1,6 @@
+_id,estado,nombre,prima_minima,prima_max_gps,tasa,logo,css,prima_alto_riesgo2,prima_chinos,__v
+ObjectId("5c3cffcf9c575a317cbaf904"),1,Rimac Seguros,350,50000,1.241,rimac.png,bg-rimac,360,450,0
+ObjectId("5c3cffcf9c575a317cbaf905"),1,La Positiva,350,50000,1.241,positiva.png,bg-positiva,,450,0
+ObjectId("5c3cffcf9c575a317cbaf906"),1,Mapfre,350,50000,1.241,mapfre.png,bg-mapfre,,375,0
+ObjectId("5c3cffcf9c575a317cbaf907"),1,Pacífico,350,50000,1.241,pacifico.png,bg-pacifico,,,0
+ObjectId("5c3cffcf9c575a317cbaf908"),0,HDI,420,60000,1.241,hdi.png,bg-hdi,,,0

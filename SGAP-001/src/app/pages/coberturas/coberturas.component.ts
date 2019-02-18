@@ -31,16 +31,16 @@ export class CoberturasComponent implements OnInit {
     this._riesgo.listByCia( idCia ).subscribe( data => this.riesgos = data );
   }
 
-  registrarCobertura(){
+  registrarCobertura() {
 
-    try{
+    try {
       this._c.assertNotEmpty( this.aseguradora, 'Aseguradora no seleccionada' );
       this._c.assertNotEmpty( this.riesgo , 'Riesgo no seleccionado' );
       this._c.assertNotEmpty( this.usos , 'Usos no seleccionado' );
 
       let coberturas = [];
 
-      for( let i in this.data_cobertura){
+      for ( let i of this.data_cobertura) {
         coberturas.push( { codigo: this.cobertura.slim[i].nombre, valor: this.data_cobertura[i] } );
       }
 
@@ -48,10 +48,10 @@ export class CoberturasComponent implements OnInit {
       .saveSlim( new Slim( this.riesgo, this.aseguradora, coberturas, this.usos ) )
       .subscribe( data => { swal( 'Registramos con éxito todos los registros' , 'Atención', 'success'); });
 
-    }catch(e){
+    } catch ( e ) {
       swal( e.message , 'Atención', 'warning');
     }
-    
+
   }
 
 }

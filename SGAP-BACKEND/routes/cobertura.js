@@ -5,6 +5,8 @@ var CONSTANT = require('../functions/constant');
 var _parametro = require('../services/parametro');
 var _aseguradora = require('../services/aseguradora');
 
+var USO_VEHICULAR = require('../functions/constant').GRUPO_USO_VEHICULAR;
+
 var app = express();
 
 
@@ -17,7 +19,7 @@ app.get('/', async(req, res) => {
 
         // Obteniendo los slim
         let slim_data = await _parametro.findByGroup(CONSTANT.GRUPO_SLIM);
-        
+
         // Obteniendo usos vehiculares
         retorno.usos_vehicular = await _parametro.findByGroup(CONSTANT.GRUPO_USO_VEHICULAR);
 
@@ -25,7 +27,7 @@ app.get('/', async(req, res) => {
         retorno.slim = await _parametro.findChildByGroup(slim_data);
 
         // Obteniendo las empresas aseguradoras
-        retorno.cias = await _aseguradora.find({});
+        retorno.cias = await _aseguradora.find({ usos: USO_VEHICULAR });
 
         _f.ok(res, _f.HTTP_RESPONSES.SUCCESS, retorno);
 
