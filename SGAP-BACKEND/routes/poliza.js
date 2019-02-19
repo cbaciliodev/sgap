@@ -7,18 +7,23 @@ var Producto = require('../models/producto');
 
 var app = express();
 
-
 // Rutas
 app.get('/', (req, res) => {
-    /* _poliza.find({}).then(
-        data => _f.ok(res, _f.HTTP_RESPONSES.SUCCESS, data),
-        error => _f.err(res, _f.HTTP_RESPONSES.INTERNAL_SERVER, 'Error al listar polizas', error)
-    ) */
     Producto.aggregate()
+        .lookup({
+            from: 'uso_aseguradora',
+            let: { ramo: '$ramo' },
+            pipeline: [
+                { $match: { $expr: { $eq: ['$valor', '$$ramo'] } } },
+                { $limit: 1 }
+            ],
+            as: 'ramo'
+        })
+        .unwind('ramo')
         .group({
             _id: '$poliza',
             productos: { $sum: 1 },
-            ramos: { $push: '$ramo' }
+            ramos: { $push: '$ramo.alias' }
         })
         .lookup({
             from: 'poliza',
@@ -63,7 +68,21 @@ app.get('/', (req, res) => {
                     '$asegurado.apellido_materno'
                 ]
             },
-            ramos: 1
+            ramos: {
+                $reduce: {
+                    input: '$ramos',
+                    initialValue: '',
+                    in: {
+                        $concat: ['$$value', {
+                            $cond: {
+                                if: { $eq: ['$$value', ''] },
+                                then: '',
+                                else: ', '
+                            }
+                        }, "$$this"]
+                    }
+                }
+            }
         })
         .exec((err, productos) => {
             if (err) return res.status(500).json({ mensaje: 'Error cargando polizas' });
