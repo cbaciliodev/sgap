@@ -1,6 +1,6 @@
 <div class="row">
 
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-12">
         <div class="form-group">
             <label class="control-label">Compañía de seguros</label><br>
             <select #lstCia class="custom-select" style="width:100%" (change)="listUsos( lstCia.value )">
@@ -9,14 +9,16 @@
         </div>
     </div>
 
-    <div class="col-12 col-md-6">
-        <div class="form-group">
-            <label class="control-label">Ramo</label><br>
-            <select class="custom-select" style="width:100%" [(ngModel)]="ramo">
-              <option *ngFor="let uso of usos"  [value]="uso.valor"> {{ uso.alias }} </option>
-            </select>
+    <ng-container *ngIf="showRamo=='true'">
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label class="control-label">Ramo</label><br>
+                <select class="custom-select" style="width:100%" [(ngModel)]="ramo">
+                  <option *ngFor="let uso of usos"  [value]="uso.valor"> {{ uso.alias }} </option>
+                </select>
+            </div>
         </div>
-    </div>
+    </ng-container>
 
     <ng-container *ngIf="ramo=='USO_DOMICILIARIO' || ramo=='USO_ONCOLOGICO'">
         <div class="col-12">
@@ -52,21 +54,21 @@
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label class="control-label">Prima neta</label><br>
-                    <input type="text" class="form-control" placeholder="Prima neta">
+                    <input type="text" class="form-control" placeholder="Prima neta" [attr.disabled]="movimiento_prima=='0'">
                 </div>
             </div>
 
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label class="control-label">Monto de obra</label><br>
-                    <input type="text" class="form-control" placeholder="Prima neta">
+                    <input type="text" class="form-control" placeholder="Prima neta" [attr.disabled]="movimiento_prima=='0'">
                 </div>
             </div>
 
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label class="control-label">Tipo de obra</label><br>
-                    <input type="text" class="form-control" placeholder="Prima neta">
+                    <input type="text" class="form-control" placeholder="Prima neta" [attr.disabled]="movimiento_prima=='0'">
                 </div>
             </div>
 
@@ -113,7 +115,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Prima neta</label><br>
-                <input type="text" class="form-control" placeholder="Tasa de obreros">
+                <input type="text" class="form-control" placeholder="Tasa de obreros" [attr.disabled]="movimiento_prima=='0'">
             </div>
         </div>
         <div class="col-6 col-md-6">
@@ -132,7 +134,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Prima neta</label><br>
-                <input type="text" class="form-control" placeholder="Tasa de obreros">
+                <input type="text" class="form-control" placeholder="Tasa de obreros" [attr.disabled]="movimiento_prima=='0'">
             </div>
         </div>
 
@@ -154,7 +156,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Prima neta</label><br>
-                <input type="text" class="form-control" placeholder="Prima neta">
+                <input type="text" class="form-control" placeholder="Prima neta" [attr.disabled]="movimiento_prima=='0'">
             </div>
         </div>
     </ng-container>
@@ -173,6 +175,55 @@
                 <input type="text" class="form-control" placeholder="Hasta">
             </div>
         </div>
+
+        <div class="col-12">
+            <div class="form-group">
+                <label class="control-label">Modelo del auto</label>
+                <input #modelo (keyup)='searchModelo( _usuario.token, modelo.value )' type="text" class="form-control" placeholder="Encontrar modelo...">
+            </div>
+
+            <ng-container *ngIf="isModeloFind">
+                <div class="row">
+                    <div class="col-12 pb-4">
+                        <div class="jumbotron p-4 animated fadeInDown show">
+                            <table class="table table-hover" *ngIf="isModeloFind">
+                                <thead>
+                                    <tr>
+                                        <td><small><strong>Marca</strong></small></td>
+                                        <td><small><strong>Modelo</strong></small></td>
+                                        <td><small><strong>Categoria</strong></small></td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let md of modelosFind">
+                                        <td> {{ md.marca | uppercase }} </td>
+                                        <td> {{ md.nombre | uppercase }} </td>
+                                        <td> {{ md.categoria | uppercase }} </td>
+                                        <td> <button type="button" class="btn btn-secondary btn-rounded btn-sm" (click)="auto.modelo=md;modelo.value=md.marca + ' - ' + md.nombre"><i class="ti ti-check"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button class="btn btn-secondary btn-inverse btn-rounded btn-sm" (click)="isModeloFind=false">Cerrar</button>
+                            <button class="btn btn-primary btn-rounded btn-sm pull-right"><i class="ti ti-plus"></i>  Agregar modelo</button>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>GPS Empresa</label>
+                <select class="form-control">
+                             
+                                <option value="4">GPS Golden</option>
+                                <option value="3">GPS Seltron</option>
+                                <option value="2">GPS Sutran</option>
+                                <option value="1">Sin GPS</option></select>
+            </div>
+        </div>
+
         <div class="col-6 col-md-6">
             <div class="form-group">
                 <label class="control-label">Endoso</label><br>
@@ -184,6 +235,31 @@
                     <option value="CAR"> Endoso Banco Scotiabank </option>
                     <option value="CAR"> Sin endoso </option>
                   </select>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Año</label>
+                <input type="text" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Placa</label>
+                <input type="text" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Nro de Serie</label>
+                <input type="text" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Nro de Motor</label>
+                <input type="text" class="form-control">
             </div>
         </div>
     </ng-container>
@@ -201,11 +277,31 @@
         <div class="col-12 col-md-6">
             <div class="form-group">
                 <label class="control-label">Prima neta</label><br>
-                <input type="text" class="form-control" placeholder="Prima neta">
+                <input type="text" class="form-control" placeholder="Prima neta" [attr.disabled]="movimiento_prima=='0'">
             </div>
         </div>
     </div>
 </ng-container>
+
+<ng-container *ngIf="showRamo=='false'">
+    <div class="row">
+        <div class="col-3">
+            <div class="form-group">
+                <label>Número de endoso</label>
+                <input type="text" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label>Observación</label>
+                <textarea type="text" class="form-control" cols="1" rows="6"></textarea>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
 
 
 <h4 class="card-title">Archivos</h4>
@@ -235,3 +331,4 @@
         </tr>
     </tbody>
 </table>
+<button class="right-side-toggle btn-inverse btn-primary btn btn-circle" routerLink="/polizas" routerLinkActive="active"><i class="ti-save text-white no-animation"></i></button>

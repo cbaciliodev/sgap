@@ -1,0 +1,83 @@
+Renovaciones:
+
+Establecer la anulación de la poliza
+
+Semaforización por producto
+
+--
+-- RENOVACION SE TOMA LAS TASAS ACTUALES TAL CUAL ESTÁN - TASA Y PRIMA VIGENTE ( LA TASA DE RENOVACIÓN ) +- EL 10%
+-- OTROS RUBROS SE PUEDE MATENER LA MISMA 
+-- LOS NUMEROS DE POLIZA CAMBIAN EN LA RENOVACION
+-- Listas si tiene siniestro o no
+
+
+-- PATRIMONIAL SE INGRESA LA PRIMA
+EN RENOVACIÓN DE INCREMENTO DE SUMA ASEGURADA
+AGREGAR FECHA DE VENCIMIENTO DE LA POLIZA POR PRODUCTO
+
+-- SI SE ANULA UNA POLIZA, SE DEBE DE AGREGAR EL COMENTARIO DE COMUNICACIÓN CON EL CLIENTE
+-- LA POLIZA A RENOVAR SE DEBE ASIGNAR A LA PERSONA QUE LO VENDIÓ EL AÑO PASADO
+-- LA RENOVACIÓN ES POR PRODUCTO
+
+
+-- SINIESTROS
+
+-- Agregar otros en Ocurrencia
+-- Comisaría que sea cuadro de texto
+-- Agregar compañía en la que está asegurado la persona
+
+PATRIMONIAL: QUE SE INGRESE COBERTURA AFECTADA
+agregar robo con fractura  
+Hurto
+Responsabilidad Civil
+Dinero en tránsito
+Dinero dentro del local
+
+
+3D: CONV1. - CONV6
+
+- LAS DEMÁS TODO ESCRIBIR
+
+CAR y EAR:
+Cobertura Básica
+Cobertura B
+Cobertura C
+Cobertura D
+Cobertura E y F
+Huelgas
+HMCC/DMVT
+Debilitamiento de bases
+Propiedad Adyacente
+Riesgo de diseño
+Otros
+
+RESPONSABILIDAD CIVIL
+    - Frente a terceros 
+    - Patronal
+    - Contractual
+    - Productos
+    - Profesional
+    - Otros (completar)
+
+EQUIPO ELECTRONICO
+    - Seccion 1 - Daños Materiales
+    - Seccion 2 - Portadores de datos
+    - Seccion 3 - Incremento en el costo de operacion
+    - Equipo Electrónico
+    - Equipo Móvil
+    - Robo de equipos
+
+LUCRO CESANTE
+    - Cedula A
+
+-- AGREGAR EL MONTO REFERENCIAL DEL SINIESTRO
+
+-- EN QUE PLAN ESTÁ
+
+-- PATRIMONIAL
+
+
+
+
+
+

@@ -27,6 +27,8 @@ import { PolizaComponent } from './poliza/poliza.component';
 import { ClienteSearchTextComponent } from '../components/cliente/cliente-search-text/cliente-search-text.component';
 import { NePolizaComponent } from './poliza/ne-poliza.component';
 import { ProductoComponent } from '../components/producto/producto.component';
+import { EndosoComponent } from './poliza/endoso.component';
+import { RenovacionesComponent } from './poliza/renovaciones.component';
 
 
 @NgModule({
@@ -50,6 +52,8 @@ import { ProductoComponent } from '../components/producto/producto.component';
         PrevCotizacionComponent,
         CoberturasComponent,
         PolizaComponent,
+        EndosoComponent,
+        RenovacionesComponent,
         ClienteSearchTextComponent,
         NePolizaComponent,
         ProductoComponent

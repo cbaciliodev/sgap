@@ -16,6 +16,8 @@ import { PrevCotizacionComponent } from './cotizacion/prev-cotizacion.component'
 import { CoberturasComponent } from './coberturas/coberturas.component';
 import { PolizaComponent } from './poliza/poliza.component';
 import { NePolizaComponent } from './poliza/ne-poliza.component';
+import { EndosoComponent } from './poliza/endoso.component';
+import { RenovacionesComponent } from './poliza/renovaciones.component';
 
 const pagesRoutes: Routes = [
     {
@@ -41,6 +43,8 @@ const pagesRoutes: Routes = [
             { path: 'polizas',  children: [
                     { path: '', component: PolizaComponent, data: { title: 'Pólizas', routes: [{ title: 'Póliza'}, { title: 'Pólizas' }] } },
                     { path: 'n', component: NePolizaComponent, data: { title: 'Pólizas', routes: [{ title: 'Póliza'}, { title: 'Pólizas', link: '/polizas' }, { title: 'Nueva póliza' } ] } },
+                    { path: 'endoso', component: EndosoComponent, data: { title: 'Pólizas', routes: [{ title: 'Pólizas'}, { title: 'Pólizas', link: '/polizas' }, { title: 'Endoso' } ] } },
+                    { path: 'renovacion', component: RenovacionesComponent, data: { title: 'Pólizas a renovar', routes: [{ title: 'Pólizas', link: '/polizas' }, { title: 'Renovaciones' } ] } }
                 ]},
             { path: '', redirectTo: '/dashboard', pathMatch: 'full'}
         ]

@@ -20,7 +20,7 @@ export class SidebarService {
       icono: 'mdi mdi-car',
       submenu: [
         { titulo: 'Pólizas', url: '/polizas' },
-        { titulo: 'Renovaciones', url: '/renovacion' }
+        { titulo: 'Renovaciones', url: '/polizas/renovacion' }
       ]
     },
     {

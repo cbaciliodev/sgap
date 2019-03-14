@@ -1,0 +1,50 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Asegurado</h4>
+
+        <div class="row">
+            <div class="col-md-8 col-12">
+                <app-cliente-search-text #contratante section='0' titulo_search='Contratante'></app-cliente-search-text>
+            </div>
+            <div class="col-md-4 col-12 pt-md-5 pt-0">
+                <div class="form-check">
+                    <label class="custom-control custom-radio">
+                          <input id="radio1" name="radio" type="radio" class="custom-control-input">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description">Responsable de pago</span>
+                      </label>
+                </div>
+            </div>
+
+            <div class="col-md-8 col-12">
+                <app-cliente-search-text #asegurado section='0' titulo_search='Asegurado'></app-cliente-search-text>
+            </div>
+            <div class="col-md-4 col-12 pt-md-5 pt-0">
+                <div class="form-check">
+                    <label class="custom-control custom-radio">
+                        <input id="radio1" name="radio" type="radio" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Responsable de pago</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-8 col-12">
+                <app-cliente-search-text #contacto section='0' titulo_search='Contacto'></app-cliente-search-text>
+            </div>
+            <div class="col-md-4 col-12 pt-md-5 pt-0">
+                <div class="form-check">
+                    <label class="custom-control custom-radio">
+                        <input id="radio1" name="radio" type="radio" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Responsable de pago</span>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+        <h4 class="card-title"> {{ producto }} </h4>
+        <app-producto showRamo="false"></app-producto>
+    </div>
+</div>

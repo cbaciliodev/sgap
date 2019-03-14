@@ -26,15 +26,30 @@
             <div class="card-body">
                 <h4 class="card-title">Pólizas encontradas ( <small> {{ polizas.length }} </small> )</h4>
                 <table class="table table-hover">
-                    <tr *ngFor="let ctz of polizas">
-                        <td> {{ ctz.codigo }} </td>
-                        <td> {{ ctz.uso }} </td>
-                        <td> {{ ctz.producto }} </td>
-                        <td> {{ ctz.cliente.nombre + ' ' + ctz.cliente.apellido_paterno + ' ' + ctz.cliente.apellido_materno}} </td>
-                        <td> {{ ctz.suma_aseg | currency }} </td>
-                        <td> <button class="btn btn-danger btn-sm mr-1"><i class="mdi mdi-delete-variant"></i></button>
-                            <button class="btn btn-primary btn-sm"><i class="mdi mdi-pencil"></i></button> </td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Contratante</th>
+                            <th>Asegurado</th>
+                            <th>Contacto</th>
+                            <th>Productos</th>
+                            <th>Prima total</th>
+                            <th>Acciónes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let plzs of polizas">
+                            <td> {{ plzs.contratante }} </td>
+                            <td> {{ plzs.asegurado }} </td>
+                            <td> {{ plzs.contacto }} </td>
+                            <td class="text-right"> <span class="badge badge-success mr-2" *ngFor="let pd of plzs.productos"> {{pd}} </span> </td>
+                            <td class="text-right"> {{ plzs.prima_total | currency }} </td>
+                            <td> <button class="btn btn-danger btn-sm mr-1"><i class="mdi mdi-delete-variant"></i></button>
+                                <button class="btn btn-success btn-sm mr-1" (click)="seleccionarPoliza( plzs )" data-toggle="modal" data-target="#mdl_dtl_plz"><i class="mdi mdi-plus"></i></button>
+                                <button class="btn btn-primary btn-sm"><i class="mdi mdi-pencil"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+
                 </table>
                 <button class="btn btn-secondary"> Anterior </button>
                 <button class="btn btn-secondary"> Siguiente </button>
@@ -44,3 +59,51 @@
 </div>
 
 <button class="right-side-toggle btn-inverse btn-primary btn btn-circle" routerLink="/polizas/n" routerLinkActive="active"><i class="ti-plus text-white no-animation"></i></button>
+
+<div class="modal fade" id="mdl_dtl_plz">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Seleccione el producto</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="b-b">
+                    <ng-container *ngFor="let pdts of poliza.productos">
+                        <div class="form-check">
+                            <label class="custom-control custom-radio">
+                                <input name="radio" type="radio" class="custom-control-input" (click)="ramo('USO_VEHICULAR', 'Vehicular')">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description"> {{pdts}} </span>
+                            </label>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="mt-3">
+                    <div class="form-check">
+                        <label class="custom-control custom-radio">
+                                <input name="rdPoliza" type="radio" class="custom-control-input" (click)="movimiento_prima('1')">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description"> Con movimiento de póliza </span>
+                            </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="custom-control custom-radio">
+                                <input name="rdPoliza" type="radio" class="custom-control-input" (click)="movimiento_prima('0')">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description"> Sin movimiento de póliza </span>
+                            </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer text-right">
+                <button class="btn btn-success btn-sm" data-dismiss="modal" (click)="endosoLink()"> Agregar endoso </button>
+            </div>
+
+        </div>
+    </div>
+</div>
