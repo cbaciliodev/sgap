@@ -5,44 +5,49 @@ var Cliente = require('../models/cliente');
 
 // Rutas
 app.get('/', (req, res, nex) => {
-    Cliente.find({}).exec((err, clientes) => {
-        if (err) {
-            return res.status(500).json({
+    Cliente
+        .find({})
+        .sort('apellido_paterno apellido_materno nombre razon_social')
+        .exec((err, clientes) => {
+            if (err) {
+                return res.status(500).json({
+                    ok: true,
+                    mensaje: 'Error cargando clientes',
+                    errors: err
+                });
+            }
+
+            res.status(200).json({
                 ok: true,
-                mensaje: 'Error cargando clientes',
-                errors: err
+                data: clientes,
+                decoded: req.decoded
             });
-        }
 
-        res.status(200).json({
-            ok: true,
-            data: clientes,
-            decoded: req.decoded
         });
-
-    });
 });
 
 app.get('/:id', (req, res, nex) => {
 
     let id = req.params.id;
 
-    Cliente.findById(id).exec((err, clientes) => {
-        if (err) {
-            return res.status(500).json({
+    Cliente
+        .findById(id)
+        .exec((err, clientes) => {
+            if (err) {
+                return res.status(500).json({
+                    ok: true,
+                    mensaje: 'Error cargando clientes',
+                    errors: err
+                });
+            }
+
+            res.status(200).json({
                 ok: true,
-                mensaje: 'Error cargando clientes',
-                errors: err
+                data: clientes,
+                decoded: req.decoded
             });
-        }
 
-        res.status(200).json({
-            ok: true,
-            data: clientes,
-            decoded: req.decoded
         });
-
-    });
 });
 
 app.get('/search/:data', (req, res, nex) => {
@@ -51,10 +56,10 @@ app.get('/search/:data', (req, res, nex) => {
 
     Cliente.find({
         $or: [{ nro_documento: { $regex: data, $options: 'i' } },
-            { nombre: { $regex: data, $options: 'i' } },
-            { apellido_paterno: { $regex: data, $options: 'i' } },
-            { apellido_materno: { $regex: data, $options: 'i' } },
-            { razon_social: { $regex: data, $options: 'i' } }
+        { nombre: { $regex: data, $options: 'i' } },
+        { apellido_paterno: { $regex: data, $options: 'i' } },
+        { apellido_materno: { $regex: data, $options: 'i' } },
+        { razon_social: { $regex: data, $options: 'i' } }
         ]
     }).exec((err, clientes) => {
         if (err) {

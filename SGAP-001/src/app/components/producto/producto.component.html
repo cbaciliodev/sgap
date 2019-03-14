@@ -17,12 +17,6 @@
                   <option *ngFor="let uso of usos"  [value]="uso.valor"> {{ uso.alias }} </option>
                 </select>
             </div>
-    <div class="col-12 col-md-6">
-        <div class="form-group">
-            <label class="control-label">Ramo</label><br>
-            <select class="custom-select" style="width:100%" [(ngModel)]="producto.ramo">
-              <option *ngFor="let uso of usos"  [value]="uso.valor"> {{ uso.alias }} </option>
-            </select>
         </div>
     </ng-container>
 

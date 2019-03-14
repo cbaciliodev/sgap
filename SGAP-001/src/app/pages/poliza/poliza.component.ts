@@ -21,6 +21,7 @@ export class PolizaComponent implements OnInit {
   ];
 
   constructor(private _usuario: UsuarioService,
+    private router: Router,
     private _poliza: PolizaService) { }
 
   ngOnInit() {
