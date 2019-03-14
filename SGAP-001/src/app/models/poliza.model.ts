@@ -1,4 +1,5 @@
 import { Archivo } from './archivo.model';
+import { Producto } from './producto.model';
 
 export class Poliza {
     public constructor(

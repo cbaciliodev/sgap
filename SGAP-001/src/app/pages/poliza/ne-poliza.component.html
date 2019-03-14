@@ -4,20 +4,8 @@
 
         <div class="row">
             <div class="col-md-8 col-12">
-                <app-cliente-search-text section='0' titulo_search='Contratante' (emit_cliente)="poliza.contratante = $event"></app-cliente-search-text>
-            </div>
-            <div class="col-md-4 col-12 pt-md-5 pt-0">
-                <div class="form-check">
-                    <label class="custom-control custom-radio">
-                          <input id="radio1" name="radio" type="radio" class="custom-control-input">
-                          <span class="custom-control-indicator"></span>
-                          <span class="custom-control-description">Responsable de pago</span>
-                      </label>
-                </div>
-            </div>
-
-            <div class="col-md-8 col-12">
-                <app-cliente-search-text section='0' titulo_search='Asegurado' (emit_cliente)="poliza.asegurado = $event"></app-cliente-search-text>
+                <app-cliente-search-text section='0' titulo_search='Contratante'
+                    (emit_cliente)="poliza.contratante = $event"></app-cliente-search-text>
             </div>
             <div class="col-md-4 col-12 pt-md-5 pt-0">
                 <div class="form-check">
@@ -30,7 +18,22 @@
             </div>
 
             <div class="col-md-8 col-12">
-                <app-cliente-search-text section='0' titulo_search='Contacto' (emit_cliente)="poliza.contacto = $event"></app-cliente-search-text>
+                <app-cliente-search-text section='0' titulo_search='Asegurado'
+                    (emit_cliente)="poliza.asegurado = $event"></app-cliente-search-text>
+            </div>
+            <div class="col-md-4 col-12 pt-md-5 pt-0">
+                <div class="form-check">
+                    <label class="custom-control custom-radio">
+                        <input id="radio1" name="radio" type="radio" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Responsable de pago</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-8 col-12">
+                <app-cliente-search-text section='0' titulo_search='Contacto' (emit_cliente)="poliza.contacto = $event">
+                </app-cliente-search-text>
             </div>
             <div class="col-md-4 col-12 pt-md-5 pt-0">
                 <div class="form-check">
@@ -66,7 +69,9 @@
                             <label class="control-label"> {{productos.length}} registros encontrados </label>
                         </div>
                         <div class="col-md-6 col-12 text-right">
-                            <button class="btn btn-sm btn-rounded btn-success right-side-toggle" (click)="selected_subpage=SUB_COMPONENTS.PRODUCTO;titulo_subpage='Agregar producto'"> Agregar producto </button>
+                            <button class="btn btn-sm btn-rounded btn-success right-side-toggle"
+                                (click)="selected_subpage=SUB_COMPONENTS.PRODUCTO;titulo_subpage='Agregar producto'">
+                                Agregar producto </button>
                         </div>
                     </div>
                     <table class="table table-hover">
@@ -80,13 +85,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let ctz of polizas">
-                                <td> {{ ctz.codigo }} </td>
-                                <td> {{ ctz.uso }} </td>
-                                <td> {{ ctz.producto }} </td>
-                                <td> {{ ctz.cliente.nombre + ' ' + ctz.cliente.apellido_paterno + ' ' + ctz.cliente.apellido_materno}} </td>
-                                <td> {{ ctz.suma_aseg | currency }} </td>
-                                <td> <button class="btn btn-danger btn-sm mr-1"><i class="mdi mdi-delete-variant"></i></button>
+                            <tr *ngFor="let plz of productos">
+                                <td>{{plz.cia}}</td>
+                                <td>{{plz.ramo}}</td>
+                                <td>{{plz.poliza}}</td>
+                                <td>{{plz.prima_neta}}</td>
+                                <td> <button class="btn btn-danger btn-sm mr-1"><i
+                                            class="mdi mdi-delete-variant"></i></button>
                                     <button class="btn btn-primary btn-sm"><i class="mdi mdi-pencil"></i></button> </td>
                             </tr>
                         </tbody>
@@ -100,7 +105,9 @@
                             <label class="control-label"> {{archivos.length}} registros encontrados </label>
                         </div>
                         <div class="col-md-6 col-12 text-right">
-                            <button class="btn btn-sm btn-rounded btn-success right-side-toggle" (click)="selected_subpage=SUB_COMPONENTS.ARCHIVO;titulo_subpage='Agregar archivo'"> Agregar archivo </button>
+                            <button class="btn btn-sm btn-rounded btn-success right-side-toggle"
+                                (click)="selected_subpage=SUB_COMPONENTS.ARCHIVO;titulo_subpage='Agregar archivo'">
+                                Agregar archivo </button>
                         </div>
                     </div>
                     <table class="table table-hover">
@@ -116,7 +123,8 @@
                                 <td> {{ arch.nombre }} </td>
                                 <td>
                                     <a [href]="arch.link" target="_blank">{{ arch.link }}</a> </td>
-                                <td> <button class="btn btn-danger btn-sm mr-1" (click)="archivos.splice(index, 1)"><i class="mdi mdi-delete-variant"></i></button> </td>
+                                <td> <button class="btn btn-danger btn-sm mr-1" (click)="archivos.splice(index, 1)"><i
+                                            class="mdi mdi-delete-variant"></i></button> </td>
                             </tr>
                         </tbody>
                     </table>
@@ -126,7 +134,7 @@
 
     </div>
 </div>
-<button class="right-side-toggle btn-inverse btn-primary btn btn-circle" (click)="registrarPoliza()"> 
+<button class="right-side-toggle btn-inverse btn-primary btn btn-circle" (click)="registrarPoliza()">
     <i class="ti-check text-white no-animation"></i>
 </button>
 
@@ -135,9 +143,10 @@
         <div class="rpanel-title"> {{ titulo_subpage }} <span><i class="ti-close right-side-toggle"></i></span> </div>
         <div class="r-panel-body">
             <ng-container *ngIf="selected_subpage==SUB_COMPONENTS.PRODUCTO">
-                <app-producto></app-producto>
+                <app-producto [producto]="producto"></app-producto>
                 <hr>
-                <button type="button" class="btn btn-success right-side-toggle" data-dismiss="modal">Agregar</button>
+                <button type="button" class="btn btn-success right-side-toggle" data-dismiss="modal"
+                    (click)="agregarProducto()">Agregar</button>
             </ng-container>
 
             <ng-container *ngIf="selected_subpage==SUB_COMPONENTS.ARCHIVO">
@@ -147,10 +156,12 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">Observación</label>
-                    <textarea [(ngModel)]="archivo.nombre" type="text" class="form-control" rows="5" placeholder="Observación del archivo"></textarea>
+                    <textarea [(ngModel)]="archivo.nombre" type="text" class="form-control" rows="5"
+                        placeholder="Observación del archivo"></textarea>
                 </div>
                 <hr>
-                <button type="button" class="btn btn-success right-side-toggle" data-dismiss="modal" (click)="agregarArchivo()">Agregar</button>
+                <button type="button" class="btn btn-success right-side-toggle" data-dismiss="modal"
+                    (click)="agregarArchivo()">Agregar</button>
             </ng-container>
         </div>
     </div>

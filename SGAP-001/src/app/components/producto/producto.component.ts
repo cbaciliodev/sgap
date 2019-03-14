@@ -3,6 +3,7 @@ import { AseguradoraService, UsuarioService } from 'src/app/services/service.ind
 import { Aseguradora } from '../../models/aseguradora.model';
 import { UsoAseguradora } from '../../models/uso_aseguradora.model';
 import { Archivo } from 'src/app/models/archivo.model';
+import { Producto } from 'src/app/models/producto.model';
 import { ModeloService } from '../../services/modelo/modelo.service';
 import { Modelo } from '../../models/modelo.model';
 
@@ -12,6 +13,8 @@ import { Modelo } from '../../models/modelo.model';
   styles: []
 })
 export class ProductoComponent implements OnInit {
+
+  @Input() producto: Producto;
 
   @Input() showRamo = 'true';
 
@@ -40,7 +43,6 @@ export class ProductoComponent implements OnInit {
   }
 
   listUsos( id: string ) {
-    console.log( id );
     this._aseguradora.listUsos( this._usuario.token, id ).subscribe( data => this.usos = data );
   }
 

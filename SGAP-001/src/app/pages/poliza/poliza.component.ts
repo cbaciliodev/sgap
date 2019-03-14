@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Poliza } from 'src/app/models/poliza.model';
+import { UsuarioService, PolizaService } from 'src/app/services/service.index';
 
 import { Router } from '@angular/router';
 
@@ -19,9 +20,14 @@ export class PolizaComponent implements OnInit {
     new Poliza('Oswaldo Mayaute', 'Oswaldo Mayaute', 'Ericson Huamaní', new Date(2019, 3, 2), false, null, [ 'Vehicular' ], 800, 'a002' )
   ];
 
-  constructor( public router: Router ) { }
+  constructor(private _usuario: UsuarioService,
+    private _poliza: PolizaService) { }
 
   ngOnInit() {
+    this._poliza.listAll(this._usuario.token)
+      .subscribe(res => {
+        this.polizas = res;
+      });
   }
 
   seleccionarPoliza( data ) {
