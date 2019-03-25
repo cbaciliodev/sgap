@@ -6,6 +6,8 @@ var ESTADO_ACTIVO = require('../config/config').ESTADO_ACTIVO;
 
 var Schema = mongoose.Schema;
 
+
+
 var EmpresaSchema = new Schema({
     razon_social: { type: String, required: [true, 'Nombre es requerido'], unique: true },
     cias: [{ type: Schema.Types.ObjectId, ref: 'Aseguradora' }],
