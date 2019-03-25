@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 
 var validation = require('../functions/validation');
-var Empresa = require('../models/Empresa');
+var Empresa = require('../models/empresa');
 
 app.get('/', (req, res) => {
     Empresa.find({})
