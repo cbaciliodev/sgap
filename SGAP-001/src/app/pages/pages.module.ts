@@ -34,6 +34,8 @@ import { FrmArchivoComponent } from '../components/frm-archivo/frm-archivo.compo
 import { TblArchivoComponent } from '../components/frm-archivo/tbl-archivo.component';
 import { TblProductoComponent } from '../components/frm-producto/tbl-producto.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
     declarations: [
@@ -84,7 +86,8 @@ import { TblProductoComponent } from '../components/frm-producto/tbl-producto.co
         ChartsModule,
         CommonModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgbModule
     ]
 })
 export class PagesModule {}

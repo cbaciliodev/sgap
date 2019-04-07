@@ -3,26 +3,25 @@
     <div class="col-12 col-md-12">
         <div class="form-group">
             <label class="control-label">Compañía de seguros</label><br>
-            <select #lstCia class="form-control" style="width:100%" (change)="listUsos( lstCia.value )">
-              <option [value]="null"> -- seleccione -- </option>
+            <select class="form-control" style="width:100%" (change)="listUsos()"  [(ngModel)]="producto.cia" >
+              <option [value]="undefined"> -- seleccione -- </option>
               <option *ngFor="let asg of aseguradoras"  [value]="asg._id"> {{ asg.nombre }} </option>
             </select>
         </div>
     </div>
 
-    <ng-container *ngIf="showRamo=='true'">
-        <div class="col-12 col-md-6">
-            <div class="form-group">
-                <label class="control-label">Ramo</label><br>
-                <select class="form-control" style="width:100%">
-                    <option [value]="null"> -- seleccione -- </option>
-                    <option *ngFor="let rtecnico of usos"  [value]="rtecnico.valor"> {{ rtecnico.alias }} </option>
-                </select>
-            </div>
+    <div class="col-12 col-md-6">
+        <div class="form-group">
+            <label class="control-label">Ramo</label><br>
+            <select class="form-control" style="width:100%" [(ngModel)]="producto.ramo">
+                <option [value]="undefined"> -- seleccione -- </option>
+                <option *ngFor="let rtecnico of usos"  [value]="rtecnico.valor"> {{ rtecnico.alias }} </option>
+            </select>
         </div>
-    </ng-container>
-
-    <ng-container *ngIf="ramo=='USO_DOMICILIARIO' || ramo=='USO_ONCOLOGICO'">
+    </div>
+</div>
+<div class="row">
+    <ng-container *ngIf="producto.ramo=='USO_DOMICILIARIO' || producto.ramo=='USO_ONCOLOGICO'">
         <div class="col-12">
             <div class="form-group">
                 <label class="control-label">Plan</label><br>
@@ -31,7 +30,7 @@
         </div>
     </ng-container>
 
-    <ng-container *ngIf="ramo=='USO_R_TECNICO'">
+    <ng-container *ngIf="producto.ramo=='USO_R_TECNICO'">
         <div class="col-12">
             <div class="form-group">
                 <label class="control-label">Riesgo</label><br>
@@ -56,21 +55,21 @@
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label class="control-label">Prima neta</label><br>
-                    <input type="text" class="form-control" placeholder="Prima neta" [attr.disabled]="movimiento_prima=='0'">
+                    <input type="text" class="form-control" placeholder="Prima neta" [attr.disabled]="!editPrimaNeta">
                 </div>
             </div>
 
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label class="control-label">Monto de obra</label><br>
-                    <input type="text" class="form-control" placeholder="Prima neta" [attr.disabled]="movimiento_prima=='0'">
+                    <input type="text" class="form-control" placeholder="Prima neta" [attr.disabled]="!editPrimaNeta">
                 </div>
             </div>
 
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label class="control-label">Tipo de obra</label><br>
-                    <input type="text" class="form-control" placeholder="Prima neta" [attr.disabled]="movimiento_prima=='0'">
+                    <input type="text" class="form-control" placeholder="Prima neta" [attr.disabled]="!editPrimaNeta">
                 </div>
             </div>
 
@@ -99,9 +98,9 @@
         </ng-container>
     </ng-container>
 
-    <ng-container *ngIf="ramo=='ESO_SCTR'">
+    <ng-container *ngIf="producto.ramo=='ESO_SCTR'">
 
-        <div class="col-6 col-md-6">
+        <div class="col-6 col-md-6 b-r">
             <h4 class="card-title">Salud</h4>
             <div class="form-group">
                 <label class="control-label">Nro. póliza Salud</label><br>
@@ -117,7 +116,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Prima neta</label><br>
-                <input type="text" class="form-control" placeholder="Tasa de obreros" [attr.disabled]="movimiento_prima=='0'">
+                <input type="text" class="form-control" placeholder="Tasa de obreros" [attr.disabled]="!editPrimaNeta">
             </div>
         </div>
         <div class="col-6 col-md-6">
@@ -136,45 +135,50 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Prima neta</label><br>
-                <input type="text" class="form-control" placeholder="Tasa de obreros" [attr.disabled]="movimiento_prima=='0'">
+                <input type="text" class="form-control" placeholder="Tasa de obreros" [attr.disabled]="!editPrimaNeta">
             </div>
         </div>
 
     </ng-container>
 
-    <ng-container *ngIf="ramo=='USO_V_LEY'">
-        <div class="col-6 col-md-12">
+    <ng-container *ngIf="producto.ramo=='USO_V_LEY'">
+        <div class="col-6 col-md-8">
             <div class="form-group">
                 <label class="control-label">Nro. póliza Salud</label><br>
                 <input type="text" class="form-control" placeholder="Número de póliza">
             </div>
+        </div>
+        <div class="col-6 col-md-4">
             <div class="form-group">
                 <label class="control-label">Tasa empleados</label><br>
                 <input type="text" class="form-control" placeholder="Tasa de empleados">
             </div>
+        </div>
+        <div class="col-6 col-md-4">
             <div class="form-group">
                 <label class="control-label">Tasa obreros</label><br>
                 <input type="text" class="form-control" placeholder="Tasa de obreros">
             </div>
+        </div>
+        <div class="col-6 col-md-4">
             <div class="form-group">
                 <label class="control-label">Prima neta</label><br>
-                <input type="text" class="form-control" placeholder="Prima neta" [attr.disabled]="movimiento_prima=='0'">
+                <input type="text" class="form-control" placeholder="Prima neta" [disabled]="cPrimaNeta">
             </div>
         </div>
     </ng-container>
 
-
-    <ng-container *ngIf="ramo=='USO_VEHICULAR'">
+    <ng-container *ngIf="producto.ramo=='USO_VEHICULAR'">
         <div class="col-6 col-md-4">
             <div class="form-group">
                 <label class="control-label">Vigencia (desde)</label><br>
-                <input type="text" class="form-control" placeholder="Desde">
+                <input class="form-control" placeholder="Desde" name="dDesde" [(ngModel)]="producto.desde" ngbDatepicker #dDesde="ngbDatepicker" (click)="dDesde.toggle()" (dateSelect)="agregarVigenciaHasta()">
             </div>
         </div>
         <div class="col-6 col-md-4">
             <div class="form-group">
                 <label class="control-label">Vigencia (hasta)</label><br>
-                <input type="text" class="form-control" placeholder="Hasta">
+                <input class="form-control" placeholder="Hasta" name="dHasta" [(ngModel)]="producto.hasta" ngbDatepicker #dHasta="ngbDatepicker" (click)="dHasta.toggle()">
             </div>
         </div>
 
@@ -183,7 +187,6 @@
                 <label class="control-label">Modelo del auto</label>
                 <input #modelo (keyup)='searchModelo( _usuario.token, modelo.value )' type="text" class="form-control" placeholder="Encontrar modelo...">
             </div>
-
             <ng-container *ngIf="isModeloFind">
                 <div class="row">
                     <div class="col-12 pb-4">
@@ -214,60 +217,55 @@
             </ng-container>
         </div>
 
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Año</label>
+                <input type="text" class="form-control" [(ngModel)]="producto.anio">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Placa</label>
+                <input type="text" class="form-control" [(ngModel)]="producto.placa">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Nro de Serie</label>
+                <input type="text" class="form-control" [(ngModel)]="producto.nro_serie">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Nro de Motor</label>
+                <input type="text" class="form-control" [(ngModel)]="producto.nro_motor">
+            </div>
+        </div>
+
+
         <div class="col-md-12">
             <div class="form-group">
                 <label>GPS Empresa</label>
-                <select class="form-control">
-                             
-                                <option value="4">GPS Golden</option>
-                                <option value="3">GPS Seltron</option>
-                                <option value="2">GPS Sutran</option>
-                                <option value="1">Sin GPS</option></select>
+                <select class="form-control" [(ngModel)]="producto.gps_emp">
+                    <option value="">Sin GPS</option>
+                    <option *ngFor="let gps of empresas_gps" [value]="gps.nombre"> {{ gps.alias }} </option>
+                </select>
             </div>
         </div>
 
         <div class="col-6 col-md-6">
             <div class="form-group">
                 <label class="control-label">Endoso</label><br>
-                <select class="form-control" style="width:100%">
-                    <option value="CAR"> Endoso Banco de Comercio </option>
-                    <option value="CAR"> Endoso Banco Continental </option>
-                    <option value="CAR"> Endoso Banco Financiero </option>
-                    <option value="CAR"> Endoso Banco Ripley </option>
-                    <option value="CAR"> Endoso Banco Scotiabank </option>
-                    <option value="CAR"> Sin endoso </option>
+                <select class="form-control" style="width:100%" [(ngModel)]="producto.endoso">
+                    <option value=""> Sin endoso </option>
+                    <option *ngFor="let end of endosos" [value]="end.nombre"> {{ end.alias }} </option>
                   </select>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="form-group">
-                <label>Año</label>
-                <input type="text" class="form-control">
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label>Placa</label>
-                <input type="text" class="form-control">
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label>Nro de Serie</label>
-                <input type="text" class="form-control">
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label>Nro de Motor</label>
-                <input type="text" class="form-control">
             </div>
         </div>
     </ng-container>
 </div>
 
-<ng-container *ngIf="!(ramo=='USO_V_LEY' || ramo=='ESO_SCTR')">
+<ng-container *ngIf="!(producto.ramo=='USO_V_LEY' || producto.ramo=='ESO_SCTR')">
 
     <div class="row">
         <div class="col-12 col-md-6">
@@ -325,3 +323,5 @@
 
 <small> <strong>{{archivos.length}}</strong> archivos encontrados </small>
 <app-tbl-archivo [data]="archivos"></app-tbl-archivo>
+
+<div class="text-right"> <button class="btn btn-primary btn-sm" (click)="agregarProducto()"> AGREGAR PRODUCTO </button> </div>

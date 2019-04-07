@@ -10,6 +10,7 @@ export class FrmProductoComponent implements OnInit {
 
   @Input() isNew = true;
   @Input() isCloseButton = false;
+  @Input() cPrimaNeta = false;
 
   @Output() closeDialog: EventEmitter<boolean> = new EventEmitter();
 
@@ -19,6 +20,9 @@ export class FrmProductoComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+
+    console.log(this.cPrimaNeta);
+
     if ( !this.isNew ) {
       this.titulo = 'EDICION DE';
     }

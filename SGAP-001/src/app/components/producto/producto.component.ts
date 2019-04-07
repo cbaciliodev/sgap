@@ -1,12 +1,15 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { AseguradoraService, UsuarioService, RamoTecnicoService } from 'src/app/services/service.index';
+import { AseguradoraService, UsuarioService, RamoTecnicoService, ParametroService } from 'src/app/services/service.index';
 import { Aseguradora } from '../../models/aseguradora.model';
 import { UsoAseguradora } from '../../models/uso_aseguradora.model';
 import { Archivo } from 'src/app/models/archivo.model';
 import { Producto } from 'src/app/models/producto.model';
 import { ModeloService } from '../../services/modelo/modelo.service';
 import { Modelo } from '../../models/modelo.model';
-import { FrmArchivoComponent } from '../frm-archivo/frm-archivo.component';
+import { Parametro } from 'src/app/models/parametro.model';
+import { ParametroConstant } from 'src/app/constantes/parametroConstant';
+import { Fecha } from 'src/app/models/fecha.model';
+
 
 @Component({
   selector: 'app-producto',
@@ -16,7 +19,7 @@ import { FrmArchivoComponent } from '../frm-archivo/frm-archivo.component';
 export class ProductoComponent implements OnInit {
 
   @Input() producto: Producto = new Producto();
-  @Input() showRamo = 'true';
+  @Input() cPrimaNeta = false;
 
   modelosFind: Array<Modelo> = [];
   isModeloFind: boolean = false;
@@ -24,15 +27,20 @@ export class ProductoComponent implements OnInit {
   ramo: String = '';
   aseguradoras: Array<Aseguradora> = [];
   usos: Array<UsoAseguradora> = [];
+  endosos: Array<Parametro> = [];
+  empresas_gps: Array<Parametro> = [];
   ramo_tecnico: String = '';
   movimiento_prima = '';
 
   archivos: Array<Archivo> = [];
 
+
+
   constructor(  public _aseguradora: AseguradoraService,
                 public _usuario: UsuarioService,
                 public _ramoTecnico: RamoTecnicoService,
-                public _modelo: ModeloService ) {
+                public _modelo: ModeloService,
+                public _parametro: ParametroService ) {
     this.listAll();
   }
 
@@ -42,10 +50,13 @@ export class ProductoComponent implements OnInit {
 
   listAll() {
     this._aseguradora.listAll( this._usuario.token ).subscribe( data => this.aseguradoras = data );
+    this._parametro.listGroupChildren( ParametroConstant.GRUPO_ENDOSO ).subscribe( data => this.endosos = data );
+    this._parametro.listGroupChildren( ParametroConstant.GRUPO_GPS ).subscribe( data => this.empresas_gps = data );
   }
 
-  listUsos( id: string ) {
-    this._ramoTecnico.listbyAseguradora( id ).subscribe( data => this.usos = data );
+  listUsos( ) {
+    this.producto.ramo = undefined;
+    this._ramoTecnico.listbyAseguradora( this.producto.cia ).subscribe( data => this.usos = data );
   }
 
   init() {
@@ -58,6 +69,16 @@ export class ProductoComponent implements OnInit {
       this.modelosFind = data;
       this.isModeloFind = true;
     } );
+  }
+
+
+  agregarProducto(){
+    console.log( this.producto );
+  }
+
+  agregarVigenciaHasta(){
+    const fechaPaso = this.producto.desde;
+    this.producto.hasta = new Fecha( fechaPaso.year + 1, fechaPaso.month, fechaPaso.day );
   }
 
 }

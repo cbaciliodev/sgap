@@ -1,0 +1,3 @@
+{ "grupo":'GPS', "nombre": 'GPS_GOLDEN', "alias": 'GPS Golden', "orden": 10, "is_grupo": 0, "estado": 1, "valor_numero": 0 },
+{ "grupo":'GPS', "nombre": 'GPS_SELTRON', "alias": 'GPS Seltron', "orden": 20, "is_grupo": 0, "estado": 1, "valor_numero": 0 },
+{ "grupo":'GPS', "nombre": 'GPS_SUTRAN', "alias": 'GPS Sultran', "orden": 30, "is_grupo": 0, "estado": 1, "valor_numero": 0 }

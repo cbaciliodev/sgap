@@ -14,30 +14,30 @@ export class TblArchivoComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   beforeDelete(index: number): void {
     swal('¿Desea eliminar el registro ' + this.data[index].link + '?' , {
         closeOnClickOutside: false,
         buttons: { 
-          cancel: 'Cancelar',
+          cancel: {
+            text: 'Cancelar',
+            visible: true
+          },
           catch: {
             text: 'Eliminar',
             value: true
           }
-         }
-      }
-    ).then( (value) => {
-      if ( value ) {
-        this.deleteArchivo( index );
-      }
+        }
+      }).then( (value) => {
+        if ( value ) {
+          this.deleteArchivo( index );
+        }
     });
   }
 
   deleteArchivo(index: number): void {
     this.data.splice(index, 1 );
   }
-
 
 }
