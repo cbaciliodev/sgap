@@ -16,7 +16,8 @@ import { SettingsService,
         CommonsService,
         AseguradoraService,
         GpsService,
-        PolizaService } from './service.index';
+        PolizaService,
+        RamoTecnicoService } from './service.index';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { SettingsService,
     CommonsService,
     AseguradoraService,
     GpsService,
-    PolizaService
+    PolizaService,
+    RamoTecnicoService
   ],
   declarations: []
 })

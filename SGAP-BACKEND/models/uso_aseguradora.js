@@ -8,7 +8,6 @@ var Schema = mongoose.Schema;
 var usoAseguradora = new Schema({
     aseguradora: { type: Schema.Types.ObjectId, ref: 'Aseguradora', required: [true, 'Nombre es requerido'] },
     valor: { type: String, required: true },
-    alias: { type: String, required: true },
     estado: { type: Number, required: true, default: ESTADO_ACTIVO, enum: ESTADOS }
 }, { collection: 'uso_aseguradora' });
 

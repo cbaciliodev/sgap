@@ -3,7 +3,8 @@
     <div class="col-12 col-md-12">
         <div class="form-group">
             <label class="control-label">Compañía de seguros</label><br>
-            <select #lstCia class="custom-select" style="width:100%" (change)="listUsos( lstCia.value )" [(ngModel)]="producto.compania">
+            <select #lstCia class="form-control" style="width:100%" (change)="listUsos( lstCia.value )">
+              <option [value]="null"> -- seleccione -- </option>
               <option *ngFor="let asg of aseguradoras"  [value]="asg._id"> {{ asg.nombre }} </option>
             </select>
         </div>
@@ -13,8 +14,9 @@
         <div class="col-12 col-md-6">
             <div class="form-group">
                 <label class="control-label">Ramo</label><br>
-                <select class="custom-select" style="width:100%" [(ngModel)]="ramo">
-                  <option *ngFor="let uso of usos"  [value]="uso.valor"> {{ uso.alias }} </option>
+                <select class="form-control" style="width:100%">
+                    <option [value]="null"> -- seleccione -- </option>
+                    <option *ngFor="let rtecnico of usos"  [value]="rtecnico.valor"> {{ rtecnico.alias }} </option>
                 </select>
             </div>
         </div>
@@ -33,7 +35,7 @@
         <div class="col-12">
             <div class="form-group">
                 <label class="control-label">Riesgo</label><br>
-                <select class="custom-select" style="width:100%" [(ngModel)]="producto.ramo_tecnico">
+                <select class="form-control" style="width:100%" [(ngModel)]="producto.ramo_tecnico">
                   <option value="CAR"> CAR </option>
                   <option value="EAR"> EAR </option>
                   <option value="TREC"> TREC </option>
@@ -227,7 +229,7 @@
         <div class="col-6 col-md-6">
             <div class="form-group">
                 <label class="control-label">Endoso</label><br>
-                <select class="custom-select" style="width:100%">
+                <select class="form-control" style="width:100%">
                     <option value="CAR"> Endoso Banco de Comercio </option>
                     <option value="CAR"> Endoso Banco Continental </option>
                     <option value="CAR"> Endoso Banco Financiero </option>
@@ -302,33 +304,24 @@
     </div>
 </ng-container>
 
-
-
-<h4 class="card-title">Archivos</h4>
 <div class="row">
     <div class="col-md-6 col-12">
-        <label class="control-label"> {{archivos.length}} registros encontrados </label>
+        <label class="control-label">Archivos </label>
     </div>
     <div class="col-md-6 col-12 text-right">
-        <button class="btn btn-sm btn-rounded btn-success right-side-toggle"> Agregar archivo </button>
+        <button class="btn btn-sm btn-outline-secondary right-side-toggle" (click)="cargarArchivo=true"> Agregar archivo </button>
+    </div>
+
+    <div class="col-12">
+        <ng-container *ngIf="cargarArchivo==true">
+            <div class="animated fadeInDown show">
+                <div class="b-all m-t-15 m-b-15 p-10 bg-light-info">
+                    <app-frm-archivo [isCloseButton]="true" (closeDialog)="cargarArchivo=$event"  (archivoEmiter)="archivos.push($event)"></app-frm-archivo>
+                </div>
+            </div>
+        </ng-container>
     </div>
 </div>
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <td><small><strong>Observación</strong></small></td>
-            <td><small><strong>Enlace</strong></small></td>
-            <td><small><strong>Acción</strong></small></td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let arch of archivos">
-            <td> {{ arch.nombre }} </td>
-            <td>
-                <a [href]="arch.link" target="_blank">{{ arch.link }}</a> </td>
-            <td> <button class="btn btn-danger btn-sm mr-1" (click)="archivos.splice(index, 1)"><i class="mdi mdi-delete-variant"></i></button> </td>
-        </tr>
-    </tbody>
-</table>
-<button class="right-side-toggle btn-inverse btn-primary btn btn-circle" routerLink="/polizas" routerLinkActive="active"><i class="ti-save text-white no-animation"></i></button>
+<small> <strong>{{archivos.length}}</strong> archivos encontrados </small>
+<app-tbl-archivo [data]="archivos"></app-tbl-archivo>

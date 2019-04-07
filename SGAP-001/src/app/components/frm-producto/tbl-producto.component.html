@@ -1,0 +1,28 @@
+<ng-container *ngIf="productos.length==0">
+    <div class="alert alert-success alert-rounded text-center">No se registran aún productos</div>
+</ng-container>
+
+<ng-container *ngIf="productos.length==1">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td><small><strong>Cía</strong></small></td>
+                <td><small><strong>Ramo</strong></small></td>
+                <td><small><strong>Póliza</strong></small></td>
+                <td><small><strong>Prima neta</strong></small></td>
+                <td><small><strong>Acción</strong></small></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let plz of productos">
+                <td>{{plz.cia}}</td>
+                <td>{{plz.ramo}}</td>
+                <td>{{plz.poliza}}</td>
+                <td>{{plz.prima_neta}}</td>
+                <td> <button class="btn btn-danger btn-sm mr-1"><i
+                          class="mdi mdi-delete-variant"></i></button>
+                    <button class="btn btn-primary btn-sm"><i class="mdi mdi-pencil"></i></button> </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>

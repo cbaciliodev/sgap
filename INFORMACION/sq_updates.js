@@ -1,0 +1,1 @@
+db.uso_aseguradora.update({}, {$unset: { alias : "" } }, { multi: true } );

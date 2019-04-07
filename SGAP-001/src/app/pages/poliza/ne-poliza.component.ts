@@ -11,32 +11,18 @@ import { Producto } from 'src/app/models/producto.model';
 })
 export class NePolizaComponent implements OnInit {
 
-  SUB_COMPONENTS = { CLIENTE: 0, ARCHIVO: 1, PRODUCTO: 2 };
-
-  archivo: any = {};
   producto: Producto = new Producto();
   poliza: Poliza = new Poliza();
 
   productos: Array<any> = [];
   archivos: Array<any> = [];
+  archivosPoliza: Array<any> = [];
+  
 
-  titulo_subpage = '';
-  selected_subpage;
+  constructor(  private _usuario: UsuarioService,
+                private _poliza: PolizaService ) { }
 
-  constructor(private _usuario: UsuarioService,
-    private _poliza: PolizaService) { }
-
-  ngOnInit() {
-  }
-
-  agregarArchivo() {
-    this.archivos.push(this.archivo);
-    this.cleanFormArchivo();
-  }
-
-  cleanFormArchivo() {
-    this.archivo = {};
-  }
+  ngOnInit() { }
 
   agregarProducto() {
     this.productos.push(this.producto);

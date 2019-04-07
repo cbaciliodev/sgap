@@ -12,41 +12,54 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Cotizaciones encontradas ( <small> {{clientes.length}} </small> )</h4>
+                <small class="pull-right">Cotizaciones encontradas ( <strong> {{clientes.length}} </strong> )</small>
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>Nombre / Razón Social</th>
-                            <th>Tipo documento</th>
-                            <th>Número</th>
                             <th>Teléfono</th>
                             <th>Correo electrónico</th>
-                            <th>Acción</th>
+                            <th> </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let cls of clientes">
-                            <td><div class="row"> 
-                                <ng-container *ngIf="cls.is_empresa==0">
-                                    {{ cls.apellido_paterno }} {{ cls.apellido_materno }} {{ cls.nombre }} 
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button href="javascript:void(0)" class="btn btn-circle btn-sm btn-outline-info m-r-10">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
+                                        <ng-container *ngIf="cls.is_empresa==0">
+                                            <i class="fa fa-user-o m-r-5"></i> {{ cls.apellido_paterno }} {{ cls.apellido_materno }} {{ cls.nombre }}
+                                        </ng-container>
+                                        <ng-container *ngIf="cls.is_empresa==1">
+                                            <i class="fa fa-building-o m-r-5"></i> {{ cls.razon_social }}
+                                        </ng-container>
+                                        <div>
+                                            <small class="m-l-5"> <strong> {{ cls.tipo_documento }} </strong> {{ cls.nro_documento }} </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <ng-container *ngFor="let telefono of cls.telefonos ">
+                                        <div class="d-inline-block"><strong class="text-muted m-l-5 m-r-5"> &bull;</strong> {{ telefono.valor }} </div>
+                                    </ng-container>
+                                </div>
+                            </td>
+                            <td>
+                                <ng-container *ngFor="let correo of cls.correo_electronico ">
+                                    <div class="d-inline-block">
+                                        <strong class="text-muted m-l-5 m-r-5"> &bull;</strong> {{ correo.valor }}
+                                    </div>
                                 </ng-container>
-
-                                <ng-container *ngIf="cls.is_empresa==1">
-                                    {{ cls.razon_social }}
-                                </ng-container>
-
-                            </div></td>
-                            <td><div class="row"> {{ cls.tipo_documento }} </div></td>
-                            <td><div class="row"> {{ cls.nro_documento }} </div></td>
-                            <td><div class="row"> {{ cls.telefonos }} </div></td>
-                            <td><div class="row"> {{ cls.correo_electronico }} </div></td>
-                            <td> <button class="btn btn-danger btn-sm mr-2"><i class="mdi mdi-delete-variant"></i></button>
-                                 <button class="btn btn-primary btn-sm"><i class="mdi mdi-pencil"></i></button> </td>
+                            </td>
+                            <td> <button class="btn btn-circle btn-outline-danger btn-danger btn-sm"><i class="fa fa-trash-o"></i></button> </td>
                         </tr>
                     </tbody>
                 </table>
-                <button class="btn btn-secondary"> Anterior </button>
-                <button class="btn btn-secondary"> Siguiente </button>
             </div>
         </div>
     </div>

@@ -39,6 +39,7 @@ var slimRoutes = require('./routes/slim');
 var gpsRoutes = require('./routes/gps');
 var polizaRoutes = require('./routes/poliza');
 var usoAseguradoraRoutes = require('./routes/uso_aseguradora');
+var viewRamoTecnico = require('./routes/view_ramo_tecnico');
 var serveIndex = require('serve-index');
 
 app.use(express.static('/data/sigap/'));
@@ -66,6 +67,7 @@ app.use('/slim', slimRoutes);
 app.use('/gps', gpsRoutes);
 app.use('/poliza', polizaRoutes);
 app.use('/uso_aseg', usoAseguradoraRoutes);
+app.use('/v_ramo', viewRamoTecnico);
 app.use('/', appRoutes);
 
 // MongoDB Access

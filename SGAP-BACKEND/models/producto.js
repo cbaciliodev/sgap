@@ -4,8 +4,8 @@ var Schema = mongoose.Schema;
 var ESTADO_ACTIVO = require('../config/config').ESTADO_ACTIVO;
 
 var productoSchema = new Schema({
-    compania: { type: String },
-    ramo: { type: String },
+    cia: { type: Schema.Types.ObjectId, ref: 'Aseguradora' },
+    ramo: { type: Schema.Types.ObjectId, ref: 'Aseguradora' },
     nro_poliza: { type: String },
     prima_neta: { type: String },
     poliza: { type: Schema.Types.ObjectId, ref: 'Poliza' },

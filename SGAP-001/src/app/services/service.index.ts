@@ -1,3 +1,4 @@
+export { RamoTecnicoService } from './views/ramo-tecnico.service';
 export { PolizaService } from './poliza/poliza.service';
 export { GpsService } from './modelo/gps.service';
 export { AseguradoraService } from './aseguradora/aseguradora.service';
@@ -14,6 +15,3 @@ export { SettingsService } from './settings/settings.service';
 export { SharedService } from './shared/shared.service';
 export { SidebarService } from './shared/sidebar.service';
 export { UsuarioService } from './usuario/usuario.service';
-
-
-

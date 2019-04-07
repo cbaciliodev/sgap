@@ -1,0 +1,23 @@
+<ng-container *ngIf="data.length==0">
+    <div class="alert alert-success alert-rounded text-center">Sin archivos a mostrar</div>
+</ng-container>
+
+<ng-container *ngIf="data.length!=0">
+  <table class="table full-color-table full-inverse-table">
+      <thead>
+          <tr>
+              <th><small><strong>Observación</strong></small></th>
+              <th><small><strong>Enlace</strong></small></th>
+              <th><small><strong>Acción</strong></small></th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let arch of data; index as i">
+              <td> {{ arch.nombre }} </td>
+              <td>
+                  <a [href]="arch.link" target="_blank">{{ arch.link }}</a> </td>
+              <td> <button class="btn btn-danger btn-sm mr-1" (click)="beforeDelete( i )"><i class="mdi mdi-delete-variant"></i></button> </td>
+          </tr>
+      </tbody>
+  </table>
+</ng-container>

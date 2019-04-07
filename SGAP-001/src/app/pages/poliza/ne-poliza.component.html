@@ -4,8 +4,7 @@
 
         <div class="row">
             <div class="col-md-8 col-12">
-                <app-cliente-search-text section='0' titulo_search='Contratante'
-                    (emit_cliente)="poliza.contratante = $event"></app-cliente-search-text>
+                <app-cliente-search-text section='0' titulo_search='Contratante' (emit_cliente)="poliza.contratante = $event"></app-cliente-search-text>
             </div>
             <div class="col-md-4 col-12 pt-md-5 pt-0">
                 <div class="form-check">
@@ -18,8 +17,7 @@
             </div>
 
             <div class="col-md-8 col-12">
-                <app-cliente-search-text section='0' titulo_search='Asegurado'
-                    (emit_cliente)="poliza.asegurado = $event"></app-cliente-search-text>
+                <app-cliente-search-text section='0' titulo_search='Asegurado' (emit_cliente)="poliza.asegurado = $event"></app-cliente-search-text>
             </div>
             <div class="col-md-4 col-12 pt-md-5 pt-0">
                 <div class="form-check">
@@ -32,8 +30,7 @@
             </div>
 
             <div class="col-md-8 col-12">
-                <app-cliente-search-text section='0' titulo_search='Contacto' (emit_cliente)="poliza.contacto = $event">
-                </app-cliente-search-text>
+                <app-cliente-search-text section='0' titulo_search='Contacto' (emit_cliente)="poliza.contacto = $event"></app-cliente-search-text>
             </div>
             <div class="col-md-4 col-12 pt-md-5 pt-0">
                 <div class="form-check">
@@ -65,69 +62,45 @@
             <div class="tab-pane active" id="productos" role="tabpanel" aria-expanded="true">
                 <div class="p-20">
                     <div class="row">
-                        <div class="col-md-6 col-12">
-                            <label class="control-label"> {{productos.length}} registros encontrados </label>
-                        </div>
-                        <div class="col-md-6 col-12 text-right">
-                            <button class="btn btn-sm btn-rounded btn-success right-side-toggle"
-                                (click)="selected_subpage=SUB_COMPONENTS.PRODUCTO;titulo_subpage='Agregar producto'">
+                        <div class="col-12 text-right">
+                            <button class="btn btn-sm btn-success right-side-toggle" (click)="loadProducto=true">
                                 Agregar producto </button>
                         </div>
+
+                        <div class="col-12">
+                            <ng-container *ngIf="loadProducto==true">
+                                <div class="animated fadeInDown show">
+                                    <div class="b-all m-t-15 m-b-15 p-10 bg-light-primary">
+                                        <app-frm-producto [isCloseButton]="true" (closeDialog)="loadProducto=$event"></app-frm-producto>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
                     </div>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <td><small><strong>Cía</strong></small></td>
-                                <td><small><strong>Ramo</strong></small></td>
-                                <td><small><strong>Póliza</strong></small></td>
-                                <td><small><strong>Prima neta</strong></small></td>
-                                <td><small><strong>Acción</strong></small></td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let plz of productos">
-                                <td>{{plz.cia}}</td>
-                                <td>{{plz.ramo}}</td>
-                                <td>{{plz.poliza}}</td>
-                                <td>{{plz.prima_neta}}</td>
-                                <td> <button class="btn btn-danger btn-sm mr-1"><i
-                                            class="mdi mdi-delete-variant"></i></button>
-                                    <button class="btn btn-primary btn-sm"><i class="mdi mdi-pencil"></i></button> </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                    <small> <strong>{{productos.length}}</strong> registros encontrados </small>
+                    <app-tbl-producto></app-tbl-producto>
                 </div>
             </div>
             <div class="tab-pane" id="archivos" role="tabpanel" aria-expanded="true">
                 <div class="p-20">
                     <div class="row">
-                        <div class="col-md-6 col-12">
-                            <label class="control-label"> {{archivos.length}} registros encontrados </label>
+                        <div class="col-12 text-right">
+                            <button class="btn btn-sm btn-success right-side-toggle" (click)="cargarArchivoPoliza=true"> Agregar archivo </button>
                         </div>
-                        <div class="col-md-6 col-12 text-right">
-                            <button class="btn btn-sm btn-rounded btn-success right-side-toggle"
-                                (click)="selected_subpage=SUB_COMPONENTS.ARCHIVO;titulo_subpage='Agregar archivo'">
-                                Agregar archivo </button>
+
+                        <div class="col-12">
+                            <ng-container *ngIf="cargarArchivoPoliza==true">
+                                <div class="animated fadeInDown show">
+                                    <div class="b-all m-t-15 m-b-15 p-10 bg-light-info">
+                                        <app-frm-archivo [isCloseButton]="true" (closeDialog)="cargarArchivoPoliza=$event"  (archivoEmiter)="archivosPoliza.push($event)"></app-frm-archivo>
+                                    </div>
+                                </div>
+                            </ng-container>
                         </div>
                     </div>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <td><small><strong>Observación</strong></small></td>
-                                <td><small><strong>Enlace</strong></small></td>
-                                <td><small><strong>Acción</strong></small></td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let arch of archivos">
-                                <td> {{ arch.nombre }} </td>
-                                <td>
-                                    <a [href]="arch.link" target="_blank">{{ arch.link }}</a> </td>
-                                <td> <button class="btn btn-danger btn-sm mr-1" (click)="archivos.splice(index, 1)"><i
-                                            class="mdi mdi-delete-variant"></i></button> </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <small> <strong>{{archivosPoliza.length}}</strong> archivos encontrados </small>
+                    <app-tbl-archivo [data]="archivosPoliza"></app-tbl-archivo>
                 </div>
             </div>
         </div>
@@ -137,32 +110,3 @@
 <button class="right-side-toggle btn-inverse btn-primary btn btn-circle" (click)="registrarPoliza()">
     <i class="ti-check text-white no-animation"></i>
 </button>
-
-<div class="right-sidebar">
-    <div class="slimscrollright">
-        <div class="rpanel-title"> {{ titulo_subpage }} <span><i class="ti-close right-side-toggle"></i></span> </div>
-        <div class="r-panel-body">
-            <ng-container *ngIf="selected_subpage==SUB_COMPONENTS.PRODUCTO">
-                <app-producto [producto]="producto"></app-producto>
-                <hr>
-                <button type="button" class="btn btn-success right-side-toggle" data-dismiss="modal"
-                    (click)="agregarProducto()">Agregar</button>
-            </ng-container>
-
-            <ng-container *ngIf="selected_subpage==SUB_COMPONENTS.ARCHIVO">
-                <div class="form-group">
-                    <label class="control-label">Enlace web</label>
-                    <input [(ngModel)]="archivo.link" type="text" class="form-control" placeholder="Enlace web">
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Observación</label>
-                    <textarea [(ngModel)]="archivo.nombre" type="text" class="form-control" rows="5"
-                        placeholder="Observación del archivo"></textarea>
-                </div>
-                <hr>
-                <button type="button" class="btn btn-success right-side-toggle" data-dismiss="modal"
-                    (click)="agregarArchivo()">Agregar</button>
-            </ng-container>
-        </div>
-    </div>
-</div>

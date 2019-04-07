@@ -29,6 +29,10 @@ import { NePolizaComponent } from './poliza/ne-poliza.component';
 import { ProductoComponent } from '../components/producto/producto.component';
 import { EndosoComponent } from './poliza/endoso.component';
 import { RenovacionesComponent } from './poliza/renovaciones.component';
+import { FrmProductoComponent } from '../components/frm-producto/frm-producto.component';
+import { FrmArchivoComponent } from '../components/frm-archivo/frm-archivo.component';
+import { TblArchivoComponent } from '../components/frm-archivo/tbl-archivo.component';
+import { TblProductoComponent } from '../components/frm-producto/tbl-producto.component';
 
 
 @NgModule({
@@ -56,7 +60,11 @@ import { RenovacionesComponent } from './poliza/renovaciones.component';
         RenovacionesComponent,
         ClienteSearchTextComponent,
         NePolizaComponent,
-        ProductoComponent
+        ProductoComponent,
+        FrmProductoComponent,
+        FrmArchivoComponent,
+        TblArchivoComponent,
+        TblProductoComponent
     ],
     exports: [
         DashboardComponent,
@@ -64,7 +72,11 @@ import { RenovacionesComponent } from './poliza/renovaciones.component';
         Graficas1Component,
         PolizaComponent,
         NePolizaComponent,
-        ProductoComponent
+        ProductoComponent,
+        FrmProductoComponent,
+        FrmArchivoComponent,
+        TblArchivoComponent,
+        TblProductoComponent
     ],
     imports: [
         SharedModule,
